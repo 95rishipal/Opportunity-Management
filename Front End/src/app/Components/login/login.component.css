@@ -1,0 +1,33 @@
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  .Rfont{
+    font-family: Raleway
+  }
+
+  span{
+      margin-right: 20px;
+  }
+
+  #msicon{
+    height: 65px;
+    border: 5px solid;
+    padding: 0px;
+  }
+
+  .container{
+    margin-left: 100px;
+    border: 1em;
+    background-color: aqua;
+    width: 200px;
+    height: 300px;
+  }
+
+  mat-card{
+      width: 200px;
+      height:300px;
+      margin-left: 500px;
+      margin-top: 20px;
+  }

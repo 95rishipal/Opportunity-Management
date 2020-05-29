@@ -1,0 +1,64 @@
+table {
+    width: 100%;
+    /* background-color: azure; */
+  }
+  tr{
+      width: max-content;
+  }
+
+  .mat-elevation-z8{
+      /* background-color: aqua; */
+      width: 800px;
+      margin-left: 280px;
+      margin-top: 20px;
+  }
+
+  .delbtn{
+      width:30px; 
+      height: 30px;
+  }
+  
+  .icondelbtn{
+    /* width:30px; */
+    height: 30px;
+    margin-top: -19px;
+}
+.iconeditbtn{
+    /* width:30px; */
+    height: 30px;
+    margin-top: -19px;
+}
+
+.addbtn{
+    margin-left: 10px;
+    margin-top:10px;
+}
+.delbtn2 {
+    width:30px; 
+      height: 30px;
+      margin-left: 20px;
+}
+
+.editbtn{
+    width:30px; 
+    height: 30px;
+    margin-left: 10px;
+    background-color: black;
+}
+
+.title{
+    margin-left:500px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 10px;
+    text-shadow: 2px 4px #b590e686;
+}
+textarea {
+    resize: none;
+  }
+#titile{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: oblique;
+    font-size: 10px;
+}

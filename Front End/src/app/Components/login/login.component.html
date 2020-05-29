@@ -1,0 +1,48 @@
+
+<mat-toolbar color="primary"> 
+    <img src="../../../assets/icon4.jpg" alt="MS Icon" id="msicon">
+</mat-toolbar>
+<br>
+<mat-card>
+  <mat-card-title> Login </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="myform">
+      <mat-form-field appearance="fill">
+          <mat-label> Username </mat-label>
+          <input id="email" formControlName = "username"  type="email" formControlName="email" matInput> 
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+          <mat-label> Password </mat-label>
+          <input  type="password" formControlName = "password" id="password"  matInput>
+      </mat-form-field>
+      <br>
+      <button mat-stroked-button color="primary"   (click)='signin(myform.value)' style="width:100%;"> Sign in </button>
+      <br>
+      <br>
+      <button mat-stroked-button color="primary" #loginRef style="width:100%;">  
+       <img src="../../../assets/googlelogo.png" alt="gmailIcon" style="width:30px; margin-right: 10px;"> Login with Google 
+      </button>
+   </form>
+  </mat-card-content>
+  <mat-card-footer style="text-align: center;">
+    © Accolite India 
+  </mat-card-footer>
+</mat-card>
+
+
+<!-- Add Components -->
+<!-- <ng-template #pass let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Registration</h4>
+    </div>
+    <div class="modal-body">
+      <div id="formdiv" class= "card card-body bg-light" >
+            <label for="inputValue"> Please Enter New Password: </label> 
+            <input type="text" name="name" #name />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="onsubmit(name.value);modal.close('Save click')">Submit</button>
+    </div>
+  </ng-template> -->
