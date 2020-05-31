@@ -1,0 +1,33 @@
+mat-card{
+    margin-left: 100px;
+    margin-top: 10px;
+    width: 1150px;
+}
+mat-card-title{
+    font-size: medium;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+table {
+    width: 100%;
+    /* background-color: azure; */
+  }
+  tr{
+      width: max-content;
+  }
+
+  .mat-elevation-z8{
+      /* background-color: aqua; */
+      width: 800px;
+      margin-left: 280px;
+      margin-top: 20px;
+  }
+#searchicon{
+    width: 20px;
+
+}
+
+#searchbar{
+    margin-left: 20px;
+    margin-right: 10px;
+    width:75%;
+}

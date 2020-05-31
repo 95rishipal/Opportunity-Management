@@ -23,7 +23,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule  }  from  '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import {  MatCardModule } from '@angular/material/card'
+import {  MatCardModule } from '@angular/material/card';
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { AuthInterceptor } from './Interceptors/AuthInterceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,13 @@ import {  MatCardModule } from '@angular/material/card'
     MatIconModule,MatListModule,MatFormFieldModule,MatDatepickerModule,MatInputModule, MatDatepickerModule,MatNativeDateModule,
     MatButtonModule,HttpClientModule,MatTableModule,MatPaginatorModule,MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

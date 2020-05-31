@@ -1,15 +1,28 @@
 
 <mat-toolbar color="primary"> 
     <img src="../../../assets/icon4.jpg" alt="MS Icon" id="msicon">
+    <button color="primary" id="login" #loginRef >  
+      <span>
+        <img src="../../../assets/googlelogo.png" alt="gmailIcon" id="loginicon"> 
+      </span>
+    </button>
 </mat-toolbar>
-<br>
+<h2 style="margin-left: 430px; margin-top: 20px;"> Welcome to Accolite Opportunity Managment Portal</h2>
+<div id= "frame">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/ikurOQKuOXs?controls=0" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+</div>
+
+<!-- <br>
 <mat-card>
   <mat-card-title> Login </mat-card-title>
   <mat-card-content>
     <form [formGroup]="myform">
+      
+        <input id="name"  type="hidden"  formControlName="name"/> 
+      
       <mat-form-field appearance="fill">
           <mat-label> Username </mat-label>
-          <input id="email" formControlName = "username"  type="email" formControlName="email" matInput> 
+          <input id="email" type="email" formControlName="email" matInput> 
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill">
@@ -17,10 +30,10 @@
           <input  type="password" formControlName = "password" id="password"  matInput>
       </mat-form-field>
       <br>
-      <button mat-stroked-button color="primary"   (click)='signin(myform.value)' style="width:100%;"> Sign in </button>
+      <button style="width:100%;text-align: center; vertical-align: middle;" mat-stroked-button color="primary"   (click)='signin(myform.value)' style="width:100%;"> Sign in </button>
       <br>
       <br>
-      <button mat-stroked-button color="primary" #loginRef style="width:100%;">  
+      <button style="width:100%;text-align: center; vertical-align: middle;" color="primary"  #loginRef >  
        <img src="../../../assets/googlelogo.png" alt="gmailIcon" style="width:30px; margin-right: 10px;"> Login with Google 
       </button>
    </form>
@@ -28,7 +41,7 @@
   <mat-card-footer style="text-align: center;">
     © Accolite India 
   </mat-card-footer>
-</mat-card>
+</mat-card> -->
 
 
 <!-- Add Components -->

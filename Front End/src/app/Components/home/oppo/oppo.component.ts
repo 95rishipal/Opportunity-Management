@@ -7,6 +7,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
+import {LoginService} from '../../../Services/login.service/login.service'
 @Component({
   selector: 'app-oppo',
   templateUrl: './oppo.component.html',
@@ -17,13 +18,19 @@ export class OppoComponent implements OnInit {
   data:any
   myform: FormGroup;
   minDate: Date;
-  displayedColumns: string[] = ['oppid', 'discription', 'location','endDate', 'skills', 'getdetails'];
+  displayedColumns: string[] = ['oppid', 'description', 'location','endDate', 'skills', 'getdetails'];
   dataSource = new MatTableDataSource<Opportunity>();
+  
   @ViewChild('AddForm') addTemplate: TemplateRef<any>;
   private addDialog: MatDialogRef<TemplateRef<any>>;
+  
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private fb: FormBuilder,private http: HttpClient, private OppoService:OppoService, public dialog: MatDialog) {}
   defaultOpportunity: Opportunity ;
+
+  // ------------------------- Constructor --------------------------------------
+  constructor(private fb: FormBuilder,private loginservice: LoginService, private http: HttpClient, private OppoService:OppoService, public dialog: MatDialog) {}
+  
+  // ------------------------- Init Method ---------------------------------------
   ngOnInit(): void {
     this.defaultOpportunity = new Opportunity();
     this.myform = this.fb.group({
@@ -32,16 +39,16 @@ export class OppoComponent implements OnInit {
       location: new FormControl('',[Validators.required]),
       endDate: new FormControl('',[Validators.required]),
       skills: new FormControl('',[Validators.required]),
-  });
+    });
 
-  this.minDate = new Date();
+    this.minDate = new Date();
       this.OppoService.getAllOpp().subscribe((data: any[])=>{
       console.log(data);
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
     })
-    
   }
+
   public opendelDialog(data){
       console.log(data.oppid);
       this.delRecord(data);
@@ -59,23 +66,23 @@ export class OppoComponent implements OnInit {
 
   public onEdit(data){
     let options = { year: 'numeric', month: 'long', day: 'numeric' };
-    console.log();
+    console.log(data);
     const momentDate = new Date(data.endDate);
     const dat = ("0" + momentDate.getDate()).slice(-2);
     const month = ("0" + (momentDate.getMonth() + 1)).slice(-2);
     const year = momentDate.getFullYear();
     const presentDate = year+"-"+month+"-"+dat;
     console.log(presentDate);
-    // console.log(Date.UTC(year,month,dat));
     data.endDate = presentDate;
     this.OppoService.addOpp(data).subscribe((data) => {
       console.log("Running");
-       this.OppoService.getAllOpp().subscribe((data: any[])=>{
-        console.log(data);
-        this.dataSource.data = data;
+      console.log(data);
+       this.OppoService.getAllOpp().subscribe((output: any[])=>{
+        console.log(output);
+        this.dataSource.data = output;
         this.dataSource.paginator = this.paginator;
       });
-      alert("Opportunity Added!!");
+      alert("Opportunity Updated!!");
     }) 
 
   }
@@ -132,7 +139,7 @@ export class OppoComponent implements OnInit {
         this.dataSource.data = data;
         this.dataSource.paginator = this.paginator;
       });
-      alert("Opportunity Updated!!");
+      alert("Opportunity Added!!");
     }) 
 
     this.addDialog.close();

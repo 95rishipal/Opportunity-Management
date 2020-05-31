@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef, NgZone} from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { FormGroup, FormBuilder, FormControl, Validators, NgModel  } from '@angular/forms'
 import { User } from '../../Models/User.model';
@@ -7,19 +7,17 @@ import { LoginService } from '../../Services/login.service/login.service'
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
+import { LocalstorageService } from '../../Services/localstorage.service.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  
-
   auth2: any;
   @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
   myform: FormGroup;
-  defaultuser:User = new User(-1,"","","");
+  defaultuser:User = new User(-1,"","","","");
   pass:NgModel;
   display:boolean = false;
   @ViewChild('pass', {static: true }) modalExample: TemplateRef<any>;
@@ -27,33 +25,38 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, 
     private http: HttpClient, 
     private LoginService:LoginService,
-    private router: Router) { }
+    private router: Router,private ngZone: NgZone,
+    private localstorageservice:LocalstorageService) { }
 
   ngOnInit(): void {
     this.googleSDK();
     this.myform = this.fb.group({
       email: new FormControl('', [Validators.required,Validators.email]),
-      password: new FormControl('')
+      password: new FormControl('',[Validators.required]),
+      name: new FormControl(''),
     });
     
   }
 
   signin(data){
-          let user:User = new User(-1,data.email,data.password,"");
+          let user:User = new User(-1,data.name,data.email,data.password,"");
           console.log(user);
-        //   this.LoginService.check(user).subscribe(()=>{
-        //     alert("Login Successfully");
-        //     this.router.navigateByUrl('/admin');
-        // },response => {
-        //         if(response.status == 400){ 
-        //           alert("Invalid Email Password"); 
-        //         }
-        //   });
+          this.LoginService.login(user).subscribe(()=>{
+            alert("Login Successfully");
+            this.router.navigateByUrl('/admin');
+        },response => {
+                if(response.status == 409){ 
+                  alert("Invalid Email Password"); 
+                }
+          });
   }
   onsubmit(data){
     console.log(data);
   }
 
+  public navigate(commands: any[]): void {
+    this.ngZone.run(() => this.router.navigate(commands)).then();
+}
 
   googleSDK() {
       window['googleSDKLoaded'] = () => {
@@ -63,7 +66,7 @@ export class LoginComponent implements OnInit {
             cookiepolicy: 'single_host_origin',
             scope: 'profile email'
           });
-          
+          this.prepareLoginButton();
         });
       }
 
@@ -86,19 +89,19 @@ export class LoginComponent implements OnInit {
           console.log('Image URL: ' + profile.getImageUrl());
           console.log('Email: ' + profile.getEmail());
           //YOUR CODE HERE
-          let user:User= new User(-1,profile.getEmail(),"",profile.getId())
-          this.LoginService.check(user).subscribe((data?:String)=>{
+          
+          this.localstorageservice.setAuthData(googleUser.getAuthResponse().id_token);
+          this.localstorageservice.setUserData(profile.getEmail());
+          let user:User= new User(-1,profile.getName(), profile.getEmail(),"",profile.getId())
+          this.LoginService.login(user).subscribe((data?:String)=>{
               alert("Login Successfully");
-              this.router.navigateByUrl('/admin'); 
+              console.log(data);
+              // this.router.navigateByUrl('/home/trends'); 
+              // this.router.navigate(['/home/trends']);
+              this.navigate(["/home/trends"]);
           }, response => {
-                if(response.status == 400){ 
-                  this.LoginService.insert(user).subscribe((data?:String)=>{
-                    alert("Registered Successfully");
-                      this.router.navigateByUrl('/admin'); 
-                  }, response=>{
-                    if(response.status == 400){ 
-                      alert("Notable to register"); 
-                    }});
+                if(response.status == 409){ 
+                  alert("Invalid Email Password.");
                 }
           });
         }, (error) => {

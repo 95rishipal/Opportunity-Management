@@ -1,1 +1,70 @@
-<p>search works!</p>
+
+<mat-card>
+
+    <mat-card-title>
+        <mat-form-field>
+            <mat-label>Column</mat-label>
+            <select matNativeControl required #column>
+              <option value="description">Description</option>
+              <option value="skills">Skills</option>
+              <option value="location">Location</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field id="searchbar" >
+            <mat-label>Search Bar</mat-label>
+            <input matInput placeholder="Java, Python,  Delhi, etc." required #query>
+          </mat-form-field>
+          
+            <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon" (click)="searchM()" >
+                <img src="../../../../assets/search.png" id="searchicon">
+              </button>
+          
+          
+    </mat-card-title>
+    <mat-card-content>
+
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="grid"> 
+          <table mat-table [dataSource]="dataSource" >
+        
+            <!-- Oppid Column -->
+            <ng-container matColumnDef="oppid">
+              <th mat-header-cell *matHeaderCellDef>  Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.oppid}} </td>
+            </ng-container>
+        
+            <!-- discription Column -->
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> description </th>
+              <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+            
+            <!-- location Column -->
+            <ng-container matColumnDef="location">
+              <th mat-header-cell *matHeaderCellDef> location </th>
+              <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+            </ng-container>
+      
+      
+            <!-- endDate Column -->
+            <ng-container matColumnDef="endDate">
+              <th mat-header-cell *matHeaderCellDef> End Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.endDate}} </td>
+            </ng-container>
+        
+            <!-- skills Column -->
+            <ng-container matColumnDef="skills">
+              <th mat-header-cell *matHeaderCellDef> Skills </th>
+              <td mat-cell *matCellDef="let element"> {{element.skills}} </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[ 5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+
+    </mat-card-footer>
+</mat-card>
+

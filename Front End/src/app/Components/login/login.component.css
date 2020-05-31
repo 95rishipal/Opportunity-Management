@@ -2,32 +2,73 @@
     /* This fills the remaining space, by using flexbox. 
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
-  }
-  .Rfont{
-    font-family: Raleway
-  }
+}
 
-  span{
-      margin-right: 20px;
-  }
+.Rfont{
+  font-family: Raleway
+}
+#frame{
+  margin-top: 100px;
+  margin-left: 400px;
+}
+button{
+   /* background-color: #673ab7; */
+   width:20px;
+   background-color: white;
+   border: none;
+   border-style: solid;
+   border-right-color: black;
+   border-left-color: black;
+   border-top-color: white;
+   border-bottom-color: white;
+}
+span{
+    margin-right: 20px;
+}
 
-  #msicon{
-    height: 65px;
-    border: 5px solid;
-    padding: 0px;
-  }
+#msicon{
+  height: 65px;
+  border: 5px solid;
+  padding: 0px;
+}
 
-  .container{
-    margin-left: 100px;
-    border: 1em;
-    background-color: aqua;
+#login{
+  width:55px;
+  height: 62px;
+  margin-left: auto;
+}
+
+#logintext{
+  width:10px;
+  text-shadow: aqua;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+  margin-top: 12px;
+  margin-left: 5px;
+  float: left;
+}
+
+#loginicon{
+  margin-top: -15px;
+  margin-left: -2px;
+  width: 40px;
+  float: left;
+  shape-outside: cross-fade();
+  -ms-zoom-animation: default;
+}
+
+.container{
+  margin-left: 100px;
+  border: 1em;
+  background-color: aqua;
+  width: 200px;
+  height: 300px;
+}
+
+mat-card{
     width: 200px;
-    height: 300px;
-  }
-
-  mat-card{
-      width: 200px;
-      height:300px;
-      margin-left: 500px;
-      margin-top: 20px;
-  }
+    height:300px;
+    margin-left: 500px;
+    margin-top: 20px;
+}

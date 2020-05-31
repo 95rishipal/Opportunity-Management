@@ -5,6 +5,6 @@
     <button  mat-button  color="white"  [routerLink]="['./opportunity']"> Opportunity </button>
     <span class="example-fill-remaining-space"></span>
     <button   mat-button color="white" [routerLink]="['./myprofile']">My Profile</button>
-    <img color="white" src="../../../assets/login-24px.svg" alt="Logout" id="logout">
+   <button (click)="logout()"> <img color="white" src="../../../assets/login-24px.svg"   alt="Logout" id="logout"></button>
 </mat-toolbar>
 <router-outlet></router-outlet>

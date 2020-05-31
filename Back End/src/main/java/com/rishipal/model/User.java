@@ -25,6 +25,7 @@ public class User {
 	private String email;
 	private String password;
 	private String gid;
+	private String token;
 	
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "users")
@@ -88,6 +89,16 @@ public class User {
 
 	public void setOppos(Set<Opportunity> oppos) {
 		this.oppos = oppos;
+	}
+	
+
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 

@@ -1,5 +1,6 @@
 package com.rishipal.resource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.rishipal.model.Opportunity;
 import com.rishipal.model.User;
@@ -113,6 +115,35 @@ public class OpportunityRes {
 			httpstatus = HttpStatus.CONFLICT;
 		}
 	    ResponseEntity responseEntity = new ResponseEntity("[User]: Edit api",responseHeaders,httpstatus);
+		return responseEntity;
+	}
+	
+	
+	@GetMapping(path = "/oppo/search/{col}/{place}")
+	@ResponseBody
+	public ResponseEntity  addUser(@PathVariable("col") String col, @PathVariable("place") String place) {
+		System.out.println(col+"---"+place);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		HttpStatus httpstatus= HttpStatus.NOT_FOUND;
+		ArrayList<Opportunity> list = null;
+	    try {
+			if(col.equals("description")) {
+				list = (ArrayList<Opportunity>) opportunityrepo.findByDescriptionContaining(place);
+				httpstatus= HttpStatus.OK;
+			}
+			else if(col.equals("location")) {
+				list = (ArrayList<Opportunity>) opportunityrepo.findByLocationContaining(place);
+				httpstatus= HttpStatus.OK;
+			}else if(col.equals("skills")) {
+				list = (ArrayList<Opportunity>) opportunityrepo.findBySkillsContaining(place);
+				httpstatus= HttpStatus.OK;
+			}
+	    	
+		}catch(Exception e) {
+			responseHeaders.set("Error-MSG",e.getClass().getSimpleName());
+			httpstatus = HttpStatus.CONFLICT;
+		}
+	    ResponseEntity responseEntity = new ResponseEntity(list,responseHeaders,httpstatus);
 		return responseEntity;
 	}
 	
