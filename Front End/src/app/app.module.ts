@@ -30,6 +30,7 @@ import { MatTabsModule } from '@angular/material/tabs'
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu'
+import { MatGridListModule } from '@angular/material/grid-list'
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { MatMenuModule } from '@angular/material/menu'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgxChartsModule,MatMenuModule,
+    BrowserAnimationsModule, NgxChartsModule,MatMenuModule,MatGridListModule,
     MatToolbarModule,ReactiveFormsModule,FormsModule,MatCardModule,MatTabsModule,MatSnackBarModule,
     MatIconModule,MatListModule,MatFormFieldModule,MatDatepickerModule,MatInputModule, MatDatepickerModule,MatNativeDateModule,
     MatButtonModule,HttpClientModule,MatTableModule,MatPaginatorModule,MatDialogModule

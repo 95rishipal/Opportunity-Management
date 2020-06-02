@@ -63,7 +63,7 @@ public class Trends {
 		 ResponseEntity responseEntity = new ResponseEntity(item,responseHeaders,httpstatus);
 		 return responseEntity;
 	}
-	
+//	---------------- Count Skills -----------------------------------
 	@GetMapping(path = "/trends/skills")
 	@ResponseBody
 	public ResponseEntity getAllskills() {	
@@ -88,7 +88,59 @@ public class Trends {
 		 ResponseEntity responseEntity = new ResponseEntity(item,responseHeaders,httpstatus);
 		 return responseEntity;
 	}
-	
-	
+//	------------------- Total Number of Users ----------------------------
+	@GetMapping(path = "/trends/countusers")
+	@ResponseBody
+	public ResponseEntity getcountUsers() {	
+		HttpHeaders responseHeaders = new HttpHeaders();
+		HttpStatus httpstatus= HttpStatus.OK;
+		PreparedStatement statement;
+		ResultSet rs;
+		Map<String,String> temp = new HashMap<>();
+		List<Map<String,String>> item = new ArrayList<>();
+		try {
+				statement =con.prepareStatement("SELECT count(*) FROM user; ");
+				rs = statement.executeQuery();
+				rs.next();
+				System.out.println(rs.getString(1));
+				temp.put("name","#Users");
+				temp.put("value", rs.getString(1));
+				item.add(temp);
+				temp = null;
+				temp = new HashMap<>();
+				statement =con.prepareStatement("SELECT COUNT(DISTINCT skills) FROM opportunity; ");
+				rs = statement.executeQuery();
+				rs.next();
+				System.out.println(rs.getString(1));
+				temp.put("name","#Skills");
+				temp.put("value", rs.getString(1));
+				item.add(temp);
+				temp = null;
+				temp = new HashMap<>();
+				statement =con.prepareStatement("SELECT COUNT(*) FROM opportunity; ");
+				rs = statement.executeQuery();
+				rs.next();
+				System.out.println(rs.getString(1));
+				temp.put("name","#Opportunities");
+				temp.put("value", rs.getString(1));
+				item.add(temp);
+				temp = null;
+				temp = new HashMap<>();
+				statement =con.prepareStatement("SELECT COUNT(DISTINCT location) FROM opportunity;  ");
+				rs = statement.executeQuery();
+				rs.next();
+				System.out.println(rs.getString(1));
+				temp.put("name","#Locations");
+				temp.put("value", rs.getString(1));
+				item.add(temp);
+				temp = null;
+				
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 ResponseEntity responseEntity = new ResponseEntity(item,responseHeaders,httpstatus);
+		 return responseEntity;
+	}
 	
 }

@@ -28,9 +28,23 @@ public class User {
 	private String token;
 	
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "users")
-	private Set<Opportunity> oppos = new HashSet<>();
-
+//	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "users")
+//	private Set<Opportunity> oppos = new HashSet<>();
+//------------------------ Constructor -----------------------------------
+	public User() {
+		
+	}
+	public User(int userid, String name, String email, String password, String gid, String token) {
+		super();
+		this.userid = userid;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.gid = gid;
+		this.token = token;
+	}
+	
+	
 //	------------ Getters and Setters --------------------
 	public int getUserid() {
 		return userid;
@@ -82,16 +96,6 @@ public class User {
 	}
 
 
-	public Set<Opportunity> getOppos() {
-		return oppos;
-	}
-
-
-	public void setOppos(Set<Opportunity> oppos) {
-		this.oppos = oppos;
-	}
-	
-
 	public String getToken() {
 		return token;
 	}
@@ -105,7 +109,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", name=" + name + ", email=" + email + ", password=" + password + ", gid="
-				+ gid + ", oppos=" + oppos + "]";
+				+ gid +  "]";
 	}
 
 

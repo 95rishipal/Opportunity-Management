@@ -36,8 +36,8 @@ public class UserRes {
 	@Autowired
 	private UserRepo userrepo;
 	
-	@GetMapping("/user/getall")
-	@ResponseBody
+//	@GetMapping("/user/getall")
+//	@ResponseBody
 	public ResponseEntity retrieveAllUsers() {
 		List<User> users = null;
 		HttpHeaders responseHeaders = new HttpHeaders();

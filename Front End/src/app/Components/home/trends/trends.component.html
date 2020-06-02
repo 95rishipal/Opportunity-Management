@@ -1,39 +1,44 @@
-<mat-tab-group>
-    <mat-tab label="Bar Graph of Skills"> 
-        <div class="row">
-            <ngx-charts-bar-vertical
-            [view]="view"
-            [scheme]="colorScheme"
-            [results]="lang"
-            [gradient]="gradient"
-            [xAxis]="showXAxis"
-            [yAxis]="showYAxis"
-            [legend]="showLegend"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            (select)="onSelect($event)">
-            </ngx-charts-bar-vertical>
-      </div>    
-    </mat-tab>
-    <mat-tab label="Column 2">  
+<mat-grid-list cols="1" rowHeight="200px" >
+    <mat-grid-tile>
+        <div style="width: 700px;height: 130px;">
+            <ngx-charts-number-card
+                view=""
+                [scheme]="colorScheme"
+                [results]="NoUser"
+                animations=true>
+            </ngx-charts-number-card>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+    
+
+<mat-grid-list cols="2" rowHeight="500px"   md-gutter-gt-sm="0px" >
+    <mat-grid-tile class="col">
         <ngx-charts-bar-vertical
         [view]="view"
         [scheme]="colorScheme"
-        [results]="skills"
-        [gradient]="gradient"
+        [results]="lang"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
         [legend]="showLegend"
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
-        (select)="onSelect($event)">
+        [xAxisLabel]="xAxisLabel1"
+        [yAxisLabel]="yAxisLabel">
         </ngx-charts-bar-vertical>
-    </mat-tab>
-    <mat-tab label="Column 3"> 
-       
-    </mat-tab>
-  </mat-tab-group>
+    </mat-grid-tile>
+    <mat-grid-tile class="col">
+        <ngx-charts-bar-vertical
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="skills"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel2"
+        [yAxisLabel]="yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </mat-grid-tile>
+</mat-grid-list>  

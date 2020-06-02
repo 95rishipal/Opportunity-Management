@@ -15,4 +15,8 @@ export class TrendsService {
   public getAllskills(){
     return this.httpClient.get(this.apiServer+'/trends/skills');
   }
+
+  public getAllUsers(){
+    return this.httpClient.get(this.apiServer+'/trends/countusers');
+  }
 }

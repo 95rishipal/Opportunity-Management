@@ -36,7 +36,7 @@ public class Opportunity {
 	private LocalDate endDate;
 	private String location;
 	private String skills;
-	
+	private int userid;
 	
 // ------------------ Join Tables ---------------------------------	
 //	@ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE })
@@ -44,18 +44,19 @@ public class Opportunity {
 //	  inverseJoinColumns = @JoinColumn(name = "skillid"))
 //	private Set<Skill> skills = new HashSet<>();
 //	
-	@ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "Rel_Opp_User", joinColumns = @JoinColumn(name = "oppid"), 
-	  inverseJoinColumns = @JoinColumn(name = "userid"))
-	private Set<User> users = new HashSet<>();
-	
+//	@ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE })
+//	@JoinTable(name = "Rel_Opp_User", joinColumns = @JoinColumn(name = "oppid"), 
+//	  inverseJoinColumns = @JoinColumn(name = "userid"))
+//	private Set<User> users = new HashSet<>();
+//	
 // ---------------- Constructor ----------------------------
-	public Opportunity(int oppid, String description, LocalDate endDate, String location, String skills) {
+	public Opportunity(int oppid, String description, LocalDate endDate, String location, String skills, int userid) {
 		this.oppid = oppid;
 		this.description = description;
 		this.endDate = endDate;
 		this.location = location;
 		this.skills = skills;
+		this.userid = userid;
 	}
 
 
@@ -81,12 +82,15 @@ public class Opportunity {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	public Set<User> getUsers() {
-		return users;
+	
+	public int getUserid() {
+		return userid;
 	}
-	public void setUsers(Set<User> users) {
-		this.users = users;
+
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
+
 	public String getLocation() {
 		return location;
 	}
@@ -103,7 +107,7 @@ public class Opportunity {
 	@Override
 	public String toString() {
 		return "Opportunity [oppid=" + oppid + ", description=" + description + ", endDate=" + endDate + ", location="
-				+ location + ", skills=" + skills + ", users=" + users + "]";
+				+ location + ", skills=" + skills + ", users=" + userid + "]";
 	}
 	
 }
