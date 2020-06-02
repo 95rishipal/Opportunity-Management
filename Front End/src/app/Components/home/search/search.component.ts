@@ -33,10 +33,14 @@ export class SearchComponent implements OnInit {
     console.log(query);
     this.SearchService.search(col,query).subscribe((data: any[])=>{
       console.log(data);
-      this.dataSource.data = data;
-      this.dataSource.paginator = this.paginator;
+      if(data.length == 0){
+          alert("No Result Found!!");
+      }else{
+        this.dataSource.data = data;
+        this.dataSource.paginator = this.paginator;
+      }
     }, error =>{
-      alert('No Result Found');
+      alert('[Server] Somthing went wrong, Try Again!!');
     });
   }
 }

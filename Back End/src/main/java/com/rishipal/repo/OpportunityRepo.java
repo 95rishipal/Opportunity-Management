@@ -19,4 +19,5 @@ public interface OpportunityRepo extends JpaRepository<Opportunity, Integer> {
 //	
 	@Query("Select c from Opportunity c where c.skills like %?1%")	
 	List<Opportunity> findBySkillsContaining(String place);
+	
 }

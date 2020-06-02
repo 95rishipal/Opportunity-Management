@@ -15,7 +15,7 @@ import com.rishipal.model.*;
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.rishipal.resource"})
+@ComponentScan(basePackages = {"com.rishipal.resource","com.rishipal.jdbc"})
 @EntityScan("com.rishipal.model")
 @EnableJpaRepositories("com.rishipal.repo")
 public class OpportunityManagmenetApplication {

@@ -16,6 +16,7 @@ children: [
       { path: 'myprofile', component: MyprofileComponent },
       ] },
       { path: 'login', component: LoginComponent}, 
+      { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

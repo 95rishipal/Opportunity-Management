@@ -26,6 +26,11 @@ import { FormsModule } from '@angular/forms';
 import {  MatCardModule } from '@angular/material/card';
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AuthInterceptor } from './Interceptors/AuthInterceptor';
+import { MatTabsModule } from '@angular/material/tabs'
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +44,8 @@ import { AuthInterceptor } from './Interceptors/AuthInterceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,ReactiveFormsModule,FormsModule,MatCardModule,
+    BrowserAnimationsModule, NgxChartsModule,MatMenuModule,
+    MatToolbarModule,ReactiveFormsModule,FormsModule,MatCardModule,MatTabsModule,MatSnackBarModule,
     MatIconModule,MatListModule,MatFormFieldModule,MatDatepickerModule,MatInputModule, MatDatepickerModule,MatNativeDateModule,
     MatButtonModule,HttpClientModule,MatTableModule,MatPaginatorModule,MatDialogModule
   ],

@@ -3,6 +3,13 @@
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
 }
+.mat-card{
+  width: 356px;
+  height: 165px;
+  box-shadow: 1px 2px 1px -1px rgba(0,0,0,1), 
+                1px 1px 1px 0 rgba(0,0,0,1), 
+                2px 2px 3px 0 rgba(0,0,0,1);
+}
 
 .Rfont{
   font-family: Raleway
@@ -13,14 +20,11 @@
 }
 button{
    /* background-color: #673ab7; */
-   width:20px;
+   width:100px;
    background-color: white;
-   border: none;
+   border: 0.1em;
    border-style: solid;
-   border-right-color: black;
-   border-left-color: black;
-   border-top-color: white;
-   border-bottom-color: white;
+   border-color: antiquewhite;
 }
 span{
     margin-right: 20px;
@@ -33,25 +37,26 @@ span{
 }
 
 #login{
-  width:55px;
+  width:200px;
+  bottom: 0px;
   height: 62px;
   margin-left: auto;
 }
 
 #logintext{
-  width:10px;
+  width:100%;
   text-shadow: aqua;
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 18px;
-  margin-top: 12px;
-  margin-left: 5px;
+  font-size: 12px;
+  margin-top: -30px;
+  margin-left: 20px;
   float: left;
 }
 
 #loginicon{
-  margin-top: -15px;
-  margin-left: -2px;
+  margin-top: 0px;
+  margin-left: 0px;
   width: 40px;
   float: left;
   shape-outside: cross-fade();

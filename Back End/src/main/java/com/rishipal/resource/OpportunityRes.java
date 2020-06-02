@@ -38,13 +38,13 @@ public class OpportunityRes {
 	private OpportunityRepo opportunityrepo;
 	
 	
-	@GetMapping("/oppo/getall")
+//	@GetMapping("/oppo/getall")
 	@ResponseBody
 	public List<Opportunity> retrieveAllStudents() {
 		return opportunityrepo.findAll();
 	}
 	
-	@GetMapping("/oppo/get/{oppid}")
+//	@GetMapping("/oppo/get/{oppid}")
 	@ResponseBody
 	public ResponseEntity retrieveUserById(@PathVariable("oppid") int id) {
 		Optional<Opportunity> user = null;
@@ -61,8 +61,8 @@ public class OpportunityRes {
 	}
 	
 	
-	@PostMapping(path = "/oppo/add", consumes = "application/json", produces = "application/json")
-	@ResponseBody
+//	@PostMapping(path = "/oppo/add", consumes = "application/json", produces = "application/json")
+//	@ResponseBody
 	public ResponseEntity addOppo(@RequestBody Opportunity ele) {
 		System.out.println(ele);
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -77,16 +77,9 @@ public class OpportunityRes {
 		return responseEntity;
 	}
 	
-	@PostMapping("/oppo/addall")
-	@ResponseBody
-	public void addOppo2(Opportunity ele) {
-		System.out.println("running");
-		System.out.println(ele);
-
-	}
 	
-	@DeleteMapping("/oppo/del/{id}")
-	@ResponseBody
+//	@DeleteMapping("/oppo/del/{id}")
+//	@ResponseBody
 	public ResponseEntity deleteUserById(@PathVariable("id") int id) {
 		System.out.println(id);
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -102,8 +95,8 @@ public class OpportunityRes {
 		return responseEntity;
 	}
 	
-	@PostMapping("/oppo/edit/{id}")
-	@ResponseBody
+//	@PostMapping("/oppo/edit/{id}")
+//	@ResponseBody
 	public ResponseEntity  addUser(@PathVariable("id") int id, User user) {
 		System.out.println(user);
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -119,7 +112,7 @@ public class OpportunityRes {
 	}
 	
 	
-	@GetMapping(path = "/oppo/search/{col}/{place}")
+//	@GetMapping(path = "/oppo/search/{col}/{place}")
 	@ResponseBody
 	public ResponseEntity  addUser(@PathVariable("col") String col, @PathVariable("place") String place) {
 		System.out.println(col+"---"+place);
@@ -146,6 +139,5 @@ public class OpportunityRes {
 	    ResponseEntity responseEntity = new ResponseEntity(list,responseHeaders,httpstatus);
 		return responseEntity;
 	}
-	
 	
 }

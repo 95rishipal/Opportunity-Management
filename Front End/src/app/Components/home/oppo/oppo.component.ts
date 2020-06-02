@@ -23,6 +23,9 @@ export class OppoComponent implements OnInit {
   
   @ViewChild('AddForm') addTemplate: TemplateRef<any>;
   private addDialog: MatDialogRef<TemplateRef<any>>;
+
+  @ViewChild('EditForm') editTemplate: TemplateRef<any>;
+  private editDialog: MatDialogRef<TemplateRef<any>>;
   
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   defaultOpportunity: Opportunity ;
@@ -61,7 +64,7 @@ export class OppoComponent implements OnInit {
       dialogConfig.restoreFocus = false;
       dialogConfig.autoFocus = false;
       dialogConfig.role = 'dialog';
-      this.addDialog = this.dialog.open(this.addTemplate, dialogConfig);
+      this.editDialog = this.dialog.open(this.editTemplate, dialogConfig);
   }
 
   public onEdit(data){
@@ -74,7 +77,7 @@ export class OppoComponent implements OnInit {
     const presentDate = year+"-"+month+"-"+dat;
     console.log(presentDate);
     data.endDate = presentDate;
-    this.OppoService.addOpp(data).subscribe((data) => {
+    this.OppoService.editOpp(data).subscribe((data) => {
       console.log("Running");
       console.log(data);
        this.OppoService.getAllOpp().subscribe((output: any[])=>{
@@ -146,7 +149,8 @@ export class OppoComponent implements OnInit {
   }
 
   public onCancel(data){ 
-    this.addDialog.close();
+    if(data == 'Add') this.addDialog.close();
+    if(data == 'Edit')  this.editDialog.close();
   }
 
 }

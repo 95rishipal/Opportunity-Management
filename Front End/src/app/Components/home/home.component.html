@@ -2,9 +2,15 @@
     <img src="../../../assets/icon4.jpg" alt="MS Icon" id="msicon">
     <button mat-button   color="white"  [routerLink]="['./trends']"> Trends</button>
     <button  mat-button  color="white" [routerLink]="['./search']"> Search </button>
-    <button  mat-button  color="white"  [routerLink]="['./opportunity']"> Opportunity </button>
+    
     <span class="example-fill-remaining-space"></span>
-    <button   mat-button color="white" [routerLink]="['./myprofile']">My Profile</button>
-   <button (click)="logout()"> <img color="white" src="../../../assets/login-24px.svg"   alt="Logout" id="logout"></button>
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+        <button mat-button color="white" [routerLink]="['./myprofile']">My Profile</button>
+        <br>
+        <button  mat-button  color="white"  [routerLink]="['./opportunity']"> Opportunity </button>
+        <br>
+        <button mat-button  color="white" (click)="logout()"> Log Out</button>
+    </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>

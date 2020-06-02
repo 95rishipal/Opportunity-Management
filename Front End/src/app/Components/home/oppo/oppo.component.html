@@ -1,6 +1,6 @@
 <h1 class="title">Opportunity Managment</h1>
 <div class="mat-elevation-z8" >
-  <button mat-raised-button color="primary" class="addbtn" (click)="openAddDialog()"> ADD </button> 
+  <button mat-raised-button color="primary" class="addbtn" (click)="openAddDialog()"> Create Opportunity </button> 
   <table mat-table [dataSource]="dataSource" >
      
       <!-- Oppid Column -->
@@ -58,7 +58,7 @@
     <form [formGroup]="myform"  role='form' name='blgoPost' novalidate="">
         <!-- value: {{ myform.value|json}} -->
         <input type="hidden"  formControlName = "oppid" id="oppid">
-        <h3 id="titile" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: normal; font-size: 20px;"> Add Opportunity </h3>
+        <h3 id="titile" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: normal; font-size: 20px;"> Create Opportunity </h3>
         <mat-form-field appearance="legacy">
               <mat-label>Description</mat-label>
               <textarea matInput rows=5 style="resize: none;" required formControlName="description"> </textarea>
@@ -84,48 +84,47 @@
         </mat-form-field>
         <br>
         <br>
-        <button mat-raised-button color="primary" style="margin-right:40px;" (click)="onCancel(myform.value)">Cancel</button>
-        <button mat-raised-button color="primary" ng-disabled="blgoPost.$invalid" (click)="onSubmit(myform.value)">Submit</button>
+        <button mat-raised-button color="primary" style="margin-right:40px;" (click)="onCancel('Add')">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!myform.valid" (click)="onSubmit(myform.value)">Submit</button>
     </form>
   </div>
 </ng-template>
 
 
 <!-- Edit Form  -->
-<ng-template #AddForm>
+<ng-template #EditForm>
   <div class="example-container">
-    <form [formGroup]="myform"  name="myForm">
-       <!-- value: {{ myform.value|json}} -->
-       <input type="hidden"  formControlName = "oppid" id="oppid">
-    <h3 id="titile" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: normal; font-size: 20px;"> Add Opportunity </h3>
-    <mat-form-field appearance="legacy">
-    <mat-label>Description</mat-label>
-      <textarea matInput rows=5 style="resize: none;" required  formControlName="description"> </textarea>
-    </mat-form-field>
-    <br>
-    <br>
-    <mat-form-field color="legacy">
-      <mat-label>End Date</mat-label>
-      <input matInput [min]="minDate"  [matDatepicker]="picker1"  required formControlName = "endDate" disabled>
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1 disabled="false"></mat-datepicker>
-    </mat-form-field>
-    <br>
-    <br>
-    <mat-form-field appearance="legacy">
-      <mat-label>Location</mat-label>
-      <input matInput formControlName = "location" required >
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="legacy">
-      <mat-label>Skills</mat-label>
-      <mat-hint>Seperate by Commas.</mat-hint>
-      <input matInput formControlName = "skills" required>
-    </mat-form-field>
-    <br>
-    <br>
-    <button mat-raised-button color="primary" style="margin-right:40px;" (click)="onCancel(myform.value)">Cancel</button>
-    <button mat-raised-button color="primary" ng-disabled="myForm.$invalid" (click)="onEdit(myform.value)">Submit</button>
+      <form [formGroup]="myform"  role='form' name='blgoPost' novalidate="">
+        <!-- value: {{ myform.value|json}} -->
+        <input type="hidden"  formControlName = "oppid" id="oppid">
+        <h3 id="titile" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: normal; font-size: 20px;"> Edit Opportunity </h3>
+        <mat-form-field appearance="legacy">
+              <mat-label>Description</mat-label>
+              <textarea matInput rows=5 style="resize: none;" required formControlName="description"> </textarea>
+        </mat-form-field>
+        <br>
+        <mat-form-field color="legacy">
+              <mat-label>End Date</mat-label>
+              <input matInput [min]="minDate"  [matDatepicker]="picker1" required formControlName = "endDate" disabled>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field appearance="legacy">
+              <mat-label>Location</mat-label>
+              <input matInput formControlName="location" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="legacy">
+              <mat-label>Skills</mat-label>
+              <mat-hint>Seperate by Commas(,).</mat-hint>
+              <input matInput formControlName = "skills" required>
+        </mat-form-field>
+        <br>
+        <br>
+        <button mat-raised-button color="primary" style="margin-right:40px;" (click)="onCancel('Edit')">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!myform.valid" (click)="onEdit(myform.value)">Submit</button>
     </form>
   </div>
 </ng-template>

@@ -40,7 +40,7 @@ export class OppoService {
     }; 
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     const body = Opportunity
-    return this.httpClient.put(this.apiServer+'/oppo/edit/'+Opportunity.oppid, body, options);
+    return this.httpClient.post(this.apiServer+'/oppo/edit/'+Opportunity.oppid, body, options);
 
   }
 

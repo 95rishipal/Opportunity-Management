@@ -2,16 +2,16 @@
 <mat-card>
 
     <mat-card-title>
-        <mat-form-field>
-            <mat-label>Column</mat-label>
+        <mat-form-field appearance="outline">
+            <mat-label>Filters</mat-label>
             <select matNativeControl required #column>
               <option value="description">Description</option>
               <option value="skills">Skills</option>
               <option value="location">Location</option>
             </select>
           </mat-form-field>
-          <mat-form-field id="searchbar" >
-            <mat-label>Search Bar</mat-label>
+          <mat-form-field id="searchbar"  appearance="outline">
+            <mat-label>Search...</mat-label>
             <input matInput placeholder="Java, Python,  Delhi, etc." required #query>
           </mat-form-field>
           

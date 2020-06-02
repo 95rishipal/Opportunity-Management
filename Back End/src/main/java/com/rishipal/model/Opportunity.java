@@ -48,20 +48,24 @@ public class Opportunity {
 	@JoinTable(name = "Rel_Opp_User", joinColumns = @JoinColumn(name = "oppid"), 
 	  inverseJoinColumns = @JoinColumn(name = "userid"))
 	private Set<User> users = new HashSet<>();
-	public Opportunity() {
-		
-	}
 	
-   public Opportunity(String description, LocalDate endDate, String location, String skills) {
-	this.description = description;
-	this.endDate = endDate;
-	this.location = location;
-	this.skills = skills;
-   }
-//	------------ Getters and Setters -----------------------------
+// ---------------- Constructor ----------------------------
+	public Opportunity(int oppid, String description, LocalDate endDate, String location, String skills) {
+		this.oppid = oppid;
+		this.description = description;
+		this.endDate = endDate;
+		this.location = location;
+		this.skills = skills;
+	}
+
+
+
+
+	//	------------ Getters and Setters -----------------------------
 	public int getOppid() {
 		return oppid;
 	}
+
 	public void setOppid(int oppid) {
 		this.oppid = oppid;
 	}
