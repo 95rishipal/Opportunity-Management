@@ -9,9 +9,10 @@ import {LoginService} from '../../Services/login.service/login.service'
 export class HomeComponent implements OnInit {
 
   constructor( private router: Router, private loginservice: LoginService) { }
-
+  Email : String;
   ngOnInit(): void {
     this.loginservice.check();
+    this.Email = localStorage.getItem('Email');
   }
   public logout(){
     console.log("Logout");

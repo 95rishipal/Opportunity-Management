@@ -34,12 +34,14 @@ export class SearchComponent implements OnInit {
     this.SearchService.search(col,query).subscribe((data: any[])=>{
       console.log(data);
       if(data.length == 0){
+          this.dataSource.data = [];
           alert("No Result Found!!");
       }else{
         this.dataSource.data = data;
         this.dataSource.paginator = this.paginator;
       }
     }, error =>{
+      this.dataSource.data=[];
       alert('[Server] Somthing went wrong, Try Again!!');
     });
   }

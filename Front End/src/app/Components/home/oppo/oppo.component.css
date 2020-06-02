@@ -8,8 +8,9 @@ table {
 
   .mat-elevation-z8{
       /* background-color: aqua; */
-      width: 800px;
-      margin-left: 280px;
+      /* width: 800px; */
+      margin-left: 10px;
+      margin-right: 10px;
       margin-top: 20px;
   }
 

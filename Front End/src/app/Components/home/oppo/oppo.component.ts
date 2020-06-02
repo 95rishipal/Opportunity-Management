@@ -8,6 +8,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoginService} from '../../../Services/login.service/login.service'
+import {UserService} from '../../../Services/home.service/user.service'
 @Component({
   selector: 'app-oppo',
   templateUrl: './oppo.component.html',
@@ -15,23 +16,34 @@ import {LoginService} from '../../../Services/login.service/login.service'
 })
 
 export class OppoComponent implements OnInit {
-  data:any
+  oppodata:any
+  userdata:any
+  currentUser:any
   myform: FormGroup;
   minDate: Date;
-  displayedColumns: string[] = ['oppid', 'description', 'location','endDate', 'skills', 'getdetails'];
+  displayedColumns: string[] = ['oppid','userName', 'userEmail', 'description', 'location','endDate', 'skills', 'getdetails'];
   dataSource = new MatTableDataSource<Opportunity>();
+
   
   @ViewChild('AddForm') addTemplate: TemplateRef<any>;
   private addDialog: MatDialogRef<TemplateRef<any>>;
 
   @ViewChild('EditForm') editTemplate: TemplateRef<any>;
   private editDialog: MatDialogRef<TemplateRef<any>>;
+
+  @ViewChild('DelForm') delTemplate: TemplateRef<any>;
+  private delDialog: MatDialogRef<TemplateRef<any>>;
   
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   defaultOpportunity: Opportunity ;
 
   // ------------------------- Constructor --------------------------------------
-  constructor(private fb: FormBuilder,private loginservice: LoginService, private http: HttpClient, private OppoService:OppoService, public dialog: MatDialog) {}
+  constructor(private fb: FormBuilder,
+              private loginservice: LoginService, 
+              private http: HttpClient, 
+              private OppoService:OppoService,
+              private UserService:UserService, 
+              public dialog: MatDialog) {}
   
   // ------------------------- Init Method ---------------------------------------
   ngOnInit(): void {
@@ -44,18 +56,38 @@ export class OppoComponent implements OnInit {
       skills: new FormControl('',[Validators.required]),
     });
 
-    this.minDate = new Date();
+      this.minDate = new Date();
       this.OppoService.getAllOpp().subscribe((data: any[])=>{
-      console.log(data);
-      this.dataSource.data = data;
-      this.dataSource.paginator = this.paginator;
-    })
+          this.oppodata = data;
+          this.dataSource.data = data
+          this.dataSource.paginator = this.paginator;
+          console.log(this.oppodata);
+      })
+      this.UserService.getAllUser().subscribe((data: any[])=>{
+        this.userdata=data;
+        console.log(this.userdata);
+      });
+
+      this.UserService.getCurrentUser().subscribe((data: any[])=>{
+        this.currentUser=data;
+        console.log(this.currentUser);
+      });
+
+
+  }
+
+  public yes(){
+      console.log(this.oppodata.oppid);
+      this.delRecord(this.oppodata);
   }
 
   public opendelDialog(data){
-      console.log(data.oppid);
-      this.delRecord(data);
-      
+      this.oppodata = data;
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.restoreFocus = false;
+      dialogConfig.autoFocus = false;
+      dialogConfig.role = 'dialog';
+      this.delDialog = this.dialog.open(this.delTemplate, dialogConfig);
   }
 
   public opendeditDialog(data){
@@ -87,7 +119,7 @@ export class OppoComponent implements OnInit {
       });
       alert("Opportunity Updated!!");
     }) 
-
+    this.editDialog.close();
   }
 
   public delRecord(data):any{

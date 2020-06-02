@@ -12,10 +12,10 @@
           </mat-form-field>
           <mat-form-field id="searchbar"  appearance="outline">
             <mat-label>Search...</mat-label>
-            <input matInput placeholder="Java, Python,  Delhi, etc." required #query>
+            <input matInput placeholder="Java, Python,  Delhi, etc." required ng-model="check" (keyup.enter)="searchM()" #query>
           </mat-form-field>
           
-            <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon" (click)="searchM()" >
+            <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon"  ng-disabled="!(check)" (click)="searchM()" >
                 <img src="../../../../assets/search.png" id="searchicon">
               </button>
           
