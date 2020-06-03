@@ -1,4 +1,4 @@
-<h1 class="title">Opportunity Managment</h1>
+<!-- <h1 class="title">Opportunity Managment</h1> -->
 <div class="mat-elevation-z8" >
   <button mat-raised-button color="primary" class="addbtn" (click)="openAddDialog()"> Create Opportunity </button> 
   <table mat-table [dataSource]="dataSource" >
@@ -46,6 +46,18 @@
         <td mat-cell *matCellDef="let element"> {{element.skills}} </td>
       </ng-container>
 
+      <!-- demand Column -->
+      <ng-container matColumnDef="demand">
+        <th mat-header-cell *matHeaderCellDef> Demand </th>
+        <td mat-cell *matCellDef="let element"> {{element.demand}} </td>
+      </ng-container>
+
+      <!-- Min Xp Column -->
+      <ng-container matColumnDef="minxp">
+        <th mat-header-cell *matHeaderCellDef> Min. Exp. </th>
+        <td mat-cell *matCellDef="let element"> {{element.minxp}} </td>
+      </ng-container>
+
       <ng-container matColumnDef="getdetails">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element"  style="padding-right: 0px;"> 
@@ -69,35 +81,80 @@
   <div class="example-container">
     <form [formGroup]="myform"  role='form' name='blgoPost' novalidate="">
         <!-- value: {{ myform.value|json}} -->
-        <input type="hidden"  formControlName = "oppid" id="oppid">
+        <input type="hidden"  formControlName="oppid" id="oppid">
         <h3 id="titile" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: normal; font-size: 20px;"> Create Opportunity </h3>
-        <mat-form-field appearance="legacy">
-              <mat-label>Description</mat-label>
-              <textarea matInput rows=5 style="resize: none;" required formControlName="description"> </textarea>
-        </mat-form-field>
-        <br>
-        <mat-form-field color="legacy">
-              <mat-label>End Date</mat-label>
-              <input matInput [min]="minDate"  [matDatepicker]="picker1" required formControlName = "endDate" disabled>
-              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1 disabled="false"></mat-datepicker>
-        </mat-form-field>
-        <br>
-        <br>
-        <mat-form-field appearance="legacy">
-              <mat-label>Location</mat-label>
-              <input matInput formControlName="location" required>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="legacy">
-              <mat-label>Skills</mat-label>
-              <mat-hint>Seperate by Commas(,).</mat-hint>
-              <input matInput formControlName = "skills" required>
-        </mat-form-field>
-        <br>
-        <br>
-        <button mat-raised-button color="primary" style="margin-right:40px;" (click)="onCancel('Add')">Cancel</button>
-        <button mat-raised-button color="primary" [disabled]="!myform.valid" (click)="onSubmit(myform.value)">Submit</button>
+        <hr>
+        <table class="tabletd">
+            <tr>
+              <td style="padding-right: 40px;">
+                <mat-form-field appearance="legacy">
+                  <mat-label>Description</mat-label>
+                  <textarea matInput   maxlength="256" rows=1 style="resize:  none;" id="description" required formControlName="description" [errorStateMatcher]="matcher"> </textarea>
+                </mat-form-field>
+                <mat-error *ngIf="myform.get('description').touched && myform.get('description').hasError('required')">
+                  <h5>Description is required.</h5>
+                </mat-error>
+              </td>
+              <td>
+                <mat-form-field color="legacy">
+                  <mat-label>End Date</mat-label>
+                  <input matInput [min]="minDate"  [matDatepicker]="picker1" required formControlName = "endDate" disabled>
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+                </mat-form-field>
+                <mat-error *ngIf="myform.get('endDate').touched && myform.get('endDate').hasError('required')">
+                  <h5> End Date is required. </h5>
+                </mat-error>
+              </td>
+            </tr>
+
+            <tr>
+              <td  style="padding-right: 40px;">
+                <mat-form-field appearance="legacy">
+                  <mat-label>Location</mat-label>
+                  <input matInput formControlName="location" required>
+                </mat-form-field>
+                <mat-error *ngIf="myform.get('location').touched && myform.get('location').hasError('required')">
+                  <h5> Location is required. </h5>
+                </mat-error>
+              </td>
+              <td>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Skills</mat-label>
+                  <input matInput formControlName = "skills" required>
+                </mat-form-field>
+                <mat-error *ngIf="myform.get('skills').touched && myform.get('skills').hasError('required')">
+                  <h5>Skill is required. </h5>
+                </mat-error>
+              </td>
+            </tr>
+
+            <tr>
+              <td  style="padding-right: 40px;">
+                <mat-form-field appearance="legacy">
+                  <mat-label>Demand</mat-label>
+                  <input matInput type="number" formControlName = "demand" required>
+                  </mat-form-field>
+                  <mat-error *ngIf="myform.get('demand').touched  && myform.get('demand').hasError('required')">
+                   <h5> Demand is required.</h5> 
+                  </mat-error>
+              </td>
+              <td>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Min. Experience</mat-label>
+                  <input matInput type="number" formControlName = "minxp" required>
+                </mat-form-field>
+                <mat-error *ngIf=" myform.get('minxp').touched  &&  myform.get('minxp').hasError('required')">
+                  <h5> Min. Experience is required.</h5>
+                </mat-error>
+              </td>
+            </tr>
+        </table>
+        
+        <div id="btnDiv">
+          <button mat-raised-button color="primary" style="margin-right:40px;" (click)="onCancel('Add')">Cancel</button>
+          <button mat-raised-button color="primary" [disabled]="!myform.valid" (click)="onSubmit(myform.value)">Submit</button>
+        </div>
     </form>
   </div>
 </ng-template>
@@ -107,47 +164,98 @@
 <ng-template #EditForm>
   <div class="example-container">
       <form [formGroup]="myform"  role='form' name='blgoPost' novalidate="">
-        <!-- value: {{ myform.value|json}} -->
-        <input type="hidden"  formControlName = "oppid" id="oppid">
-        <h3 id="titile" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: normal; font-size: 20px;"> Edit Opportunity </h3>
-        <mat-form-field appearance="legacy">
-              <mat-label>Description</mat-label>
-              <textarea matInput rows=5 style="resize: none;" required formControlName="description"> </textarea>
-        </mat-form-field>
-        <br>
-        <mat-form-field color="legacy">
-              <mat-label>End Date</mat-label>
-              <input matInput [min]="minDate"  [matDatepicker]="picker1" required formControlName = "endDate" disabled>
-              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1 disabled="false"></mat-datepicker>
-        </mat-form-field>
-        <br>
-        <br>
-        <mat-form-field appearance="legacy">
-              <mat-label>Location</mat-label>
-              <input matInput formControlName="location" required>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="legacy">
-              <mat-label>Skills</mat-label>
-              <mat-hint>Seperate by Commas(,).</mat-hint>
-              <input matInput formControlName = "skills" required>
-        </mat-form-field>
-        <br>
-        <br>
+       <!-- value: {{ myform.value|json}} -->
+       <input type="hidden"  formControlName="oppid" id="oppid">
+       <h3 id="titile" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: normal; font-size: 20px;"> Edit Opportunity </h3>
+       <hr>
+       <table class="tabletd">
+           <tr>
+             <td style="padding-right: 40px;">
+               <mat-form-field appearance="legacy">
+                 <mat-label>Description</mat-label>
+                 <textarea matInput   maxlength="256" rows=1 style="resize:  none;" id="description" required formControlName="description" [errorStateMatcher]="matcher"> </textarea>
+               </mat-form-field>
+               <mat-error *ngIf="myform.get('description').touched && myform.get('description').hasError('required')">
+                 <h5>Description is required.</h5>
+               </mat-error>
+             </td>
+             <td>
+               <mat-form-field color="legacy">
+                 <mat-label>End Date</mat-label>
+                 <input matInput [min]="minDate"  [matDatepicker]="picker1" required formControlName = "endDate" disabled>
+                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                 <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+               </mat-form-field>
+               <mat-error *ngIf="myform.get('endDate').touched && myform.get('endDate').hasError('required')">
+                 <h5> End Date is required. </h5>
+               </mat-error>
+             </td>
+           </tr>
+
+           <tr>
+             <td  style="padding-right: 40px;">
+               <mat-form-field appearance="legacy">
+                 <mat-label>Location</mat-label>
+                 <input matInput formControlName="location" required>
+               </mat-form-field>
+               <mat-error *ngIf="myform.get('location').touched && myform.get('location').hasError('required')">
+                 <h5> Location is required. </h5>
+               </mat-error>
+             </td>
+             <td>
+               <mat-form-field appearance="legacy">
+                 <mat-label>Skills</mat-label>
+                 <input matInput formControlName = "skills" required>
+               </mat-form-field>
+               <mat-error *ngIf="myform.get('skills').touched && myform.get('skills').hasError('required')">
+                 <h5>Skill is required. </h5>
+               </mat-error>
+             </td>
+           </tr>
+
+           <tr>
+             <td  style="padding-right: 40px;">
+               <mat-form-field appearance="legacy">
+                 <mat-label>Demand</mat-label>
+                 <input matInput type="number" formControlName = "demand" required>
+                 </mat-form-field>
+                 <mat-error *ngIf="myform.get('demand').touched  && myform.get('demand').hasError('required')">
+                  <h5> Demand is required.</h5> 
+                 </mat-error>
+             </td>
+             <td>
+               <mat-form-field appearance="legacy">
+                 <mat-label>Min. Experience</mat-label>
+                 <input matInput type="number" formControlName = "minxp" required>
+               </mat-form-field>
+               <mat-error *ngIf=" myform.get('demand').touched  &&  myform.get('minxp').hasError('required')">
+                 <h5> Min. Experience is required.</h5>
+               </mat-error>
+             </td>
+           </tr>
+       </table>
+       
+       <div id="btnDiv">
         <button mat-raised-button color="primary" style="margin-right:40px;" (click)="onCancel('Edit')">Cancel</button>
         <button mat-raised-button color="primary" [disabled]="!myform.valid" (click)="onEdit(myform.value)">Submit</button>
-    </form>
+       </div>
+      </form>
   </div>
 </ng-template>
 
-<!-- Edit Form  -->
+<!-- Del Form  -->
 <ng-template #DelForm style=" color: white; text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;">
     <div mat-dialog-content> 
         <h2> Do yout really want to delete this opportunity? </h2> 
     </div>
     <div mat-dialog-actions align="end">
-      <button mat-button [mat-dialog-close] mat-raised-button color="warn">No</button>
+      <button mat-button [mat-dialog-close] mat-raised-button color="warn"  (click)="no()" >No</button>
       <button mat-button [mat-dialog-close] mat-raised-button color="primary" (click)="yes()">Yes</button>
     </div>
+</ng-template>
+
+
+
+<ng-template #snackBarTemplate>
+  <h2>parent component</h2>   
 </ng-template>

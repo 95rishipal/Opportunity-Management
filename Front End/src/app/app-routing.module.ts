@@ -9,14 +9,15 @@ import { LoginComponent } from './Components/login/login.component'
  
 const routes: Routes = [ { path: 'home', component: HomeComponent,
 children: [
-      { path: '', redirectTo: 'opportunity', pathMatch: 'full' },
-      { path: 'opportunity', component: OppoComponent },
-      { path: 'trends', component: TrendsComponent },
-      { path: 'search', component: SearchComponent },
-      { path: 'myprofile', component: MyprofileComponent },
+        { path: '', redirectTo: '/home/search', pathMatch: 'full' },
+        { path: 'opportunity', component: OppoComponent },
+        { path: 'search', component: SearchComponent },
+        { path: 'trends', component: TrendsComponent },
+        { path: 'myprofile', component: MyprofileComponent },
       ] },
       { path: 'login', component: LoginComponent}, 
-      { path: '', redirectTo: 'login', pathMatch: 'full' }
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      {path: '**', redirectTo: 'home'},
 ];
 
 @NgModule({

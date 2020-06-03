@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, TemplateRef, NgZone} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef, NgZone, Output} from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { FormGroup, FormBuilder, FormControl, Validators, NgModel  } from '@angular/forms'
 import { User } from '../../Models/User.model';
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   pass:NgModel;
   display:boolean = false;
   @ViewChild('pass', {static: true }) modalExample: TemplateRef<any>;
+
   
   constructor(private fb: FormBuilder, 
     private http: HttpClient, 
@@ -89,7 +90,7 @@ export class LoginComponent implements OnInit {
           console.log('Image URL: ' + profile.getImageUrl());
           console.log('Email: ' + profile.getEmail());
           //YOUR CODE HERE
-          
+          localStorage.setItem('ImageURL', profile.getImageUrl());
           this.localstorageservice.setAuthData(googleUser.getAuthResponse().id_token);
           this.localstorageservice.setUserData(profile.getEmail());
           let user:User= new User(-1,profile.getName(), profile.getEmail(),"",profile.getId())
@@ -98,7 +99,7 @@ export class LoginComponent implements OnInit {
               console.log(data);
               // this.router.navigateByUrl('/home/trends'); 
               // this.router.navigate(['/home/trends']);
-              this.navigate(["/home/trends"]);
+              this.navigate(["/home/Search"]);
           }, response => {
                 if(response.status == 409){ 
                   alert("Invalid Email Password.");

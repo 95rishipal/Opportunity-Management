@@ -88,6 +88,58 @@ public class Trends {
 		 ResponseEntity responseEntity = new ResponseEntity(item,responseHeaders,httpstatus);
 		 return responseEntity;
 	}
+
+//	---------------- Count Demand -----------------------------------
+	@GetMapping(path = "/trends/demand")
+	@ResponseBody
+	public ResponseEntity getAllDemands() {	
+		HttpHeaders responseHeaders = new HttpHeaders();
+		HttpStatus httpstatus= HttpStatus.OK;
+		PreparedStatement statement;
+		List<Map<String,String>> item = new ArrayList<>();
+		try {
+				statement =con.prepareStatement("SELECT demand, count(*) FROM opportunity GROUP BY demand; ");
+				ResultSet rs = statement.executeQuery();
+				while(rs.next()) {  
+					Map<String,String> temp = new HashMap<>();
+					System.out.println(rs.getString(1)+" --> "+ rs.getString(2));
+					temp.put("name",rs.getString(1));
+					temp.put("value", rs.getString(2));
+					item.add(temp);
+				}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 ResponseEntity responseEntity = new ResponseEntity(item,responseHeaders,httpstatus);
+		 return responseEntity;
+	}
+//	---------------- Count Min. Exp -----------------------------------
+	@GetMapping(path = "/trends/minxp")
+	@ResponseBody
+	public ResponseEntity getAllminxp() {	
+		HttpHeaders responseHeaders = new HttpHeaders();
+		HttpStatus httpstatus= HttpStatus.OK;
+		PreparedStatement statement;
+		List<Map<String,String>> item = new ArrayList<>();
+		try {
+				statement =con.prepareStatement("SELECT minxp, count(*) FROM opportunity GROUP BY minxp; ");
+				ResultSet rs = statement.executeQuery();
+				while(rs.next()) {  
+					Map<String,String> temp = new HashMap<>();
+					System.out.println(rs.getString(1)+" --> "+ rs.getString(2));
+					temp.put("name",rs.getString(1));
+					temp.put("value", rs.getString(2));
+					item.add(temp);
+				}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 ResponseEntity responseEntity = new ResponseEntity(item,responseHeaders,httpstatus);
+		 return responseEntity;
+	}	
+	
 //	------------------- Total Number of Users ----------------------------
 	@GetMapping(path = "/trends/countusers")
 	@ResponseBody
@@ -134,6 +186,9 @@ public class Trends {
 				temp.put("value", rs.getString(1));
 				item.add(temp);
 				temp = null;
+				temp = new HashMap<>();
+				
+				
 				
 			
 		} catch (SQLException e) {

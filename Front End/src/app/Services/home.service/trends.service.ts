@@ -19,4 +19,12 @@ export class TrendsService {
   public getAllUsers(){
     return this.httpClient.get(this.apiServer+'/trends/countusers');
   }
+
+  public getAlldemand(){
+    return this.httpClient.get(this.apiServer+'/trends/demand');
+  }
+
+  public getAllminxp(){
+    return this.httpClient.get(this.apiServer+'/trends/minxp');
+  }
 }

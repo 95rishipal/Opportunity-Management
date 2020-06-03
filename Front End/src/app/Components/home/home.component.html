@@ -1,14 +1,15 @@
 <mat-toolbar color="primary"> 
     <img src="../../../assets/icon4.jpg" alt="MS Icon" id="msicon">
-    <button mat-button   color="white"  [routerLink]="['./trends']" > Trends</button>
-    <button  mat-button  color="white" [routerLink]="['./search']"> Search </button>
     
+    <button mat-button  [ngClass]="{'Active':isActive1, 'Deactive': !isActive1}" (click)="onClicked('btn1')" [routerLink]="['./trends']" > Trends</button>
+    <button mat-button  [ngClass]="{'Active':isActive2, 'Deactive': !isActive2}" (click)="onClicked('btn2')"  [routerLink]="['./search']"> Search </button>
+    <button  mat-button [ngClass]="{'Active':isActive3, 'Deactive': !isActive3}" (click)="onClicked('btn3')"  [routerLink]="['./opportunity']" > Opportunity </button>
     <span class="example-fill-remaining-space"></span>
-    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <button mat-button [matMenuTriggerFor]="menu">
+        <img [src]="ImageURL" id="ppic">
+    </button>
     <mat-menu #menu="matMenu">
         <button mat-button color="white" style="width: 100%;">{{ Email }}</button>
-        <br>
-        <button  mat-button  color="white"  [routerLink]="['./opportunity']" style="width: 100%;text-align: end;"> Opportunity </button>
         <br>
         <button mat-button  color="white" (click)="logout()" style="width: 100%;text-align: end;"> Log Out</button>
     </mat-menu>

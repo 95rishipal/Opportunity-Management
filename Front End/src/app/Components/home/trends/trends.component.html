@@ -5,6 +5,7 @@
                 view=""
                 [scheme]="colorScheme"
                 [results]="NoUser"
+                bandColor="#40964b"
                 animations=true>
             </ngx-charts-number-card>
         </div>
@@ -12,7 +13,7 @@
 </mat-grid-list>
     
 
-<mat-grid-list cols="2" rowHeight="500px"   md-gutter-gt-sm="0px" >
+<mat-grid-list cols="2" rowHeight="300px"   md-gutter-gt-sm="0px" >
     <mat-grid-tile class="col">
         <ngx-charts-bar-vertical
         [view]="view"
@@ -38,6 +39,38 @@
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel2"
+        [yAxisLabel]="yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </mat-grid-tile>
+</mat-grid-list>  
+<br>
+<br>
+<mat-grid-list cols="2" rowHeight="300px"   md-gutter-gt-sm="0px" >
+    <mat-grid-tile class="col">
+        <ngx-charts-bar-vertical
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="demand"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel3"
+        [yAxisLabel]="yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </mat-grid-tile>
+    <mat-grid-tile class="col">
+        <ngx-charts-bar-vertical
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="minxp"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel4"
         [yAxisLabel]="yAxisLabel">
         </ngx-charts-bar-vertical>
     </mat-grid-tile>

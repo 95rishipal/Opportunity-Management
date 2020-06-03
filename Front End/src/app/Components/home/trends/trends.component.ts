@@ -13,7 +13,7 @@ export class TrendsComponent implements OnInit {
   
 
 
-  view: any[] = [600, 400];
+  view: any[] = [600, 300];
   // options for the chart
   showXAxis = true;
   showYAxis = true;
@@ -22,6 +22,9 @@ export class TrendsComponent implements OnInit {
   showXAxisLabel = true;
   xAxisLabel1 = 'Location';
   xAxisLabel2 = 'Skills';
+  xAxisLabel3 = 'Demand';
+  xAxisLabel4 = 'Min. Experience';
+  
   showYAxisLabel = true;
   yAxisLabel = 'Count';
   timeline = true;
@@ -29,6 +32,8 @@ export class TrendsComponent implements OnInit {
 
   public lang;
   public skills;
+  public demand;
+  public minxp;
   public NoUser;
   public NoSkills;
   public NoLocations;
@@ -43,6 +48,18 @@ export class TrendsComponent implements OnInit {
     });
     this.trendService.getAllskills().subscribe((data)=>{
       this.skills = data;
+    },error=>{
+
+    });
+
+    this.trendService.getAlldemand().subscribe((data)=>{
+      this.demand = data;
+    },error=>{
+
+    });
+
+    this.trendService.getAllminxp().subscribe((data)=>{
+      this.minxp = data;
     },error=>{
 
     });

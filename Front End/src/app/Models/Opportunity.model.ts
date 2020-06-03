@@ -4,6 +4,8 @@ export class Opportunity {
 	public endDate: String;
     public skills: any;
     public location: String;
+    public minxp: number;
+    public demand: number;
     public constructor(){
        
     }
@@ -14,5 +16,7 @@ export class Opportunity {
         this.endDate = "";
         this.skills = "";
         this.location = "";
+        this.minxp = 0;
+        this.demand = 0;
  }
 }

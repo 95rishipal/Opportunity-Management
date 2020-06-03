@@ -31,3 +31,18 @@ table {
     margin-right: 10px;
     width:75%;
 }
+
+::ng-deep .blue-snackbar {
+    background: rgb(45, 133, 206);
+    color: white;
+  }
+
+::ng-deep .red-snackbar {
+    background: rgb(228, 78, 40);
+    color: white;
+  }  
+
+::ng-deep .green-snackbar {
+    background: rgba(54, 201, 41, 0.959);
+    color: white;
+  }  

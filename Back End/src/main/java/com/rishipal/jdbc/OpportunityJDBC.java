@@ -54,7 +54,7 @@ public class OpportunityJDBC {
 				statement =con.prepareStatement("SELECT * FROM opportunity;");
 				ResultSet rs = statement.executeQuery();
 				while(rs.next()) {  
-					Opportunity opp = new Opportunity(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getString(5), rs.getInt(6));
+					Opportunity opp = new Opportunity(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(8), rs.getInt(7));
 					list.add(opp);
 				}
 				return list;
@@ -76,7 +76,7 @@ public class OpportunityJDBC {
 				statement =con.prepareStatement("SELECT * FROM opportunity where oppid = "+id+";");
 				ResultSet rs = statement.executeQuery();
 				rs.next();  
-				Opportunity opp = new Opportunity(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getString(5), rs.getInt(6));
+				Opportunity opp = new Opportunity(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8));
 				return opp;
 			
 		} catch (SQLException e) {
@@ -108,7 +108,7 @@ public class OpportunityJDBC {
 			}
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {  
-				Opportunity opp = new Opportunity(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getString(5), rs.getInt(6));
+				Opportunity opp = new Opportunity(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8));
 				list.add(opp);
 			}
 			httpstatus= HttpStatus.OK;
@@ -133,13 +133,15 @@ public class OpportunityJDBC {
 			ResultSet rs1 = statement.executeQuery();
 			rs1.next();
 			int userid = rs1.getInt(1);
-			String SQL = "INSERT INTO opportunity (description, end_Date, location, skills, userid) VALUES (?, ?, ?, ?, ?);";
+			String SQL = "INSERT INTO opportunity (description, end_Date, location, skills, userid, demand, minxp) VALUES (?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement pstmt = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, ele.getdescription());
 			pstmt.setDate(2,java.sql.Date.valueOf(ele.getEndDate()));
 			pstmt.setString(3, ele.getLocation());
 			pstmt.setString(4, ele.getSkills());
 			pstmt.setInt(5, userid);
+			pstmt.setInt(6, ele.getDemand() );
+			pstmt.setInt(7, ele.getMinxp());
 			int affectedRows = pstmt.executeUpdate();
 			if (affectedRows > 0) {
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {

@@ -6,6 +6,21 @@
   .Rfont{
     font-family: Raleway
   }
+  #ppic{
+    width:64px;
+  }
+  .Active{
+    color: white;
+    text-shadow: blueviolet;
+    text-underline-offset: inherit;
+    font-size: 16px;
+    font-style: bold;
+  }
+
+  .Deactive{
+    color:#0000008f;
+  }
+
 
   span{
       margin-right: 20px;
