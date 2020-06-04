@@ -23,13 +23,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.rishipal.model.Audit;
 import com.rishipal.model.Opportunity;
 import com.rishipal.model.User;
 
 @Controller("Opportunity_JDBC")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OpportunityJDBC {
-	
+	private AuditJDBC auditjdbc;
 //	-------------------- Connector ---------------------------------
 	private static Connection con;	
 	public OpportunityJDBC(){
@@ -41,12 +43,14 @@ public class OpportunityJDBC {
 		}  catch (SQLException e) {
 			e.printStackTrace();
 		}
+		auditjdbc = new AuditJDBC();
  	}
 	
 //	------------------------------------------- Get All Opportunities ---------------------------------
 	@GetMapping("/oppo/getall")
 	@ResponseBody
-	public List<Opportunity> retrieveAllOpportunity() {
+	public List<Opportunity> retrieveAllOpportunity(@RequestHeader(value = "Email", required=false) String email) {
+		auditjdbc.addAudit( new Audit("Get All Opportunity","Get All", "",""),email);
 		System.out.println("[JDBC] Opportunity All Request");
 		PreparedStatement statement;
 		List<Opportunity> list = new ArrayList<>();
@@ -68,7 +72,8 @@ public class OpportunityJDBC {
 //	---------------------- Get Opportunity by ID ------------------------------------------------
 	@GetMapping("/oppo/get/{oppid}")
 	@ResponseBody
-	public Opportunity retrieveById(@PathVariable("oppid") int id) {
+	public Opportunity retrieveById(@PathVariable("oppid") int id,@RequestHeader(value = "Email", required=false) String email) {
+		auditjdbc.addAudit( new Audit("Get Opportunity by id: "+id,"Get By ID", "",""),email);
 		System.out.println("[JDBC] Opportunity By ID Request");
 		PreparedStatement statement;
 		List<Opportunity> list = new ArrayList<>();
@@ -88,7 +93,8 @@ public class OpportunityJDBC {
 //	----------------- Search Opportuinty by Column and Place Value ----------------------------------------------
 	@GetMapping(path = "/oppo/search/{col}/{place}")
 	@ResponseBody
-	public ResponseEntity  searchBy(@PathVariable("col") String col, @PathVariable("place") String place) {
+	public ResponseEntity  searchBy(@PathVariable("col") String col, @PathVariable("place") String place,@RequestHeader(value = "Email", required=false) String email) {
+		auditjdbc.addAudit( new Audit("Search Opportunity Col: "+col+", Value: "+place ,"Search","",""),email);
 		System.out.println("[JDBC] Opportunity Search Column and Place Holder");
 		System.out.println(col+"---"+place);
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -119,10 +125,13 @@ public class OpportunityJDBC {
 		return responseEntity;
 	}
 	
+	
+	
 //	---------------------------------------------  Create Opportunity --------------------------------------
 	@PostMapping(path = "/oppo/add", consumes = "application/json", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity  addOpportunity(@RequestBody Opportunity ele,  @RequestHeader(value = "Email", required=false) String email) {
+		auditjdbc.addAudit( new Audit("Add Opportunity ","Insert", "",ele.toString()),email);
 		System.out.println("[JDBC] Opportunity Create Opportunity");
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.NOT_FOUND;
@@ -163,7 +172,8 @@ public class OpportunityJDBC {
 //	----------------------------------- Del Opportunity ----------------------------------------------
 	@DeleteMapping("/oppo/del/{id}")
 	@ResponseBody
-	public ResponseEntity deleteUserById(@PathVariable("id") int id) {
+	public ResponseEntity deleteUserById(@PathVariable("id") int id,@RequestHeader(value = "Email", required=false) String email) {
+		auditjdbc.addAudit( new Audit("Delete Opportunity id: "+id ,"Delete","",""),email);
 		System.out.println("[JDBC] Opportunity Delete Opportunity Request");
 		System.out.println(id);
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -184,15 +194,23 @@ public class OpportunityJDBC {
 // ------------------------------------------- Edit Opportunity ------------------------------------------------
 	@PostMapping("/oppo/edit/{id}")
 	@ResponseBody
-	public ResponseEntity  editOpportunity(@PathVariable("id") int id, @RequestBody Opportunity ele) {
+	public ResponseEntity  editOpportunity(@PathVariable("id") int id, @RequestBody Opportunity ele,@RequestHeader(value = "Email", required=false) String email) {
+
 		System.out.println("[JDBC] Opportunity Edit Opportunity");
 		System.out.println(id);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.NOT_FOUND;
 		int index = -1;
+		try {
+		PreparedStatement statement1;
+		statement1 =con.prepareStatement("SELECT * FROM opportunity where oppid = "+id+";");
+		ResultSet rs = statement1.executeQuery();
+		rs.next();  
+		Opportunity opp = new Opportunity(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8));
+		
 		PreparedStatement statement;
 		String SQL = "UPDATE opportunity SET  description=?, end_Date=?, location=?, skills=? WHERE oppid=?;";
-		try {
+		
 					PreparedStatement pstmt = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 					pstmt.setString(1, ele.getdescription());
 					pstmt.setDate(2,java.sql.Date.valueOf(ele.getEndDate()));
@@ -202,6 +220,7 @@ public class OpportunityJDBC {
 					int affectedRows = pstmt.executeUpdate();
 					if (affectedRows > 0) {
 						index =  affectedRows;
+						auditjdbc.addAudit( new Audit("Update Opportunity ","Edit", opp.toString(),ele.toString()),email);
 						 httpstatus= HttpStatus.OK;
 					}
 					

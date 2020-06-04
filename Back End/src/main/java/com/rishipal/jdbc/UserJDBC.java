@@ -21,6 +21,7 @@ import com.rishipal.model.User;
 @Controller("User_JDBC")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserJDBC {
+	private AuditJDBC auditjdbc;
 //	-------------------- Connector ---------------------------------
 	private static Connection con;	
 	public UserJDBC(){
@@ -32,12 +33,13 @@ public class UserJDBC {
 		}  catch (SQLException e) {
 			e.printStackTrace();
 		}
+		auditjdbc = new AuditJDBC();
  	}
 	
 //	------------------------------------------- Get All Users ---------------------------------
 	@GetMapping("/user/getall")
 	@ResponseBody
-	public Map<Integer, User> retrieveAllOpportunity() {
+	public Map<Integer, User> retrieveAllOpportunity(@RequestHeader(value = "Email", required=false) String email) {
 		System.out.println("[JDBC] User All Request");
 		PreparedStatement statement;
 		Map<Integer,User> map = new HashMap<>();

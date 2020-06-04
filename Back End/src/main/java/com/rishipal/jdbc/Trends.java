@@ -17,13 +17,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.rishipal.model.Audit;
 import com.rishipal.model.Opportunity;
 import org.json.*;
 
 @Controller("trends")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class Trends {
+	private AuditJDBC auditjdbc;
 	private static Connection con;	
 	
 	public Trends(){
@@ -35,13 +39,15 @@ public class Trends {
 		}  catch (SQLException e) {
 			e.printStackTrace();
 		}
+		auditjdbc = new AuditJDBC();
  	}
 	
 //	-------------------- Count of Language ----------------------------------
 	
 	@GetMapping(path = "/trends/language")
 	@ResponseBody
-	public ResponseEntity getAlllang() {	
+	public ResponseEntity getAlllang(@RequestHeader(value = "Email", required=false) String email) {
+
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.OK;
 		PreparedStatement statement;
@@ -66,7 +72,7 @@ public class Trends {
 //	---------------- Count Skills -----------------------------------
 	@GetMapping(path = "/trends/skills")
 	@ResponseBody
-	public ResponseEntity getAllskills() {	
+	public ResponseEntity getAllskills(@RequestHeader(value = "Email", required=false) String email) {	
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.OK;
 		PreparedStatement statement;
@@ -92,7 +98,7 @@ public class Trends {
 //	---------------- Count Demand -----------------------------------
 	@GetMapping(path = "/trends/demand")
 	@ResponseBody
-	public ResponseEntity getAllDemands() {	
+	public ResponseEntity getAllDemands(@RequestHeader(value = "Email", required=false) String email) {	
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.OK;
 		PreparedStatement statement;
@@ -117,7 +123,7 @@ public class Trends {
 //	---------------- Count Min. Exp -----------------------------------
 	@GetMapping(path = "/trends/minxp")
 	@ResponseBody
-	public ResponseEntity getAllminxp() {	
+	public ResponseEntity getAllminxp(@RequestHeader(value = "Email", required=false) String email) {	
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.OK;
 		PreparedStatement statement;
@@ -143,7 +149,7 @@ public class Trends {
 //	------------------- Total Number of Users ----------------------------
 	@GetMapping(path = "/trends/countusers")
 	@ResponseBody
-	public ResponseEntity getcountUsers() {	
+	public ResponseEntity getcountUsers(@RequestHeader(value = "Email", required=false) String email) {	
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.OK;
 		PreparedStatement statement;
