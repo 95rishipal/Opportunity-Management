@@ -18,7 +18,11 @@
   }
 
   .Deactive{
-    color:#0000008f;
+    color: white;
+    text-shadow: blueviolet;
+    text-underline-offset: inherit;
+    font-size: 16px;
+    font-style: bold;
   }
 
 

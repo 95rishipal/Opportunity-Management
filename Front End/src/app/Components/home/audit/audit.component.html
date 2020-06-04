@@ -1,0 +1,99 @@
+
+<mat-card>
+
+    <mat-card-title>
+      <button mat-raised-button color="accent"  style="margin-right: 20px;" (click)="getAll()" >All Audits</button>
+        <mat-form-field appearance="outline">
+            <mat-label>Filters</mat-label>
+            <select matNativeControl required #column>
+              <option value="date">Date</option>
+              <option value="operation">Operation</option>
+              <option value="userid">User ID</option>
+              <option value="username">User Name</option>
+              <option value="type">Type</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field id="searchbar"  appearance="outline" Style="width:760px;">
+            <mat-label>Search...</mat-label>
+            <input matInput placeholder="Java, Python,  Delhi, etc." required ng-model="check" (keyup.enter)="searchM()" #query>
+          </mat-form-field>
+          
+            <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon"  ng-disabled="!(check)" (click)="searchM()" >
+                <img src="../../../../assets/search.png" id="searchicon">
+              </button>
+          
+          
+    </mat-card-title>
+    <mat-card-content>
+
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="grid"> 
+          <table mat-table [dataSource]="dataSource" >
+        
+            <!-- id Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>  Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+        
+            <!-- date Column -->
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef> Date & Time </th>
+              <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+            </ng-container>
+        
+            <!-- operation Column -->
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef> Type of Operation </th>
+              <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+            </ng-container>
+
+            <!-- userId Column -->
+            <ng-container matColumnDef="userId">
+                <th mat-header-cell *matHeaderCellDef> User Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+              </ng-container>
+
+             <!-- userName Column -->
+             <ng-container matColumnDef="userName">
+                <th mat-header-cell *matHeaderCellDef> User Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+              </ng-container>
+              <!-- userName Column -->
+             <ng-container matColumnDef="view">
+              <th mat-header-cell *matHeaderCellDef> View </th>
+              <td mat-cell *matCellDef="let element"> 
+                <button mat-raised-button color="primary" style="margin-right:40px;" (click)="view(element)"> View </button> 
+              </td>
+            </ng-container>
+              
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[ 5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+
+    </mat-card-footer>
+</mat-card>
+
+
+<ng-template #AddForm  >
+    <div class="dialodC" Style="width:500px;height: 300px;">
+        <h3><b>Audit Info</b></h3>
+        <button mat-button class="close-icon" [mat-dialog-close]="true" >
+          <mat-icon>close</mat-icon>
+        </button>
+        <hr>
+        <h4> <b>Audit ID:</b>  <i>{{ data.id}}</i></h4>
+        <h4 style="margin-top: -15px;"> <b>Time Stamp:  </b><i>{{ data.date}}</i></h4>
+        <h4 style="margin-top: -15px;"> <b>User ID:  </b><i>{{ data.userId }}</i></h4> 
+        <h4 style="margin-top: -15px;"> <b>User Name:  </b><i>{{ data.userName }}</i></h4> 
+        <h4 style="margin-top: -15px;"> <b>Operation Type:  </b><i>{{ data.type }}</i></h4> 
+        <h4 style="margin-top: -15px;"> <b>Operation Query:  </b><i>{{ data.operation }}</i></h4>
+        <h4 style="margin-top: -15px;"> <b>Old Value:  </b><i> {{ data.oldValues }}</i></h4> 
+        <h4 style="margin-top: -15px;"> <b>New Value:  </b><i> {{ data.newValues }}</i></h4>  
+    </div>
+</ng-template>
+

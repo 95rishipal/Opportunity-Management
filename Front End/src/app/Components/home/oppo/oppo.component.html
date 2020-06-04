@@ -133,7 +133,7 @@
               <td  style="padding-right: 40px;">
                 <mat-form-field appearance="legacy">
                   <mat-label>Demand</mat-label>
-                  <input matInput type="number" formControlName = "demand" required>
+                  <input matInput type="number"  min="0" formControlName = "demand" required>
                   </mat-form-field>
                   <mat-error *ngIf="myform.get('demand').touched  && myform.get('demand').hasError('required')">
                    <h5> Demand is required.</h5> 
@@ -142,7 +142,7 @@
               <td>
                 <mat-form-field appearance="legacy">
                   <mat-label>Min. Experience</mat-label>
-                  <input matInput type="number" formControlName = "minxp" required>
+                  <input matInput type="number" min="0" formControlName = "minxp" required>
                 </mat-form-field>
                 <mat-error *ngIf=" myform.get('minxp').touched  &&  myform.get('minxp').hasError('required')">
                   <h5> Min. Experience is required.</h5>
@@ -217,7 +217,7 @@
              <td  style="padding-right: 40px;">
                <mat-form-field appearance="legacy">
                  <mat-label>Demand</mat-label>
-                 <input matInput type="number" formControlName = "demand" required>
+                 <input matInput type="number" min="0" formControlName = "demand" required>
                  </mat-form-field>
                  <mat-error *ngIf="myform.get('demand').touched  && myform.get('demand').hasError('required')">
                   <h5> Demand is required.</h5> 
@@ -226,7 +226,7 @@
              <td>
                <mat-form-field appearance="legacy">
                  <mat-label>Min. Experience</mat-label>
-                 <input matInput type="number" formControlName = "minxp" required>
+                 <input matInput type="number" min="0" formControlName = "minxp" required>
                </mat-form-field>
                <mat-error *ngIf=" myform.get('demand').touched  &&  myform.get('minxp').hasError('required')">
                  <h5> Min. Experience is required.</h5>

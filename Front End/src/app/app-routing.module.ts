@@ -6,6 +6,7 @@ import { TrendsComponent } from './Components/home/trends/trends.component'
 import { OppoComponent } from './Components/home/oppo/oppo.component'
 import { MyprofileComponent } from './Components/home/myprofile/myprofile.component'
 import { LoginComponent } from './Components/login/login.component'
+import {AuditComponent} from '../app/Components/home/audit/audit.component'
  
 const routes: Routes = [ { path: 'home', component: HomeComponent,
 children: [
@@ -14,6 +15,7 @@ children: [
         { path: 'search', component: SearchComponent },
         { path: 'trends', component: TrendsComponent },
         { path: 'myprofile', component: MyprofileComponent },
+        { path: 'audit', component: AuditComponent }
       ] },
       { path: 'login', component: LoginComponent}, 
       { path: '', redirectTo: 'login', pathMatch: 'full' },

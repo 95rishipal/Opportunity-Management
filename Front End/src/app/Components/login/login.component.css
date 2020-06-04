@@ -6,10 +6,11 @@
 .mat-card{
   width: 356px;
   height: 165px;
-  box-shadow: 1px 2px 1px -1px rgba(0,0,0,1), 
-                1px 1px 1px 0 rgba(0,0,0,1), 
-                2px 2px 3px 0 rgba(0,0,0,1);
+  box-shadow: 0px 0px 33px -7px rgba(0,0,0,1), 
+                0px 0px 7px 0 rgba(0,0,0,1), 
+                0px 0px 0px 0 rgba(0,0,0,1);
 }
+
 
 .Rfont{
   font-family: Raleway

@@ -30,7 +30,8 @@ import { MatTabsModule } from '@angular/material/tabs'
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu'
-import { MatGridListModule } from '@angular/material/grid-list'
+import { MatGridListModule } from '@angular/material/grid-list';
+import { AuditComponent } from '../app/Components/home/audit/audit.component'
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MatGridListModule } from '@angular/material/grid-list'
     TrendsComponent,
     LoginComponent,
     MyprofileComponent,
+    AuditComponent,
   ],
   imports: [
     BrowserModule,

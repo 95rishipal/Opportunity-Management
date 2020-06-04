@@ -11,6 +11,8 @@
     <mat-menu #menu="matMenu">
         <button mat-button color="white" style="width: 100%;">{{ Email }}</button>
         <br>
+        <button mat-button color="white" style="width: 100%;"  [routerLink]="['./audit']"  style="width: 100%;text-align: end;">Audit</button>
+        <br>
         <button mat-button  color="white" (click)="logout()" style="width: 100%;text-align: end;"> Log Out</button>
     </mat-menu>
 </mat-toolbar>
