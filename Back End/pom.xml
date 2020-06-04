@@ -8,8 +8,8 @@
 		<version>2.3.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.rishipal</groupId>
-	<artifactId>OppMang</artifactId>
+	<groupId>com.opportunitymanagment.accolite.jdbc</groupId>
+	<artifactId>opportunity-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OpportunityManagmenet</name>
 	<description>Opportunity Managment</description>
@@ -68,6 +68,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.13</version>
+		    <scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

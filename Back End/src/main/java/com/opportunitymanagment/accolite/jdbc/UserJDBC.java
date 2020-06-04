@@ -1,4 +1,4 @@
-package com.rishipal.jdbc;
+package com.opportunitymanagment.accolite.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.rishipal.model.Opportunity;
-import com.rishipal.model.User;
+
+import com.opportunitymanagment.accolite.models.Opportunity;
+import com.opportunitymanagment.accolite.models.User;
 
 @Controller("User_JDBC")
 @CrossOrigin(origins = "*", allowedHeaders = "*")

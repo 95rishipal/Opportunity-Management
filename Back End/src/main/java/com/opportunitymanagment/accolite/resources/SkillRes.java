@@ -1,4 +1,4 @@
-package com.rishipal.resource;
+package com.opportunitymanagment.accolite.resources;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.rishipal.model.Skill;
-import com.rishipal.repo.SkillRepo;
+import com.opportunitymanagment.accolite.models.Skill;
+import com.opportunitymanagment.accolite.repo.SkillRepo;
 
 @Controller("skill")
 public class SkillRes {

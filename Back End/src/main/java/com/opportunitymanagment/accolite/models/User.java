@@ -1,4 +1,4 @@
-package com.rishipal.model;
+package com.opportunitymanagment.accolite.models;
 
 import java.util.HashSet;
 import java.util.Set;

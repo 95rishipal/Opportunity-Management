@@ -1,4 +1,4 @@
-package com.rishipal.oppmang;
+package com.opportunitymanagment.accolite.jdbc.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.rishipal.resource;
+package com.opportunitymanagment.accolite.resources;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.rishipal.model.User;
-import com.rishipal.repo.UserRepo;
+
+import com.opportunitymanagment.accolite.models.User;
+import com.opportunitymanagment.accolite.repo.UserRepo;
 
 @Controller("user")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -162,7 +163,7 @@ public class UserRes {
  	
  	@PostMapping(path = "/user/check")
 	@ResponseBody
-	public ResponseEntity Check(@RequestHeader(value = "Token", required=false) String token, @RequestHeader(value = "Email", required=false) String email) {
+	public ResponseEntity Check(@RequestHeader(value = "Token", required=true) String token, @RequestHeader(value = "Email", required=true) String email) {
  		System.out.println(email);
  		System.out.println(token);
  		token = token.substring(0, 20);

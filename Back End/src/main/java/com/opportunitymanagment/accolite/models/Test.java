@@ -1,4 +1,4 @@
-package com.rishipal.model;
+package com.opportunitymanagment.accolite.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

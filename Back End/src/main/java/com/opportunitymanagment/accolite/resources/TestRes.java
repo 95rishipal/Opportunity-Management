@@ -1,4 +1,4 @@
-package com.rishipal.resource;
+package com.opportunitymanagment.accolite.resources;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.rishipal.repo.TestRepo;
-import com.rishipal.model.Test;
+
+import com.opportunitymanagment.accolite.models.Test;
+import com.opportunitymanagment.accolite.repo.TestRepo;
 
 
 @Controller("test")

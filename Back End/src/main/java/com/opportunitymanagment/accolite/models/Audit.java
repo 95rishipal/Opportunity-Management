@@ -1,4 +1,4 @@
-package com.rishipal.model;
+package com.opportunitymanagment.accolite.models;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

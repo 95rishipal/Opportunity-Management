@@ -1,4 +1,4 @@
-package com.rishipal.resource;
+package com.opportunitymanagment.accolite.resources;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,9 +22,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.rishipal.model.Opportunity;
-import com.rishipal.model.User;
-import com.rishipal.repo.OpportunityRepo;
+
+import com.opportunitymanagment.accolite.models.Opportunity;
+import com.opportunitymanagment.accolite.models.User;
+import com.opportunitymanagment.accolite.repo.OpportunityRepo;
 
 /*
  * JDBC - Template  
