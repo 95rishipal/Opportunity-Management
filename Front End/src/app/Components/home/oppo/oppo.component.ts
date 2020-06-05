@@ -29,9 +29,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class OppoComponent implements OnInit {
-  oppodata:any
-  userdata:any
-  currentUser:any
+  oppodata:any;
+  userdata:any;
+  currentUser:any;
   myform: FormGroup;
   minDate: Date;
   message:string;
@@ -78,18 +78,18 @@ export class OppoComponent implements OnInit {
     });
     
       this.minDate = new Date();
-      this.OppoService.getAllOpp().subscribe((data: any[])=>{
+      this.OppoService.getAllOpp().subscribe((data: any)=>{
           this.oppodata = data;
           this.dataSource.data = data
           this.dataSource.paginator = this.paginator;
           console.log(this.oppodata);
       })
-      this.UserService.getAllUser().subscribe((data: any[])=>{
+      this.UserService.getAllUser().subscribe((data: any)=>{
         this.userdata=data;
         console.log(this.userdata);
       });
 
-      this.UserService.getCurrentUser().subscribe((data: any[])=>{
+      this.UserService.getCurrentUser().subscribe((data: any)=>{
         this.currentUser=data;
         console.log(this.currentUser);
       });

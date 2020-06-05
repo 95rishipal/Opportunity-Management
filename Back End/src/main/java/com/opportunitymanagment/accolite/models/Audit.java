@@ -1,5 +1,7 @@
 package com.opportunitymanagment.accolite.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -10,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.jdbc.core.RowMapper;
 
 @Entity
 @Table(name="audit")
@@ -92,6 +96,8 @@ public class Audit {
 	public Audit(String operation,String type, String oldValues,
 			String newValues) {
 		super();
+		Calendar calobj = Calendar.getInstance();
+		this.date =  new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 		this.type=type;
 		this.operation = operation;
 		this.oldValues = oldValues;

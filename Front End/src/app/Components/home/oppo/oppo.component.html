@@ -57,14 +57,14 @@
         <th mat-header-cell *matHeaderCellDef> Min. Exp. </th>
         <td mat-cell *matCellDef="let element"> {{element.minxp}} </td>
       </ng-container>
-
+      <!--  [disabled]="element.userid != currentUser.userid" -->
       <ng-container matColumnDef="getdetails">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element"  style="padding-right: 0px;"> 
-          <button class="delbtn" mat-fab color="primary" [disabled]="element.userid != currentUser.userid"  (click)="opendelDialog(element)" aria-label="Example icon button with a delete icon">
+          <button class="delbtn" mat-fab color="primary"  [disabled]="element.userid != currentUser.userid"   (click)="opendelDialog(element)" aria-label="Example icon button with a delete icon">
           <mat-icon  class="icondelbtn" >delete</mat-icon> 
           </button> 
-          <button class="delbtn2" mat-fab color="primary" [disabled]="element.userid != currentUser.userid" (click)="opendeditDialog(element)" aria-label="Example icon button with a menu icon">
+          <button class="delbtn2" mat-fab color="primary"   [disabled]="element.userid != currentUser.userid" (click)="opendeditDialog(element)" aria-label="Example icon button with a menu icon">
             <mat-icon class="iconeditbtn">menu</mat-icon>
           </button>
         </td>

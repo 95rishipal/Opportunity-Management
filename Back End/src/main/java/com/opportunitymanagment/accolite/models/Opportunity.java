@@ -62,7 +62,8 @@ public class Opportunity {
 		this.minxp = minxp;
 		this.demand = demand;
 	}
-
+	
+	public Opportunity(){}
 
 
 
