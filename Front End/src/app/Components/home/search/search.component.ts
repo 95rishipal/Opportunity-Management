@@ -33,10 +33,10 @@ export class SearchComponent implements OnInit {
   public searchM():void{
     let col = this.option.nativeElement.value;
     let query = this.sql.nativeElement.value
-    console.log(col);
-    console.log(query);
+    // console.log(col);
+    // console.log(query);
     this.SearchService.search(col,query).subscribe((data: any[])=>{
-      console.log(data);
+      // console.log(data);
       if(data.length == 0){
           this.dataSource.data = [];
           // alert("No Result Found!!");

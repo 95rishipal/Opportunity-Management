@@ -11,15 +11,15 @@ export class LoginService {
   constructor(private httpClient: HttpClient, private Router:Router ) { }
 
   public login(data){
-    console.log("Request Header");
-    console.log(data);
+    // console.log("Request Header");
+    // console.log(data);
     let httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',
     }); 
     let options = {
           headers: httpHeaders
     };
-    console.log(httpHeaders)
+    // console.log(httpHeaders)
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     const body = data 
     return this.httpClient.post(this.apiServer+'/user/login', body, options);

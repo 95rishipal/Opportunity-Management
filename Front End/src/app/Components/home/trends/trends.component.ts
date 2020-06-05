@@ -66,10 +66,10 @@ export class TrendsComponent implements OnInit {
 
     this.trendService.getAllUsers().subscribe((data:any[])=>{
       
-      console.log(data);
+      // console.log(data);
       this.NoUser = data;
       this.NoOpportunity = data;
-      console.log(this.NoUser);
+      // console.log(this.NoUser);
     },error=>{
 
     });

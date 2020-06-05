@@ -29,6 +29,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.opportunitymanagment.accolite.JDBCTemplate.AuditJDBCTemplate;
 import com.opportunitymanagment.accolite.jdbc.*;
 import com.opportunitymanagment.accolite.models.Audit;
 
@@ -42,7 +43,7 @@ public class AuditJDBCTest {
 	private MockMvc mockmvc;
 	
 	@InjectMocks
-	private AuditJDBC auditjdbc;
+	private AuditJDBCTemplate auditjdbc;
     
 //  ------------------------ Setup -----------------------------------------
 	public List<Audit> demoObjects(int n){
@@ -58,13 +59,12 @@ public class AuditJDBCTest {
 			audit.setUserId(0);
 			list.add(audit);
 		}
-		
 		return list;
 	}
 	
 	@Before
 	public void setUp() throws Exception{	
-		 AuditJDBC mockTemplate = Mockito.mock(AuditJDBC.class);
+		 AuditJDBCTemplate mockTemplate = Mockito.mock(AuditJDBCTemplate.class);
 		 List<Audit> mockResult = demoObjects(4);
 		 Mockito.when(mockTemplate.retrieveAllOpportunity()).thenReturn(mockResult);
 		 mockmvc = MockMvcBuilders.standaloneSetup(mockTemplate).build(); // MVC object

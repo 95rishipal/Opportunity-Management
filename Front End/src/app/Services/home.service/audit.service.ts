@@ -11,7 +11,7 @@ export class  AuditService{
   constructor(private httpClient: HttpClient) { }
 
   public demo(){
-    console.log("Demo");
+    // console.log("Demo");
   }
   public search(col:String, place:String){
     return this.httpClient.get(this.apiServer+'/audit/search/'+col+'/'+place);

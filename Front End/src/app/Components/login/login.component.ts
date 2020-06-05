@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   signin(data){
           let user:User = new User(-1,data.name,data.email,data.password,"");
-          console.log(user);
+          // console.log(user);
           this.LoginService.login(user).subscribe(()=>{
             alert("Login Successfully");
             this.router.navigateByUrl('/admin');
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           });
   }
   onsubmit(data){
-    console.log(data);
+    // console.log(data);
   }
 
   public navigate(commands: any[]): void {
@@ -84,11 +84,11 @@ export class LoginComponent implements OnInit {
       this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
         (googleUser) => {
           let profile = googleUser.getBasicProfile();
-          console.log('Token || ' + googleUser.getAuthResponse().id_token);
-          console.log('ID: ' + profile.getId());
-          console.log('Name: ' + profile.getName());
-          console.log('Image URL: ' + profile.getImageUrl());
-          console.log('Email: ' + profile.getEmail());
+          // console.log('Token || ' + googleUser.getAuthResponse().id_token);
+          // console.log('ID: ' + profile.getId());
+          // console.log('Name: ' + profile.getName());
+          // console.log('Image URL: ' + profile.getImageUrl());
+          // console.log('Email: ' + profile.getEmail());
           //YOUR CODE HERE
           localStorage.setItem('ImageURL', profile.getImageUrl());
           this.localstorageservice.setAuthData(googleUser.getAuthResponse().id_token);
@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
           let user:User= new User(-1,profile.getName(), profile.getEmail(),"",profile.getId())
           this.LoginService.login(user).subscribe((data?:String)=>{
               alert("Login Successfully");
-              console.log(data);
+              // console.log(data);
               // this.router.navigateByUrl('/home/trends'); 
               // this.router.navigate(['/home/trends']);
               this.navigate(["/home/Search"]);

@@ -35,10 +35,10 @@ export class AuditComponent implements OnInit {
   public searchM():void{
     let col = this.option.nativeElement.value;
     let query = this.sql.nativeElement.value
-    console.log(col);
-    console.log(query);
+    // console.log(col);
+    // console.log(query);
     this.AuditService.search(col,query).subscribe((data: any[])=>{
-      console.log(data);
+      // console.log(data);
       if(data.length == 0){
           this.dataSource.data = [];
           // alert("No Result Found!!");
@@ -59,7 +59,7 @@ export class AuditComponent implements OnInit {
   }
 
   public view(data){
-    console.log(data);
+    // console.log(data);
     this.data= data;
     this.openAddDialog();
   }
@@ -75,7 +75,7 @@ export class AuditComponent implements OnInit {
   }
   public getAll(){
     this.AuditService.getall().subscribe((data: any[])=>{
-      console.log(data);
+      // console.log(data);
       if(data.length == 0){
           this.dataSource.data = [];
           // alert("No Result Found!!");
