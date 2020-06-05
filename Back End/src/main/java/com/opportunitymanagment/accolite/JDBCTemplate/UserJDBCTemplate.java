@@ -24,19 +24,11 @@ import com.opportunitymanagment.accolite.models.User;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserJDBCTemplate {
 	public UserJDBCTemplate(){
-		template.setDataSource(this.mysqlDataSource());
+		template.setDataSource(new Dataservice("mysql").getDataSource());
 	}
 	
 	public JdbcTemplate template = new JdbcTemplate();
 	
-	public DataSource mysqlDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/accolitedb");
-        dataSource.setUsername("root");
-        dataSource.setPassword("12345");
-        return dataSource;
-    }
 	
 	@GetMapping("/user/getall")
 	@ResponseBody

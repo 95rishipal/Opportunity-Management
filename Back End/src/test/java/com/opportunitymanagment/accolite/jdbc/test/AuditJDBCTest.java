@@ -2,10 +2,14 @@ package com.opportunitymanagment.accolite.jdbc.test;
 
 import static org.hamcrest.CoreMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.assertj.core.util.Arrays;
 import org.hamcrest.CoreMatchers;
@@ -18,9 +22,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.client.MockRestServiceServer.MockRestServiceServerBuilder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
@@ -30,12 +37,14 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.opportunitymanagment.accolite.JDBCTemplate.AuditJDBCTemplate;
+import com.opportunitymanagment.accolite.JDBCTemplate.AuditRowMapper;
+import com.opportunitymanagment.accolite.JDBCTemplate.OpportunityJDBCTemplate;
 import com.opportunitymanagment.accolite.jdbc.*;
 import com.opportunitymanagment.accolite.models.Audit;
 
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class AuditJDBCTest {
 
 //	------------------------- Create Variables For Mocking -------------------------------------
@@ -44,57 +53,56 @@ public class AuditJDBCTest {
 	
 	@InjectMocks
 	private AuditJDBCTemplate auditjdbc;
-    
-//  ------------------------ Setup -----------------------------------------
-	public List<Audit> demoObjects(int n){
-		List<Audit> list = new ArrayList<>();
+	
+	@Mock
+    JdbcTemplate jdbcTemplate;
+	
+	private ArrayList<Audit> getItems(int n){
+		ArrayList<Audit> list = new ArrayList<>();
 		for(int i=0; i<n; i++) {
-			Audit audit = new Audit();
-			audit.setId(i);
-			audit.setDate("Demo Date :"+i);
-			audit.setNewValues("Demo New Value:"+i);
-			audit.setOldValues("Demo Old Value:"+i);
-			audit.setOperation("Demo Old Value:"+i);
-			audit.setType("Demo Type:"+i);
-			audit.setUserId(0);
-			list.add(audit);
+			Audit a = new Audit();
+			a.setDate("Demo:"+n);
+			a.setId(n);
+			a.setNewValues("Demo:"+n);
+			a.setOldValues("Demo:"+n);
+			a.setOperation("Demo:"+n);
+			a.setType("Demo:"+n);
+			a.setUserName("Demo:"+n);
+			a.setUserId(n);
+			list.add(a);
 		}
 		return list;
-	}
-	
-	@Before
-	public void setUp() throws Exception{	
-		 AuditJDBCTemplate mockTemplate = Mockito.mock(AuditJDBCTemplate.class);
-		 List<Audit> mockResult = demoObjects(4);
-		 Mockito.when(mockTemplate.retrieveAllOpportunity()).thenReturn(mockResult);
-		 mockmvc = MockMvcBuilders.standaloneSetup(mockTemplate).build(); // MVC object
 		
 	}
 	
-//	------------------------- Tests -------------------------------------------
 	
-	@Test // Api: /audit/getall Running
-	public void auditRunning() throws Exception {
-		mockmvc.perform(MockMvcRequestBuilders.get("/audit/getall"))
-			.andExpect(MockMvcResultMatchers.status().isOk());			
+	@Before
+	public void setUp() throws Exception{
+		auditjdbc = Mockito.mock(AuditJDBCTemplate.class);
+		mockmvc = MockMvcBuilders.standaloneSetup(auditjdbc).build(); 
 	}
 	
-	
+//	------------------------- Tests -------------------------------------------
 	@Test   // Check the total list received. 
 	public void testAuditGetAll() throws Exception{
-		System.out.println(mockmvc.perform(MockMvcRequestBuilders.get("/audit/getall"))
+			Mockito.when(auditjdbc.getAllAudit()).thenReturn(this.getItems(5));
+			String result	=	mockmvc.perform(MockMvcRequestBuilders.get("/audit/getall"))
 			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.jsonPath("$.*",Matchers.hasSize(4)))
-			.andReturn().getResponse().getContentAsString());
+			.andExpect(MockMvcResultMatchers.jsonPath("$.*",Matchers.hasSize(5)))
+			.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE))
+			.andDo(print())
+			.andReturn().getResponse().getContentAsString();
+			System.out.println("[Result:] "+result);
 	}
 	
 	
-//	
-	@Test
-	public void testAuditSearch() throws Exception{
-	String a = mockmvc.perform(MockMvcRequestBuilders.get("/audit/search/username/d").header("Email", "95rishipal@gmail.com"))
-		.andExpect(MockMvcResultMatchers.status().isOk())
-		.andReturn().getResponse().getContentAsString();
-	System.out.println("[Result] "+a);
+	@Test 
+	public void testAuditSearchBy() throws Exception{
+			Mockito.when(auditjdbc.getAllAudit()).thenReturn(this.getItems(5));
+			mockmvc.perform(MockMvcRequestBuilders.get("/audit/search/k/l").header("Email", "95rishipal@gmail.com"))
+			.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
+//			.andExpect(MockMvcResultMatchers.jsonPath("$.*", Matchers.is(0)));
 	}
+	
+	
 }

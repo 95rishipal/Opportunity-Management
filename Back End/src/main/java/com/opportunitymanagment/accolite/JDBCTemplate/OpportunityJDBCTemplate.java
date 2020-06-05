@@ -32,25 +32,16 @@ import com.opportunitymanagment.accolite.models.User;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OpportunityJDBCTemplate {
 	public OpportunityJDBCTemplate(){
-		template.setDataSource(this.mysqlDataSource());
+		template.setDataSource(new Dataservice("mysql").getDataSource());
 		audit=new AuditJDBCTemplate();
 	}
 	
 	public JdbcTemplate template = new JdbcTemplate();
 	private AuditJDBCTemplate audit = null;
-	public DataSource mysqlDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/accolitedb");
-        dataSource.setUsername("root");
-        dataSource.setPassword("12345");
-        return dataSource;
-    }
-	
 	
 	
 //	------------------------------------------- Get All Opportunities ---------------------------------
-	@GetMapping("/oppo/getall")
+	@GetMapping(path = "/oppo/getall", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity retrieveAllOpportunity(@RequestHeader(value = "Email", required=true) String email) {
 		System.out.println(email);

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -32,32 +34,24 @@ import com.opportunitymanagment.accolite.models.Audit;
 public class AuditJDBCTemplate {
 
 	public AuditJDBCTemplate(){
-		template.setDataSource(this.mysqlDataSource());
+		template.setDataSource(new Dataservice("mysql").getDataSource());
 	}
 	
 	public JdbcTemplate template = new JdbcTemplate();
-	
-	public DataSource mysqlDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/accolitedb");
-        dataSource.setUsername("root");
-        dataSource.setPassword("12345");
-        return dataSource;
-    }
 
 
-	@GetMapping("/audit/getall")
+	@GetMapping(path = "/audit/getall", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public List<Audit> getAllAudit() {
 		AuditJDBCTemplate obj = new AuditJDBCTemplate();
 		List<Audit> list = obj.template.query("SELECT * FROM audit", new AuditRowMapper());
+		Collections.reverse(list);
 		return list;
 	}
 	
-	@GetMapping(path = "/audit/search/{col}/{place}")
+	@GetMapping(path = "/audit/search/{col}/{place}", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public ResponseEntity  searchBy(@PathVariable("col") String col, @PathVariable("place") String place,@RequestHeader(value = "Email", required=false) String email) {
+	public ResponseEntity  searchBy(@PathVariable("col") String col, @PathVariable("place") String place,@RequestHeader(value = "Email", required=true) String email) {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.NOT_FOUND;
 		String query = null;
