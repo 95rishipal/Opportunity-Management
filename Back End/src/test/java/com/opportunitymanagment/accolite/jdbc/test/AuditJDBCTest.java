@@ -25,6 +25,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -71,6 +72,7 @@ public class AuditJDBCTest {
 			a.setUserId(n);
 			list.add(a);
 		}
+		
 		return list;
 		
 	}
@@ -96,13 +98,35 @@ public class AuditJDBCTest {
 	}
 	
 	
+	@Test   // Check the total list received. 
+	public void getAll() throws Exception{
+		AuditJDBCTemplate apple = new AuditJDBCTemplate();
+		List<Audit> audit = apple.getAllAudit();
+		Assert.assertNotNull(audit);
+	}
+	
 	@Test 
 	public void testAuditSearchBy() throws Exception{
 			Mockito.when(auditjdbc.getAllAudit()).thenReturn(this.getItems(5));
 			mockmvc.perform(MockMvcRequestBuilders.get("/audit/search/k/l").header("Email", "95rishipal@gmail.com"))
-			.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
-//			.andExpect(MockMvcResultMatchers.jsonPath("$.*", Matchers.is(0)));
+			.andExpect(MockMvcResultMatchers.status().isOk());
 	}
+
+	@Test 
+	public void testAuditSearch() throws Exception{
+		AuditJDBCTemplate apple = new AuditJDBCTemplate();
+		ResponseEntity result = apple.searchBy("a", "asd", "95rishipal@gmail.com");
+		Assert.assertEquals(result.getStatusCodeValue(), 404);
+		result = apple.searchBy("operation", "g", "95rishipal@gmail.com");
+		Assert.assertEquals(result.getStatusCodeValue(), 200);
+		result = apple.searchBy("userid", "2", "95rishipal@gmail.com");
+		Assert.assertEquals(result.getStatusCodeValue(), 200);
+		result = apple.searchBy("username", "r", "95rishipal@gmail.com");
+		Assert.assertEquals(result.getStatusCodeValue(), 200);
+		result = apple.searchBy("type", "i", "95rishipal@gmail.com");
+		Assert.assertEquals(result.getStatusCodeValue(), 200);
+	}
+	
 	
 	
 }

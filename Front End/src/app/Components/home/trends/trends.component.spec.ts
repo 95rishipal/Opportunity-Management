@@ -7,7 +7,7 @@ import { of, Observable } from 'rxjs';
 describe('TrendsComponent', () => {
   let component: TrendsComponent;
   let fixture: ComponentFixture<TrendsComponent>;
-  let treandSearch : TrendsService;
+  let trendSearch : TrendsService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ MatSnackBarModule, HttpClientModule ],
@@ -19,7 +19,7 @@ describe('TrendsComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TrendsComponent);
-    treandSearch = TestBed.get(TrendsService);
+    trendSearch = TestBed.get(TrendsService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -29,34 +29,34 @@ describe('TrendsComponent', () => {
   });
 
   it('should working get lang Call', () => {
-    spyOn(treandSearch,'getAllLang').and.returnValue(of());
+    spyOn(trendSearch,'getAllLang').and.returnValue(of());
     component.ngOnInit();
-    expect(treandSearch.getAllLang).toHaveBeenCalled();
+    expect(trendSearch.getAllLang).toHaveBeenCalled();
 });
 
 // it('should working get user Call', () => {
-//   spyOn(treandSearch,'getAllUsers').and.returnValue(of());
+//   spyOn(trendSearch,'getAllUsers').and.returnValue(of());
 //   component.ngOnInit();
-//   expect(treandSearch.getAllUsers).toHaveBeenCalled();
+//   expect(trendSearch.getAllUsers).toHaveBeenCalled();
 // });
 
 it('should working get  demand Call', () => {
-  spyOn(treandSearch,'getAlldemand').and.returnValue(of());
+  spyOn(trendSearch,'getAlldemand').and.returnValue(of());
   component.ngOnInit();
-  expect(treandSearch.getAlldemand).toHaveBeenCalled();
+  expect(trendSearch.getAlldemand).toHaveBeenCalled();
 });
 
 // it('should working get minxp Call', () => {
-//   spyOn(treandSearch,'getAllminxp').and.returnValue(of());
+//   spyOn(trendSearch,'getAllminxp').and.returnValue(of());
 //   component.ngOnInit();
-//   expect(treandSearch.getAllminxp).toHaveBeenCalled();
+//   expect(trendSearch.getAllminxp).toHaveBeenCalled();
 // });
 
 
 // it('should working get skills Call', () => {
-//   spyOn(treandSearch,'getAllskills').and.returnValue(of());
+//   spyOn(trendSearch,'getAllskills').and.returnValue(of());
 //   component.ngOnInit();
-//   expect(treandSearch.getAllskills).toHaveBeenCalled();
+//   expect(trendSearch.getAllskills).toHaveBeenCalled();
 // });
 
 });

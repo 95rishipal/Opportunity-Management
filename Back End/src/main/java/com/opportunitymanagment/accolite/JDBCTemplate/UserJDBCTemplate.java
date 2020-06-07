@@ -52,7 +52,6 @@ public class UserJDBCTemplate {
 		token = token.substring(0, 20);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.OK;
-		String insertSql = "INSERT INTO user ( userid, email, gid, name, password, token) VALUES (?, ?, ?, ?,?,?)";
 		User msg=null;
 		User u = this.findByEmail(user.getEmail());
 		if(u != null && u.getGid().equals(user.getGid())) {
@@ -92,9 +91,11 @@ public class UserJDBCTemplate {
  	
  	public int insertUser(User u, String token) {
  		UserJDBCTemplate obj = new UserJDBCTemplate();
- 		String insertSql = "INSERT INTO user (userid, email, gid, name, password, token) VALUES (?,?,?,?,?,?)";
- 		return obj.template.update(insertSql, new Object[]{u.getUserid(),u.getEmail(),u.getGid(),u.getName(),u.getPassword(),token}, 
- 				new Object[]{Integer.class, String.class, Integer.class, String.class, String.class, String.class});
+ 		String insertSql = "INSERT INTO user (email, gid, name, password, token) VALUES (?,?,?,?,?)";
+ 		System.out.println(u);
+ 		int a =  obj.template.update(insertSql, new Object[]{u.getEmail(),u.getGid(),u.getName(),u.getPassword(),token});
+ 		System.out.println(a);
+ 		return a;
  	}
  	
  	public int updateToken(User u, String token) {
@@ -115,5 +116,10 @@ public class UserJDBCTemplate {
  
  		if(t.getToken().equals(token.substring(0, 20))) return true;
  		return false;
+ 	}
+ 	
+ 	public static void main(String arg[]) {
+ 		UserJDBCTemplate user = new UserJDBCTemplate();
+ 		int a = user.insertUser(new User("demo", "demo1@gmail.com","12","123456","01234567890123456789"), "01234567890123456789");	
  	}
 }

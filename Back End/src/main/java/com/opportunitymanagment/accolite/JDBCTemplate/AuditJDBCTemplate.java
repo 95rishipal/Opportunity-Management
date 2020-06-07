@@ -56,12 +56,12 @@ public class AuditJDBCTemplate {
 		HttpStatus httpstatus= HttpStatus.NOT_FOUND;
 		String query = null;
 		List<Audit> list = null;
-		if(col.equals("date"))  query = "SELECT * FROM audit WHERE date LIKE '%"+place+"%';";
-		if(col.equals("operation")) query = "SELECT * FROM audit  WHERE operation LIKE '%"+place+"%';";
-		if(col.equals("userid"))  query = "SELECT * FROM audit  WHERE user_id LIKE '%"+place+"%';";
-		if(col.equals("username")) query = "SELECT * FROM audit  WHERE user_name LIKE '%"+place+"%';";
-		if(col.equals("type"))  query = "SELECT * FROM audit  WHERE type LIKE '%"+place+"%';";
-			
+		if(col.equals("date"))  query = "SELECT * FROM audit WHERE date LIKE '%"+place+"%';"; 
+		else if(col.equals("operation")) query = "SELECT * FROM audit  WHERE operation LIKE '%"+place+"%';";
+		else if(col.equals("userid"))  query = "SELECT * FROM audit  WHERE user_id LIKE '%"+place+"%';";
+		else if(col.equals("username")) query = "SELECT * FROM audit  WHERE user_name LIKE '%"+place+"%';";
+		else if(col.equals("type"))  query = "SELECT * FROM audit  WHERE type LIKE '%"+place+"%';";
+		else query = null;
 		if(query != null) {
 			AuditJDBCTemplate obj = new AuditJDBCTemplate();
 			list = obj.template.query(query, new AuditRowMapper());

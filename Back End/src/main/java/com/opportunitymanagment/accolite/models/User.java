@@ -44,7 +44,14 @@ public class User {
 		this.token = token;
 	}
 	
-	
+	public User(String name, String email, String password, String gid, String token) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.gid = gid;
+		this.token = token;
+	}
 //	------------ Getters and Setters --------------------
 	public int getUserid() {
 		return userid;

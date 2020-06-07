@@ -48,8 +48,8 @@ public class OpportunityJDBCTemplate {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.OK;
 		audit.insertAudit( new Audit("Get All Opportunity","Get All", "",""), email);
-		AuditJDBCTemplate obj = new AuditJDBCTemplate();
-		List<Opportunity> list = obj.template.query("SELECT * FROM opportunity;", new OpportunityRowMapper());
+		List<Opportunity> list = template.query("SELECT * FROM opportunity;", new OpportunityRowMapper());
+		System.out.println(list.size());
 		for(Opportunity i : list) {
 			System.out.println(i);
 		}
@@ -88,12 +88,16 @@ public class OpportunityJDBCTemplate {
 		audit.insertAudit( new Audit("Add Opportunity ","Insert", "",ele.toString()),email);
 		OpportunityJDBCTemplate obj = new OpportunityJDBCTemplate();
 		HttpHeaders responseHeaders = new HttpHeaders();
-		HttpStatus httpstatus= HttpStatus.OK;
+		HttpStatus httpstatus= HttpStatus.NOT_ACCEPTABLE;
+		int index = -1;
+		if(ele != null) {
 			UserJDBCTemplate userTemplate = new UserJDBCTemplate();
 			User user = userTemplate.findByEmail(email);
 			String insertSQL = "INSERT INTO opportunity (description, end_Date, location, skills, userid, demand, minxp) VALUES (?, ?, ?, ?, ?, ?, ?);";
-			int index = obj.template.update(insertSQL, new Object[]{ele.getdescription(), ele.getEndDate(), ele.getLocation(), ele.getSkills(), user.getUserid(), ele.getDemand(), ele.getMinxp()});
-	    ResponseEntity responseEntity = new ResponseEntity(index,responseHeaders,httpstatus);
+			index = obj.template.update(insertSQL, new Object[]{ele.getdescription(), ele.getEndDate(), ele.getLocation(), ele.getSkills(), user.getUserid(), ele.getDemand(), ele.getMinxp()});
+			httpstatus = HttpStatus.OK;
+		}
+		ResponseEntity responseEntity = new ResponseEntity(index,responseHeaders,httpstatus);
 		return responseEntity;
 	}
 	
