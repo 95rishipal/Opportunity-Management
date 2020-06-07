@@ -79,15 +79,15 @@ export class OppoComponent implements OnInit {
     this.minDate = new Date();
       this.UserService.getCurrentUser().subscribe((data: any)=>{
         this.currentUser=data;
-        // console.log(this.currentUser);
+        console.log(this.currentUser);
         this.UserService.getAllUser().subscribe((data: any)=>{
           this.userdata=data;
-          // console.log(this.userdata); 
+          console.log(this.userdata); 
           this.OppoService.getAllOpp().subscribe((data: any)=>{
               this.oppodata = data;
               this.dataSource.data = data
               this.dataSource.paginator = this.paginator;
-              // console.log(this.oppodata);
+              console.log(this.oppodata);
           })
         });
       });
@@ -165,6 +165,13 @@ export class OppoComponent implements OnInit {
       this.matConf.panelClass = 'green-snackbar';
       this.snackBar.open("Opportunity Deleted!!",'', this.matConf);
       });
+  }
+  public view(){
+    this.OppoService.getAllOpp().subscribe((data: any[])=>{
+      // console.log(data);
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   
