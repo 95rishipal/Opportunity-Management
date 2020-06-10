@@ -5,13 +5,14 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import { Opportunity } from '../../../Models/Opportunity.model'
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import {MatSort} from '@angular/material/sort';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('column') option:ElementRef;
   @ViewChild('query') sql:ElementRef;
   displayedColumns: string[] = ['oppid', 'description', 'location','endDate', 'skills'];
@@ -24,6 +25,7 @@ export class SearchComponent implements OnInit {
   constructor(private SearchService:SearchService,  public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.dataSource.sort = this.sort;
     this.matConf.duration=3*1000;
     this.matConf.horizontalPosition = 'end';
     this.matConf.verticalPosition='top';

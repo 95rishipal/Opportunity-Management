@@ -12,6 +12,7 @@ import {UserService} from '../../../Services/home.service/user.service'
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { ConfigurableFocusTrap } from '@angular/cdk/a11y';
 import {ErrorStateMatcher} from '@angular/material/core';
+import {MatSort} from '@angular/material/sort';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -39,14 +40,17 @@ export class OppoComponent implements OnInit {
   dataSource = new MatTableDataSource<Opportunity>();
   matConf = new MatSnackBarConfig();
   matcher = new MyErrorStateMatcher();
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   @ViewChild('AddForm') addTemplate: TemplateRef<any>;
-  private addDialog: MatDialogRef<TemplateRef<any>>;
+  public addDialog: MatDialogRef<TemplateRef<any>>;
 
   @ViewChild('EditForm') editTemplate: TemplateRef<any>;
-  private editDialog: MatDialogRef<TemplateRef<any>>;
+  public editDialog: MatDialogRef<TemplateRef<any>>;
 
   @ViewChild('DelForm') delTemplate: TemplateRef<any>;
-  private delDialog: MatDialogRef<TemplateRef<any>>;
+  public delDialog: MatDialogRef<TemplateRef<any>>;
 
   @ViewChild('snackBarTemplate')
   snackBarTemplate: TemplateRef<any>;
@@ -67,6 +71,7 @@ export class OppoComponent implements OnInit {
   // ------------------------- Init Method ---------------------------------------
   ngOnInit(): void {
     this.defaultOpportunity = new Opportunity();
+    this.dataSource.sort = this.sort;
     this.myform = this.fb.group({
       oppid: '0',
       description: new FormControl('', [Validators.required]),
@@ -148,8 +153,9 @@ export class OppoComponent implements OnInit {
       // alert("Opportunity Updated!!");
       this.matConf.panelClass = 'green-snackbar';
       this.snackBar.open("Opportunity Updated!!",'', this.matConf);
+      this.editDialog.close();
     }) 
-    this.editDialog.close();
+   
 
   }
 

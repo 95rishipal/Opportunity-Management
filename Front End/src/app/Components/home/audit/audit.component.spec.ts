@@ -2,15 +2,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { AuditComponent } from './audit.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuditService } from '../../../Services/home.service/audit.service';
-import { of, Observable } from 'rxjs';
+import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+
+
+export class MaterialTableComponent {
+  displayedColumns: string[] = ['position', 'name'];
+  dataSource = [{position: 1, name: 'Hydrogen'}];
+}
+
 describe('AuditComponent', () => {
   let component: AuditComponent;
   let fixture: ComponentFixture<AuditComponent>;
   let auditService: AuditService;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
@@ -33,7 +39,7 @@ describe('AuditComponent', () => {
 
   it('should working get all Call', () => {
       spyOn(auditService,'getall').and.returnValue(of([]));
-      component.getAll();
+      let data = component.getAll();
       expect(auditService.getall).toHaveBeenCalled();
   });
 

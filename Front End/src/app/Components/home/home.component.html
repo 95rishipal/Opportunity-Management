@@ -1,15 +1,15 @@
 <mat-toolbar color="primary"> 
-    <img src="../../../assets/icon4.jpg" alt="MS Icon" id="msicon">
+    <img src="../../../assets/icon4.jpg" alt="MS Icon" id="msicon" >
     
-    <button mat-button  [ngClass]="{'Active':isActive1, 'Deactive': !isActive1}" (click)="onClicked('btn1')" [routerLink]="['./trends']" > Trends</button>
-    <button mat-button  [ngClass]="{'Active':isActive2, 'Deactive': !isActive2}" (click)="onClicked('btn2')"  [routerLink]="['./search']"> Search </button>
-    <button  mat-button [ngClass]="{'Active':isActive3, 'Deactive': !isActive3}" (click)="onClicked('btn3')"  [routerLink]="['./opportunity']" > Opportunity </button>
+    <button mat-button id="trend" [ngClass]="{'Active':isActive1, 'Deactive': !isActive1}"  [routerLink]="['./trends']" > Trends</button>
+    <button mat-button id="search" [ngClass]="{'Active':isActive2, 'Deactive': !isActive2}"  [routerLink]="['./search']"> Search </button>
+    <button  mat-button id="opportunity" [ngClass]="{'Active':isActive3, 'Deactive': !isActive3}"  [routerLink]="['./opportunity']" > Opportunity </button>
     <span class="example-fill-remaining-space"></span>
     <button mat-button [matMenuTriggerFor]="menu">
-        <img [src]="ImageURL" id="ppic">
+        <img [src]="ImageURL" id="ppic" alt="MENU">
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-button color="white" style="width: 100%;">{{ Email }}</button>
+        <button mat-button color="white" style="width: 100%;" (click)="Display()">{{ Email }}</button>
         <br>
         <button mat-button color="white" style="width: 100%;"  [routerLink]="['./audit']"  style="width: 100%;text-align: end;">Audit</button>
         <br>
@@ -17,3 +17,36 @@
     </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>
+<button mat-fab color="warn" style="position: fixed; bottom: 45px; right: 30px;" (click)="query()"> Query </button>
+
+<ng-template #DisplayDetail  >
+    <div class="dialodC" Style="width:500px;height: 300px;">
+        <h3><b>Manager Information</b></h3>
+        <button mat-button class="close-icon" [mat-dialog-close]="true" >
+          <mat-icon>close</mat-icon>
+        </button>
+        <hr>
+        <img [src]="ImageURL" id="ppic" style="border-style: groove; position: absolute; width: 98px; margin-top: 13px">
+        <div style="margin-left: 131px;margin-top: 17px;">
+            <h3>Registration ID: {{ User.UserId }}</h3>
+            <h3>Google ID: {{ User.UserGid }}</h3>
+            <h3>Name: {{ User.Username }}</h3>
+            <h3>Email: {{ User.UserEmail }}</h3>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #Query  >
+    <div class="dialodC" Style="width:350px;height: 200px;background: ivory; position:relative;">
+        <h3><b>For any query please contact us:</b></h3>
+        <button mat-button class="close-icon" [mat-dialog-close]="true" >
+          <mat-icon>close</mat-icon>
+        </button>
+        <hr>
+            <h3> <b>Administrator:</b> </h3>
+            <h3> <b>Email:</b>  <a target="_blank" href="mailto: rishipal.singh@accoliteindia.com?subject=Query"><img src="../../../../assets/mail.png" style="width: 13px;margin-left: 3px;" ></a><i> rishipal.singh@accoliteindia.com</i> </h3>
+            <h3> <b>Mobile No.:</b>  <i>7589421037</i> </h3>
+    </div>
+    <img src="../../../assets/contactus.png" style="width: 112px;margin-left: 249px; margin-top: -60px;position: fixed;" >
+</ng-template>

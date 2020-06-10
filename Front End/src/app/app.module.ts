@@ -10,7 +10,6 @@ import { TrendsComponent } from './Components/home/trends/trends.component';
 import { LoginComponent } from './Components/login/login.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import { MyprofileComponent } from './Components/home/myprofile/myprofile.component';
 import { MatListModule} from '@angular/material/list'
 import { MatButtonModule} from '@angular/material/button'
 import { HttpClientModule } from '@angular/common/http';
@@ -32,7 +31,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu'
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AuditComponent } from '../app/Components/home/audit/audit.component'
-
+import {MatSortModule} from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,13 +40,12 @@ import { AuditComponent } from '../app/Components/home/audit/audit.component'
     SearchComponent,
     TrendsComponent,
     LoginComponent,
-    MyprofileComponent,
     AuditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgxChartsModule,MatMenuModule,MatGridListModule,
+    BrowserAnimationsModule, NgxChartsModule,MatMenuModule,MatGridListModule,MatSortModule,
     MatToolbarModule,ReactiveFormsModule,FormsModule,MatCardModule,MatTabsModule,MatSnackBarModule,
     MatIconModule,MatListModule,MatFormFieldModule,MatDatepickerModule,MatInputModule, MatDatepickerModule,MatNativeDateModule,
     MatButtonModule,HttpClientModule,MatTableModule,MatPaginatorModule,MatDialogModule

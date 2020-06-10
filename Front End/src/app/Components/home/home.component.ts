@@ -1,6 +1,8 @@
-import { Component, Input,  OnInit } from '@angular/core';
+import { Component, Input,  OnInit, ViewChild, TemplateRef } from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginService} from '../../Services/login.service/login.service'
+import {LoginService} from '../../Services/login.service/login.service';
+import { MatDialogRef,MatDialog, MatDialogConfig } from  '@angular/material/dialog';
+import { UserService } from '../../Services/home.service/user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,7 +14,15 @@ export class HomeComponent implements OnInit {
   public isActive2:boolean;
   public isActive3:boolean;
   public isClicked:boolean[];
-  constructor( private router: Router, private loginservice: LoginService) { }
+  public User:UserInfo;
+
+  @ViewChild('DisplayDetail') detailTemplate: TemplateRef<any>;
+  private detailDialog: MatDialogRef<TemplateRef<any>>;
+
+  @ViewChild('Query') queryTemplate: TemplateRef<any>;
+  private queryDialog: MatDialogRef<TemplateRef<any>>;
+  
+  constructor( private router: Router, public dialog: MatDialog, private loginservice: LoginService, private userService: UserService) { }
   Email : String;
   
   ngOnInit(): void {
@@ -22,27 +32,47 @@ export class HomeComponent implements OnInit {
     this.ImageURL = localStorage.getItem('ImageURL');
     this.isActive2=true;
   }
+
+  public query(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.restoreFocus = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.role = 'dialog';
+    dialogConfig.disableClose = true;
+    this.queryDialog= this.dialog.open(this.queryTemplate, dialogConfig);
+  }
+
+  public Display(){
+    this.userService.getCurrentUser().subscribe((data:any)=>{  
+      this.User = new UserInfo(data.userid,data.gid,this.ImageURL,data.name,this.Email);
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.restoreFocus = false;
+      dialogConfig.autoFocus = false;
+      dialogConfig.role = 'dialog';
+      dialogConfig.disableClose = true;
+      this.detailDialog= this.dialog.open(this.detailTemplate, dialogConfig);
+    });
+  };
+
   public logout(){
     // console.log("Logout");
     alert("Thank you!!!");
     localStorage.clear();
     this.router.navigate(['/login']);
   }
+}
 
-  public onClicked(data){
-    let i:number;
-    this.isActive1=false;
-    this.isActive2=false;
-    this.isActive3=false;
-    if(data=='btn1'){
-      this.isActive1=true;
-    }
-    if(data=='btn2'){
-      this.isActive2=true;
-    }
-    if(data=='btn3'){
-      this.isActive3=true;
-    }
-    
+class UserInfo{
+  Username:string;
+  UserId: string;
+  UserImage: string;
+  UserGid: string;
+  UserEmail: string;
+  constructor(id, gid, image, name, email){
+    this.UserId = id;
+    this.UserGid = gid;
+    this.UserImage = image;
+    this.Username = name;
+    this.UserEmail=email;
   }
 }

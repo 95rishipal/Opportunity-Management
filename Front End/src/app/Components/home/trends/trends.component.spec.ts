@@ -4,13 +4,14 @@ import { TrendsComponent } from './trends.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TrendsService } from 'src/app/Services/home.service/trends.service';
 import { of, Observable } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 describe('TrendsComponent', () => {
   let component: TrendsComponent;
   let fixture: ComponentFixture<TrendsComponent>;
   let trendSearch : TrendsService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MatSnackBarModule, HttpClientModule ],
+      imports: [ MatSnackBarModule, HttpClientModule,BrowserAnimationsModule ],
       declarations: [ TrendsComponent ],
       providers: [TrendsService]
     })
@@ -34,11 +35,11 @@ describe('TrendsComponent', () => {
     expect(trendSearch.getAllLang).toHaveBeenCalled();
 });
 
-// it('should working get user Call', () => {
-//   spyOn(trendSearch,'getAllUsers').and.returnValue(of());
-//   component.ngOnInit();
-//   expect(trendSearch.getAllUsers).toHaveBeenCalled();
-// });
+it('should working get user Call', () => {
+  spyOn(trendSearch,'getAllUsers').and.returnValue(of());
+  component.ngOnInit();
+  expect(trendSearch.getAllUsers).toHaveBeenCalled();
+});
 
 it('should working get  demand Call', () => {
   spyOn(trendSearch,'getAlldemand').and.returnValue(of());
@@ -46,17 +47,11 @@ it('should working get  demand Call', () => {
   expect(trendSearch.getAlldemand).toHaveBeenCalled();
 });
 
-// it('should working get minxp Call', () => {
-//   spyOn(trendSearch,'getAllminxp').and.returnValue(of());
-//   component.ngOnInit();
-//   expect(trendSearch.getAllminxp).toHaveBeenCalled();
-// });
+it('should working get minxp Call', () => {
+  spyOn(trendSearch,'getAllminxp').and.returnValue(of());
+  component.ngOnInit();
+  expect(trendSearch.getAllminxp).toHaveBeenCalled();
+});
 
-
-// it('should working get skills Call', () => {
-//   spyOn(trendSearch,'getAllskills').and.returnValue(of());
-//   component.ngOnInit();
-//   expect(trendSearch.getAllskills).toHaveBeenCalled();
-// });
 
 });

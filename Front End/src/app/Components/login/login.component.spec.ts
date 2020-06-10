@@ -5,13 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginService } from '../../Services/login.service/login.service';
 import { of , Observable} from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, HttpClientModule, RouterTestingModule],
+      imports: [ReactiveFormsModule, HttpClientModule, RouterTestingModule, BrowserAnimationsModule],
       declarations: [ LoginComponent ],
       providers:[LoginService],
     })

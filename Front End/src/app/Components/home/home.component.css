@@ -35,3 +35,22 @@
     border: 3px solid;
     padding: 0px;
   }
+
+  .dialodC{
+    position: relative !important;
+  }
+
+  .dialodD{
+    position: relative !important;
+  }
+
+  .close-icon {
+    position: absolute;
+    top: 12px;
+    right: 8px;
+    transform: translate(50%, -50%);
+  }
+
+  h3{
+      margin-top: -2px;
+  }

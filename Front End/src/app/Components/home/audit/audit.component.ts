@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import { Opportunity } from '../../../Models/Opportunity.model'
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-audit',
@@ -24,8 +25,10 @@ export class AuditComponent implements OnInit {
   matConf = new MatSnackBarConfig();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private AuditService:AuditService, public dialog: MatDialog,  public snackBar: MatSnackBar) { }
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit(): void {
+    this.dataSource.sort = this.sort;
     this.matConf.duration=3*1000;
     this.matConf.horizontalPosition = 'end';
     this.matConf.verticalPosition='top';
@@ -33,6 +36,7 @@ export class AuditComponent implements OnInit {
   }
 
   public searchM():void{
+    
     let col = this.option.nativeElement.value;
     let query = this.sql.nativeElement.value
     // console.log(col);

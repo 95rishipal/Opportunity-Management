@@ -8,6 +8,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import { LocalstorageService } from '../../Services/localstorage.service.service'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
           // console.log(user);
           this.LoginService.login(user).subscribe(()=>{
             alert("Login Successfully");
-            this.router.navigateByUrl('/admin');
+            // this.router.navigateByUrl('admin');
         },response => {
                 if(response.status == 409){ 
                   alert("Invalid Email Password"); 

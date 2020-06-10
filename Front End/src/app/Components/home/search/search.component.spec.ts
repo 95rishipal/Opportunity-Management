@@ -4,13 +4,14 @@ import { SearchComponent } from './search.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { SearchService } from '../../../Services/home.service/search.service.service';
 import { of, Observable } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
   let searchService : SearchService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, MatSnackBarModule],
+      imports: [HttpClientModule, MatSnackBarModule, BrowserAnimationsModule],
       declarations: [ SearchComponent ],
       providers:[SearchService]
     })
