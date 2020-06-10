@@ -84,15 +84,15 @@ export class OppoComponent implements OnInit {
     this.minDate = new Date();
       this.UserService.getCurrentUser().subscribe((data: any)=>{
         this.currentUser=data;
-        console.log(this.currentUser);
+  
         this.UserService.getAllUser().subscribe((data: any)=>{
           this.userdata=data;
-          console.log(this.userdata); 
+        
           this.OppoService.getAllOpp().subscribe((data: any)=>{
               this.oppodata = data;
               this.dataSource.data = data
               this.dataSource.paginator = this.paginator;
-              console.log(this.oppodata);
+        
           })
         });
       });
@@ -103,12 +103,12 @@ export class OppoComponent implements OnInit {
   }
 
   public yes(){
-      // console.log(this.oppodata.oppid);
+    
       this.delRecord(this.oppodata);
   }
 
   public no(){
-    // console.log(this.oppodata.oppid);
+ 
     this.matConf.panelClass = 'red-snackbar';
     this.snackBar.open("Oppertunity Canceled!!",'', this.matConf);
   }
@@ -134,23 +134,23 @@ export class OppoComponent implements OnInit {
 
   public onEdit(data){
     let options = { year: 'numeric', month: 'long', day: 'numeric' };
-    // console.log(data);
+  
     const momentDate = new Date(data.endDate);
     const dat = ("0" + momentDate.getDate()).slice(-2);
     const month = ("0" + (momentDate.getMonth() + 1)).slice(-2);
     const year = momentDate.getFullYear();
     const presentDate = year+"-"+month+"-"+dat;
-    // console.log(presentDate);
+  
     data.endDate = presentDate;
     this.OppoService.editOpp(data).subscribe((data) => {
-      // console.log("Running");
-      // console.log(data);
+ 
+   
        this.OppoService.getAllOpp().subscribe((output: any[])=>{
-        // console.log(output);
+   
         this.dataSource.data = output;
         this.dataSource.paginator = this.paginator;
       });
-      // alert("Opportunity Updated!!");
+   
       this.matConf.panelClass = 'green-snackbar';
       this.snackBar.open("Opportunity Updated!!",'', this.matConf);
       this.editDialog.close();
@@ -163,18 +163,18 @@ export class OppoComponent implements OnInit {
       this.OppoService.del(parseInt(data.oppid)).subscribe((output)=>{
        
         this.OppoService.getAllOpp().subscribe((data: any[])=>{
-          // console.log(data);
+   
           this.dataSource.data = data;
           this.dataSource.paginator = this.paginator;
         });
-        // alert('Deleted Successfully!!');
+      
       this.matConf.panelClass = 'green-snackbar';
       this.snackBar.open("Opportunity Deleted!!",'', this.matConf);
       });
   }
   public view(){
     this.OppoService.getAllOpp().subscribe((data: any[])=>{
-      // console.log(data);
+   
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
     });
@@ -207,24 +207,23 @@ export class OppoComponent implements OnInit {
   public onSubmit(data){
     let options = { year: 'numeric', month: 'long', day: 'numeric' };
     
-    // console.log();
+
     const momentDate = new Date(data.endDate);
     const dat = ("0" + momentDate.getDate()).slice(-2);
     const month = ("0" + (momentDate.getMonth() + 1)).slice(-2);
     const year = momentDate.getFullYear();
     const presentDate = year+"-"+month+"-"+dat;
-    // console.log(presentDate);
 
-    // console.log(Date.UTC(year,month,dat));
+
     data.endDate = presentDate;
     this.OppoService.addOpp(data).subscribe((data) => {
-      // console.log("Running");
+
        this.OppoService.getAllOpp().subscribe((data: any[])=>{
-        // console.log(data);
+
         this.dataSource.data = data;
         this.dataSource.paginator = this.paginator;
       });
-      // alert("Opportunity Added!!");
+ 
       this.matConf.panelClass = 'green-snackbar';
       this.snackBar.open("Opportunity Added!!",'', this.matConf);
     }) 

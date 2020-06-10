@@ -3,7 +3,6 @@ import { HttpEvent,HttpResponse,HttpErrorResponse, HttpInterceptor, HttpHandler,
 import { Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import { LocalstorageService } from '../Services/localstorage.service.service'
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor{
     constructor(private router: Router) {}

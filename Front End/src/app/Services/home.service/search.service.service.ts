@@ -11,7 +11,7 @@ export class  SearchService{
   constructor(private httpClient: HttpClient) { }
 
   public demo(){
-    // console.log("Demo");
+
   }
   public search(col:String, place:String){
     return this.httpClient.get(this.apiServer+'/oppo/search/'+col+'/'+place);

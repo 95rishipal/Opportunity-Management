@@ -17,7 +17,7 @@ export class OppoService {
   }
 
   public addOpp(Opportunity){
-    // console.log(Opportunity)
+  
     let httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',
     }); 
@@ -30,7 +30,7 @@ export class OppoService {
   }
 
   public editOpp(Opportunity){
-    // console.log(Opportunity)
+
     let httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',
       'Cache-Control': 'no-cache'

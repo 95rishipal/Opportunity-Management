@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, TemplateRef} from '@angular/c
 import { SearchService } from '../../../Services/home.service/search.service.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
+import { MatDialogRef} from '@angular/material/dialog';
 import { Opportunity } from '../../../Models/Opportunity.model'
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {MatSort} from '@angular/material/sort';
@@ -35,13 +35,12 @@ export class SearchComponent implements OnInit {
   public searchM():void{
     let col = this.option.nativeElement.value;
     let query = this.sql.nativeElement.value
-    // console.log(col);
-    // console.log(query);
+
     this.SearchService.search(col,query).subscribe((data: any[])=>{
-      // console.log(data);
+   
       if(data.length == 0){
           this.dataSource.data = [];
-          // alert("No Result Found!!");
+       
           this.matConf.panelClass = 'red-snackbar';
           this.snackBar.open("No Result Found!!",'', this.matConf);
       }else{
@@ -52,7 +51,7 @@ export class SearchComponent implements OnInit {
       }
     }, error =>{
       this.dataSource.data=[];
-      // alert('[Server] Somthing went wrong, Try Again!!');
+    
       this.matConf.panelClass = 'red-snackbar';
       this.snackBar.open("[Server] Somthing went wrong, Try Again!!",'', this.matConf);
     });

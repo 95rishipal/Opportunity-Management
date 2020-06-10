@@ -4,9 +4,6 @@ import { FormGroup, FormBuilder, FormControl, Validators, NgModel  } from '@angu
 import { User } from '../../Models/User.model';
 import { Router } from '@angular/router';
 import { LoginService } from '../../Services/login.service/login.service'
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import { LocalstorageService } from '../../Services/localstorage.service.service'
 
 @Component({

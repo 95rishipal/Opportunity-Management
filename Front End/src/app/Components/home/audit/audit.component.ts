@@ -39,13 +39,12 @@ export class AuditComponent implements OnInit {
     
     let col = this.option.nativeElement.value;
     let query = this.sql.nativeElement.value
-    // console.log(col);
-    // console.log(query);
+ 
     this.AuditService.search(col,query).subscribe((data: any[])=>{
-      // console.log(data);
+
       if(data.length == 0){
           this.dataSource.data = [];
-          // alert("No Result Found!!");
+
           this.matConf.panelClass = 'red-snackbar';
           this.snackBar.open("No Result Found!!",'', this.matConf);
       }else{
@@ -56,14 +55,13 @@ export class AuditComponent implements OnInit {
       }
     }, error =>{
       this.dataSource.data=[];
-      // alert('[Server] Somthing went wrong, Try Again!!');
-      this.matConf.panelClass = 'red-snackbar';
+       this.matConf.panelClass = 'red-snackbar';
       this.snackBar.open("[Server] Somthing went wrong, Try Again!!",'', this.matConf);
     });
   }
 
   public view(data){
-    // console.log(data);
+
     this.data= data;
     this.openAddDialog();
   }
@@ -79,10 +77,9 @@ export class AuditComponent implements OnInit {
   }
   public getAll(){
     this.AuditService.getall().subscribe((data: any[])=>{
-      // console.log(data);
+
       if(data.length == 0){
           this.dataSource.data = [];
-          // alert("No Result Found!!");
           this.matConf.panelClass = 'red-snackbar';
           this.snackBar.open("No Result Found!!",'', this.matConf);
       }else{
@@ -93,7 +90,6 @@ export class AuditComponent implements OnInit {
       }
     }, error =>{
       this.dataSource.data=[];
-      // alert('[Server] Somthing went wrong, Try Again!!');
       this.matConf.panelClass = 'red-snackbar';
       this.snackBar.open("[Server] Somthing went wrong, Try Again!!",'', this.matConf);
     });

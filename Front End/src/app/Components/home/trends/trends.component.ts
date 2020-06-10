@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { MatTab } from '@angular/material/tabs'
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { TrendsService } from '../../../Services/home.service/trends.service'
 @Component({
@@ -68,8 +65,7 @@ export class TrendsComponent implements OnInit {
       
       console.log(data);
       this.NoUser = data;
-      // this.NoOpportunity = data;
-      // console.log(this.NoUser);
+ 
     },error=>{
 
     });
