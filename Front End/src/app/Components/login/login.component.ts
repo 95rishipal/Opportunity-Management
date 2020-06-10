@@ -39,26 +39,9 @@ export class LoginComponent implements OnInit {
     });
     
   }
-
-  signin(data){
-          let user:User = new User(-1,data.name,data.email,data.password,"");
-          // console.log(user);
-          this.LoginService.login(user).subscribe(()=>{
-            alert("Login Successfully");
-            // this.router.navigateByUrl('admin');
-        },response => {
-                if(response.status == 409){ 
-                  alert("Invalid Email Password"); 
-                }
-          });
-  }
-  onsubmit(data){
-    // console.log(data);
-  }
-
   public navigate(commands: any[]): void {
     this.ngZone.run(() => this.router.navigate(commands)).then();
-}
+  }
 
   googleSDK() {
       window['googleSDKLoaded'] = () => {
@@ -94,12 +77,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('ImageURL', profile.getImageUrl());
           this.localstorageservice.setAuthData(googleUser.getAuthResponse().id_token);
           this.localstorageservice.setUserData(profile.getEmail());
+          this.localstorageservice.setGid(profile.getId());
           let user:User= new User(-1,profile.getName(), profile.getEmail(),"",profile.getId())
           this.LoginService.login(user).subscribe((data?:String)=>{
               alert("Login Successfully");
-              // console.log(data);
-              // this.router.navigateByUrl('/home/trends'); 
-              // this.router.navigate(['/home/trends']);
               this.navigate(["/home/Search"]);
           }, response => {
                 if(response.status == 409){ 

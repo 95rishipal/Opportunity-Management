@@ -2,26 +2,16 @@ package com.opportunitymanagment.accolite.models;
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="User")
+
+
 public class User {
 //	------------- Columns ------------------
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int userid;
-	@Column(nullable = false)
+
 	private String name;
-	@Column(unique = true, nullable = false)
+
 	private String email;
 	private String password;
 	private String gid;

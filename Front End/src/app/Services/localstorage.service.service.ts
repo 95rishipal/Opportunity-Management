@@ -17,4 +17,8 @@ export class LocalstorageService {
  public setUserData(data):void{
    localStorage.setItem("Email",data);
  }
+
+ public setGid(data):void{
+  localStorage.setItem("Gid",data);
+}
 }

@@ -1,18 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpEvent,HttpResponse,HttpErrorResponse, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 import { LocalstorageService } from '../Services/localstorage.service.service'
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor{
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-        const userToken = 'secure-user-token';
+    constructor(private router: Router) {}
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{         
         let header = req.headers.append('Token', localStorage.getItem("Token"))
         header = header.append('Email',localStorage.getItem('Email'));
+        header = header.append('Gid',localStorage.getItem('Gid'));
         const modifiedReq = req.clone({ 
                                 headers: header,
-                            });
-        // console.log(modifiedReq.headers);                    
-         return next.handle(modifiedReq); 
+                            });                    
+         return next.handle(modifiedReq).pipe( tap(() => {},
+         (err: any) => {
+         if (err instanceof HttpErrorResponse) {
+            
+           if (err.status == 401) {
+            this.router.navigate(['login']);
+            alert("Session Expired!!\nLogin Again.");
+           }
+           return;
+         }
+       }));
     }
 
 }

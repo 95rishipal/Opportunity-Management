@@ -26,9 +26,8 @@ export class HomeComponent implements OnInit {
   Email : String;
   
   ngOnInit(): void {
-    this.loginservice.check();
+    // this.loginservice.check();
     this.Email = localStorage.getItem('Email');
-    // console.log(this.ImageURL);
     this.ImageURL = localStorage.getItem('ImageURL');
     this.isActive2=true;
   }

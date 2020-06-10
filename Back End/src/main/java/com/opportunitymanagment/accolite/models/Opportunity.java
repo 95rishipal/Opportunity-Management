@@ -3,32 +3,17 @@ package com.opportunitymanagment.accolite.models;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.JoinColumn;
 import java.time.LocalDate;
 
-@Entity
-@Table(name="Opportunity")
+
 public class Opportunity {
 //	------ Columns -------------------
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int oppid;
 	private String description;
 	

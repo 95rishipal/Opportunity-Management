@@ -54,7 +54,7 @@ import {MatSortModule} from '@angular/material/sort';
     {
       provide: HTTP_INTERCEPTORS, 
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
     },
   ],
   bootstrap: [AppComponent]

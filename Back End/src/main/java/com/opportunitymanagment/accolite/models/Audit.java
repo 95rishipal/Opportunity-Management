@@ -7,21 +7,14 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.springframework.jdbc.core.RowMapper;
 
-@Entity
-@Table(name="audit")
+
 public class Audit {
 	
 	//	--------------- Columns ----------------------------
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	int id;
 	String date;
 	int userId;
