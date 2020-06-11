@@ -26,7 +26,7 @@ import com.oppo.accolite.models.Audit;
 import com.oppo.accolite.models.Opportunity;
 
 
-@Controller("trends_Template")
+@Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TrendsController {
 

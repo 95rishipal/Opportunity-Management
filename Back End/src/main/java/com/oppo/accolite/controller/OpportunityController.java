@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -31,8 +32,9 @@ import com.oppo.accolite.dao.UserDaoImp;
 import com.oppo.accolite.models.Audit;
 import com.oppo.accolite.models.Opportunity;
 import com.oppo.accolite.models.User;
+import org.springframework.http.MediaType;
 
-@Controller("Opportunity_JDBC_Template")
+@Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OpportunityController {
 	
@@ -45,8 +47,10 @@ public class OpportunityController {
 	@Autowired
 	UserDaoImp userDaoImp;
 	
+	
+	
 //	------------------------------------------- Get All Opportunities ---------------------------------
-	@GetMapping(path = "/oppo/getall", produces = "application/json")
+	@GetMapping(path = "/oppo/getall")
 	@ResponseBody
 	public List<Opportunity> getAllOpportunity(@RequestHeader(value = "Email", required=true) String email) {
 		auditDaoImp.insertAudit( new Audit("Get All Opportunity","Get All", "",""), email);
@@ -62,11 +66,12 @@ public class OpportunityController {
 	}
 	
 	
-	@PostMapping(path = "/oppo/add", consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/oppo/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public int  addOpportunity(@RequestBody Opportunity ele,  @RequestHeader(value = "Email", required=false) String email) {
 		auditDaoImp.insertAudit( new Audit("Add Opportunity ","Insert", "",ele.toString()),email);
 		User user = userDaoImp.findByEmail(email);
+		System.out.println(user);
 		ele.setUserid(user.getUserid());
 		return oppoDaoImp.insert(ele);
 	}

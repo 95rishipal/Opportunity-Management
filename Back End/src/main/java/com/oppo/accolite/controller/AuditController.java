@@ -30,14 +30,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.oppo.accolite.dao.AuditDaoImp;
 import com.oppo.accolite.models.*;
 
-@RestController("Audit_JDBC_Template")
+@Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuditController {
 
 	@Autowired
 	AuditDaoImp auditDaoImp;
 
-	@GetMapping(path = "/audit/getall", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(path = "/audit/getall")
 	@ResponseBody
 	public List<Audit> getAllAudit() {
 		return auditDaoImp.getAllAudit();

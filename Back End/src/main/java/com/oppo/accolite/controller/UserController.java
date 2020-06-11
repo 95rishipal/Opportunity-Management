@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.oppo.accolite.dao.UserDaoImp;
 import com.oppo.accolite.models.User;
 
-@Controller("User_JDBC_Template")
+@Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 	
@@ -34,11 +34,13 @@ public class UserController {
 	@ResponseBody
 	public Map<Integer,User> retrieveAllUser() {
 		List<User> list =  userDaoImp.getAllUsers();
+		System.out.println(list);
 		Map<Integer,User> map = new HashMap<>();
-		for(User user : list) {
+		for(User user: list) {
 			map.put(user.getUserid(), user);
+			System.out.println(list);
 		}
-		return map;	
+		return map;	 
 	}
 	
 	@PostMapping( path = "/user/login", consumes = "application/json", produces = "application/json")
