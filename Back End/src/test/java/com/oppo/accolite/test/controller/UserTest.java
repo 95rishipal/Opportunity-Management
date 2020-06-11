@@ -1,4 +1,4 @@
-package com.oppo.accolite.test;
+package com.oppo.accolite.test.controller;
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

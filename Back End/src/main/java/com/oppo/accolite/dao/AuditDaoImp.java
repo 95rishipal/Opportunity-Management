@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.oppo.accolite.Exception.JDBCTemplate;
+import com.oppo.accolite.Exception.GlobalException;
 import com.oppo.accolite.controller.AuditController;
 import com.oppo.accolite.controller.UserController;
 import com.oppo.accolite.models.Audit;
@@ -25,10 +25,10 @@ public class AuditDaoImp implements AuditDao{
 	
 	public AuditDaoImp(){}
 	
-	@Autowired(required=true)
+	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	@Autowired(required=true)
+	@Autowired
 	UserDaoImp userdao;
 	
 	@Override
@@ -42,7 +42,10 @@ public class AuditDaoImp implements AuditDao{
 	public int insertAudit(Audit ele, String email) {
 		User user = userdao.findByEmail(email);
 		String insertSQL = "INSERT INTO audit (date, new_values, old_values, operation, type, user_id, user_name) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		return jdbcTemplate.update(insertSQL, new Object[]{ele.getDate(), ele.getNewValues(), ele.getOldValues(), ele.getOperation(), ele.getType(), user.getUserid(), user.getName()});
+		System.out.println(user);
+		int result = jdbcTemplate.update(insertSQL, new Object[]{ele.getDate(), ele.getNewValues(), ele.getOldValues(), ele.getOperation(), ele.getType(), user.getUserid(), user.getName()}); 
+		System.out.print(result);
+		return result;
 	}
 
 	@Override
