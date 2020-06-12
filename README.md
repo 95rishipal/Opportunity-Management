@@ -29,13 +29,5 @@ Copyright  with Accolite India
  <img src="https://github.com/95rishipal/Opportunity-Management/blob/master/Img/Audit%20Page.png">
 <h3 align="center">Code Coverage<h3>
 <img src="https://github.com/95rishipal/Opportunity-Management/blob/master/Img/ControllerCodeCoverage+Interceptor+Model+Dao.JPG?raw=true">
+ <img align="center" src="https://github.com/95rishipal/Opportunity-Management/blob/master/Img/AngularTesting.JPG?raw=true">
 
-
-#!/bin/bash
-
-#File: tree-md
-
-tree=$(tree -tf --noreport -I '*~' --charset ascii $1 |
-       sed -e 's/| \+/  /g' -e 's/[|`]-\+/ */g' -e 's:\(* \)\(\(.*/\)\([^/]\+\)\):\1[\4](\2):g')
-
-printf "# Project tree\n\n${tree}"

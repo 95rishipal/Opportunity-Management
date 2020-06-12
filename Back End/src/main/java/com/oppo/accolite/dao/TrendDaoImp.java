@@ -3,6 +3,8 @@ package com.oppo.accolite.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,17 @@ public class TrendDaoImp implements TrendDao {
 					temp.put("value", resultSet.getString(2));
 					item.add(temp);
 				}
+				Collections.sort(item, new Comparator<Map<String, String>>() {
+
+					@Override
+					public int compare(Map<String, String> o1, Map<String, String> o2) {
+						String v1 = o1.get("name").toLowerCase();
+						String v2 = o2.get("name").toLowerCase();
+						return v1.compareTo(v2);
+					}
+					
+				});
+				
 			}
 		});
 		return item;
@@ -51,6 +64,17 @@ public class TrendDaoImp implements TrendDao {
 					temp.put("value", resultSet.getString(2));
 					item.add(temp);
 				}
+				Collections.sort(item, new Comparator<Map<String, String>>() {
+
+					@Override
+					public int compare(Map<String, String> o1, Map<String, String> o2) {
+						String v1 = o1.get("name").toLowerCase();
+						String v2 = o2.get("name").toLowerCase();
+						return v1.compareTo(v2);
+					}
+					
+				});
+				
 			}
 		});
 		return item;
@@ -68,6 +92,18 @@ public class TrendDaoImp implements TrendDao {
 					temp.put("value", resultSet.getString(2));
 					item.add(temp);
 				}
+				Collections.sort(item, new Comparator<Map<String, String>>() {
+
+					@Override
+					public int compare(Map<String, String> o1, Map<String, String> o2) {
+						int v1 = Integer.parseInt(o1.get("name"));
+						int v2 = Integer.parseInt(o2.get("name"));
+						if(v1>v2) return 1;
+						else if(v1<v2) return -1;
+						return 0;
+					}
+					
+				});
 			}
 		});
 		return item;
@@ -85,6 +121,19 @@ public class TrendDaoImp implements TrendDao {
 					temp.put("value", resultSet.getString(2));
 					item.add(temp);
 				}
+				
+				Collections.sort(item, new Comparator<Map<String, String>>() {
+
+					@Override
+					public int compare(Map<String, String> o1, Map<String, String> o2) {
+						int v1 = Integer.parseInt(o1.get("name"));
+						int v2 = Integer.parseInt(o2.get("name"));
+						if(v1>v2) return 1;
+						else if(v1<v2) return -1;
+						return 0;
+					}
+					
+				});
 			}
 		});
 		return item;

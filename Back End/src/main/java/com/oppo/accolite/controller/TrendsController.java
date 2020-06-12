@@ -27,7 +27,7 @@ import com.oppo.accolite.models.Opportunity;
 
 
 @Controller
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 public class TrendsController {
 
 	@Autowired

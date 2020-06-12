@@ -24,7 +24,6 @@ import com.oppo.accolite.dao.UserDaoImp;
 import com.oppo.accolite.models.User;
 
 @Controller
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 	
 	@Autowired

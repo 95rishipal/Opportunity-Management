@@ -35,7 +35,7 @@ import com.oppo.accolite.models.User;
 import org.springframework.http.MediaType;
 
 @Controller
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 public class OpportunityController {
 	
 	@Autowired
