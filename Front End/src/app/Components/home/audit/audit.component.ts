@@ -14,85 +14,89 @@ import {MatSort} from '@angular/material/sort';
 })
 export class AuditComponent implements OnInit {
 
-  @ViewChild('column') option:ElementRef;
-  @ViewChild('query') sql:ElementRef;
+  @ViewChild('column') option: ElementRef;
+  @ViewChild('query') sql: ElementRef;
 
-  displayedColumns: string[] = ['id', 'date', 'type','userId','userName', 'view'];
-  dataSource = new MatTableDataSource<Opportunity>();
-  @ViewChild('AddForm') addTemplate: TemplateRef<any>;
-  private addDialog: MatDialogRef<TemplateRef<any>>;
-  data:any;
+  displayedColumns: string[] = ['id', 'date', 'type', 'userId', 'userName', 'view'];
+  dataSource = new MatTableDataSource < Opportunity > ();
+  @ViewChild('AddForm') addTemplate: TemplateRef < any > ;
+  private addDialog: MatDialogRef < TemplateRef < any >> ;
+  data: any;
   matConf = new MatSnackBarConfig();
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private AuditService:AuditService, public dialog: MatDialog,  public snackBar: MatSnackBar) { }
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {
+      static: true
+  }) paginator: MatPaginator;
+  constructor(private AuditService: AuditService, public dialog: MatDialog, public snackBar: MatSnackBar) {}
+  @ViewChild(MatSort, {
+      static: true
+  }) sort: MatSort;
 
   ngOnInit(): void {
-    this.dataSource.sort = this.sort;
-    this.matConf.duration=3*1000;
-    this.matConf.horizontalPosition = 'end';
-    this.matConf.verticalPosition='top';
-    this.matConf.announcementMessage="Running"; 
+      this.dataSource.sort = this.sort;
+      this.matConf.duration = 3 * 1000;
+      this.matConf.horizontalPosition = 'end';
+      this.matConf.verticalPosition = 'top';
+      this.matConf.announcementMessage = "Running";
   }
 
-  public searchM():void{
-    
-    let col = this.option.nativeElement.value;
-    let query = this.sql.nativeElement.value
- 
-    this.AuditService.search(col,query).subscribe((data: any[])=>{
+  public searchM(): void {
 
-      if(data.length == 0){
+      let col = this.option.nativeElement.value;
+      let query = this.sql.nativeElement.value
+
+      this.AuditService.search(col, query).subscribe((data: any[]) => {
+
+          if (data.length == 0) {
+              this.dataSource.data = [];
+
+              this.matConf.panelClass = 'red-snackbar';
+              this.snackBar.open("No Result Found!!", '', this.matConf);
+          } else {
+              this.dataSource.data = data;
+              this.dataSource.paginator = this.paginator;
+              this.matConf.panelClass = 'green-snackbar';
+              this.snackBar.open(data.length + " results found!!", '', this.matConf);
+          }
+      }, error => {
           this.dataSource.data = [];
-
           this.matConf.panelClass = 'red-snackbar';
-          this.snackBar.open("No Result Found!!",'', this.matConf);
-      }else{
-        this.dataSource.data = data;
-        this.dataSource.paginator = this.paginator;
-        this.matConf.panelClass = 'green-snackbar';
-          this.snackBar.open(data.length+" results found!!",'', this.matConf);
-      }
-    }, error =>{
-      this.dataSource.data=[];
-       this.matConf.panelClass = 'red-snackbar';
-      this.snackBar.open("[Server] Somthing went wrong, Try Again!!",'', this.matConf);
-    });
+          this.snackBar.open("[Server] Somthing went wrong, Try Again!!", '', this.matConf);
+      });
   }
 
-  public view(data){
+  public view(data) {
 
-    this.data= data;
-    this.openAddDialog();
+      this.data = data;
+      this.openAddDialog();
   }
 
   public openAddDialog(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.restoreFocus = false;
-    dialogConfig.autoFocus = false;
-    dialogConfig.role = 'dialog';
-    dialogConfig.disableClose = true;
-    this.addDialog = this.dialog.open(this.addTemplate, dialogConfig);
-    
-  }
-  public getAll(){
-    this.AuditService.getall().subscribe((data: any[])=>{
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.restoreFocus = false;
+      dialogConfig.autoFocus = false;
+      dialogConfig.role = 'dialog';
+      dialogConfig.disableClose = true;
+      this.addDialog = this.dialog.open(this.addTemplate, dialogConfig);
 
-      if(data.length == 0){
+  }
+  public getAll() {
+      this.AuditService.getall().subscribe((data: any[]) => {
+
+          if (data.length == 0) {
+              this.dataSource.data = [];
+              this.matConf.panelClass = 'red-snackbar';
+              this.snackBar.open("No Result Found!!", '', this.matConf);
+          } else {
+              this.dataSource.data = data;
+              this.dataSource.paginator = this.paginator;
+              this.matConf.panelClass = 'green-snackbar';
+              this.snackBar.open(data.length + " results found!!", '', this.matConf);
+          }
+      }, error => {
           this.dataSource.data = [];
           this.matConf.panelClass = 'red-snackbar';
-          this.snackBar.open("No Result Found!!",'', this.matConf);
-      }else{
-        this.dataSource.data = data;
-        this.dataSource.paginator = this.paginator;
-        this.matConf.panelClass = 'green-snackbar';
-          this.snackBar.open(data.length+" results found!!",'', this.matConf);
-      }
-    }, error =>{
-      this.dataSource.data=[];
-      this.matConf.panelClass = 'red-snackbar';
-      this.snackBar.open("[Server] Somthing went wrong, Try Again!!",'', this.matConf);
-    });
+          this.snackBar.open("[Server] Somthing went wrong, Try Again!!", '', this.matConf);
+      });
   }
 }
 

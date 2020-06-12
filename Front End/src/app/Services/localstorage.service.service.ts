@@ -10,10 +10,6 @@ export class LocalstorageService {
       localStorage.setItem("Token", auth);
   }
 
-  public getAuthData():any{
-    localStorage.getItem("Token");
-  }
-
  public setUserData(data):void{
    localStorage.setItem("Email",data);
  }

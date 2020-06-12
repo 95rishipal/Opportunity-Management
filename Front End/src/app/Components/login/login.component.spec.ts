@@ -26,18 +26,18 @@ describe('LoginComponent', () => {
   });
 
 
-  it('should create', () => {
+  it('Should Create Login Component', () => {
     expect(component).toBeTruthy();
   });
 
 
-  // it('should able to do signin', () => {
-  //   let loginService: LoginService;
-  //   jasmine.createSpy('login').and.callThrough();
-  //   // component.prepareLoginButton();
-  //   expect(loginService.login).toHaveBeenCalled();
-  // });
-
+  it('Should Able to Initialize Google SDK', () => {
+    spyOn(component, 'googleSDK').and.callThrough();
+    spyOn(component, 'prepareLoginButton').and.callThrough();
+    component.ngOnInit();
+    expect(component.googleSDK).toHaveBeenCalled();
+    expect(component.googleSDK).toHaveBeenCalled();
+  });
 });
 
 class loginServiceStub{

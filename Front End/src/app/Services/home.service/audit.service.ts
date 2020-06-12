@@ -9,10 +9,7 @@ export class  AuditService{
   private apiServer = "http://localhost:8080";
 
   constructor(private httpClient: HttpClient) { }
-
-  public demo(){
-   
-  }
+  
   public search(col:String, place:String){
     return this.httpClient.get(this.apiServer+'/audit/search/'+col+'/'+place);
   }
