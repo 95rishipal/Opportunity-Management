@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 
 export class OppoService {
-  private apiServer = "http://localhost:8080";
+  private apiServer = environment.baseUrl;
   constructor(private httpClient: HttpClient) {}
 
   public getAllOpp() {

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,  HttpHeaders } from "@angular/common/http";
 import { Router } from '@angular/router'
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private apiServer = "http://localhost:8080";
+  private apiServer = environment.baseUrl;
   constructor(private httpClient: HttpClient, private Router:Router) { }
 
   public login(data){
