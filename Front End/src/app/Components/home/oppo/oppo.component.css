@@ -1,86 +1,95 @@
 table {
     width: 100%;
     /* background-color: azure; */
-  }
-  tr{
-      width: max-content;
-  }
-
-  .mat-elevation-z8{
-      /* background-color: aqua; */
-      /* width: 800px; */
-      margin-left: 10px;
-      margin-right: 20px;
-      margin-top: 20px;
-  }
-
-  .delbtn{
-      width:30px; 
-      height: 30px;
-  }
-  
-  .icondelbtn{
-    /* width:30px; */
-    height: 30px;
-    margin-top: -19px;
-}
-.iconeditbtn{
-    /* width:30px; */
-    height: 30px;
-    margin-top: -19px;
 }
 
-.addbtn{
+tr {
+    width: max-content;
+}
+
+.mat-elevation-z8 {
+    /* background-color: aqua; */
+    /* width: 800px; */
     margin-left: 10px;
-    margin-top:10px;
-}
-.delbtn2 {
-    width:30px; 
-      height: 30px;
-      margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
 }
 
-.editbtn{
-    width:30px; 
+.delbtn {
+    width: 30px;
+    height: 30px;
+}
+
+.icondelbtn {
+    /* width:30px; */
+    height: 30px;
+    margin-top: -19px;
+}
+
+.iconeditbtn {
+    /* width:30px; */
+    height: 30px;
+    margin-top: -19px;
+}
+
+.addbtn {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.delbtn2 {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.editbtn {
+    width: 30px;
     height: 30px;
     margin-left: 10px;
     background-color: black;
 }
 
-.title{
-    margin-left:500px;
+.title {
+    margin-left: 500px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
     font-size: 30px;
     margin-top: 10px;
     text-shadow: 2px 4px #b590e686;
 }
+
 textarea {
     resize: none;
-  }
-#titile{
+}
+
+#titile {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: oblique;
     font-size: 10px;
 }
 
-h5{
+h5 {
     margin-top: -20px;
 }
-.tabletd{
-  margin-top: 5px;
+
+.tabletd {
+    margin-top: 5px;
 }
-.example-container{
+
+.example-container {
     width: 450px;
     height: 329px;
     border-style: solid;
     padding: 19px;
     border-width: thin;
 }
-mat-form-field{
-    width:100%;
+
+mat-form-field {
+    width: 100%;
 }
-#btnDiv{
+
+#btnDiv {
     margin-top: 59px;
     text-align: end;
 }
@@ -88,14 +97,14 @@ mat-form-field{
 ::ng-deep .blue-snackbar {
     background: rgb(45, 133, 206);
     color: white;
-  }
+}
 
 ::ng-deep .red-snackbar {
     background: rgb(228, 78, 40);
     color: white;
-  }  
+}
 
 ::ng-deep .green-snackbar {
     background: rgba(54, 201, 41, 0.959);
     color: white;
-  }  
+}

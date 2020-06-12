@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-
 @Injectable({
   providedIn: 'root'
 })
 
-export class  SearchService{
+export class SearchService {
   private apiServer = "http://localhost:8080";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  public search(col:String, place:String){
-    return this.httpClient.get(this.apiServer+'/oppo/search/'+col+'/'+place);
+  public search(col: String, place: String) {
+      return this.httpClient.get(this.apiServer + '/oppo/search/' + col + '/' + place);
   }
 
-  
 
 }

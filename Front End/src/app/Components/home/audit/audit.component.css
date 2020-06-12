@@ -1,64 +1,69 @@
-mat-card{
-    margin-left: 100px;
-    margin-top: 10px;
-    width: 1150px;
+mat-card {
+  margin-left: 100px;
+  margin-top: 10px;
+  width: 1150px;
 }
-mat-card-title{
-    font-size: medium;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+mat-card-title {
+  font-size: medium;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 table {
-    width: 100%;
-    /* background-color: azure; */
-  }
-  tr{
-      width: max-content;
-  }
-
-  .mat-elevation-z8{
-      /* background-color: aqua; */
-      width: 800px;
-      margin-left: 280px;
-      margin-top: 20px;
-  }
-#searchicon{
-    width: 20px;
-
+  width: 100%;
+  /* background-color: azure; */
 }
 
-#searchbar{
-    margin-left: 20px;
-    margin-right: 10px;
-    width:75%;
+tr {
+  width: max-content;
+}
+
+.mat-elevation-z8 {
+  /* background-color: aqua; */
+  width: 800px;
+  margin-left: 280px;
+  margin-top: 20px;
+}
+
+#searchicon {
+  width: 20px;
+}
+
+#searchbar {
+  margin-left: 20px;
+  margin-right: 10px;
+  width: 75%;
 }
 
 ::ng-deep .blue-snackbar {
-    background: rgb(45, 133, 206);
-    color: white;
-  }
+  background: rgb(45, 133, 206);
+  color: white;
+}
 
 ::ng-deep .red-snackbar {
-    background: rgb(228, 78, 40);
-    color: white;
-  }  
+  background: rgb(228, 78, 40);
+  color: white;
+}
 
 ::ng-deep .green-snackbar {
-    background: rgba(54, 201, 41, 0.959);
-    color: white;
-  }  
+  background: rgba(54, 201, 41, 0.959);
+  color: white;
+}
 
-  /* CSS For Dialog Box */
-  .dialodC{
-    position: relative !important;
-  }
 
-  .close-icon {
-    position: absolute;
-    top: 12px;
-    right: 8px;
-    transform: translate(50%, -50%);
-  }
+/* CSS For Dialog Box */
 
-  h3{
-      margin-top: -2px;
-  }
+.dialodC {
+  position: relative !important;
+}
+
+.close-icon {
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  transform: translate(50%, -50%);
+}
+
+h3 {
+  margin-top: -2px;
+}

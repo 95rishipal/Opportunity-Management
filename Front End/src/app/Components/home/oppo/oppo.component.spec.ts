@@ -11,6 +11,7 @@ import { By } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from 'src/app/Services/home.service/user.service';
 import { Mock } from 'protractor/built/driverProviders';
+import { TemplateRef } from '@angular/core';
 
 // mock object with close method
 export class dialogMock {
@@ -29,7 +30,7 @@ describe('OppoComponent', () => {
   let oppoService: OppoService;
   let userService: UserService;
   let adialog: dialogMock;
-
+  let addDialog:MatDialogRef<TemplateRef<any>>;
 
   beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -56,7 +57,6 @@ describe('OppoComponent', () => {
       fixture.detectChanges();
       oppoService = TestBed.get(OppoService);
       userService = TestBed.get(UserService);
-      // dialog = TestBed.get(MatDialog);
   });
 
 
@@ -184,10 +184,8 @@ describe('OppoComponent', () => {
   });
 
   it('Should Call Submit', () => {
-      // component.addDialog = this.adialog.open();
       spyOn(oppoService, 'addOpp').and.returnValue( of ([]));
       spyOn(oppoService, 'getAllOpp').and.returnValue( of ([]));
-      // spyOn(component.addDialog,'close').and.callThrough();
       component.onSubmit([{}]);
       expect(oppoService.addOpp).toHaveBeenCalled();
   });
@@ -197,4 +195,31 @@ describe('OppoComponent', () => {
       component.onCancel('');
       expect(component.snackBar.open).toHaveBeenCalled();
   });
+
+  it('Should Test On Cancel Method For Add Dialog', () => {
+    fixture.detectChanges();
+    component.addDialog = component.dialog.open(component.addTemplate);
+    fixture.detectChanges();
+    spyOn(component.snackBar, 'open').and.callThrough();
+    component.onCancel('Add');
+    expect(component.snackBar.open).toHaveBeenCalled();
+});
+
+it('Should Test On Cancel Method For Edit Dialog', () => {
+    fixture.detectChanges();
+    component.editDialog = component.dialog.open(component.editTemplate);
+    fixture.detectChanges();
+    spyOn(component.snackBar, 'open').and.callThrough();
+    component.onCancel('Edit');
+    expect(component.snackBar.open).toHaveBeenCalled();
+});
+
+  it('Should Test Close Add Dialog', () => {
+    fixture.detectChanges();
+    component.addDialog = component.dialog.open(component.addTemplate);
+    fixture.detectChanges();
+    spyOn(component.snackBar, 'open').and.callThrough();
+    component.closeAddDialog();
+    expect(component.snackBar.open).toHaveBeenCalled();
+});
 });

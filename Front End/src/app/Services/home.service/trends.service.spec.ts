@@ -6,13 +6,13 @@ describe('TrendsService', () => {
   let service: TrendsService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports:[HttpClientModule]
-    }).compileComponents();
-    service = TestBed.inject(TrendsService);
+      TestBed.configureTestingModule({
+          imports: [HttpClientModule]
+      }).compileComponents();
+      service = TestBed.inject(TrendsService);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+      expect(service).toBeTruthy();
   });
 });

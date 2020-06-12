@@ -1,16 +1,17 @@
 export class Opportunity {
-	public oppid: number;
-	public description: String;
-	public endDate: String;
+    public oppid: number;
+    public description: String;
+    public endDate: String;
     public skills: any;
     public location: String;
     public minxp: number;
     public demand: number;
-    public constructor(){
-       
+    public constructor() {
+
     }
 
-    public default(){
+    public
+    default () {
         this.oppid = 0;
         this.description = "";
         this.endDate = "";
@@ -18,5 +19,5 @@ export class Opportunity {
         this.location = "";
         this.minxp = 0;
         this.demand = 0;
- }
+    }
 }

@@ -1,56 +1,58 @@
 .example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
-  }
-  .Rfont{
-    font-family: Raleway
-  }
-  #ppic{
-    width:64px;
-  }
-  .Active{
-    color: white;
-    text-shadow: blueviolet;
-    text-underline-offset: inherit;
-    font-size: 16px;
-    font-style: bold;
-  }
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
 
-  .Deactive{
-    color: white;
-    text-shadow: blueviolet;
-    text-underline-offset: inherit;
-    font-size: 16px;
-    font-style: bold;
-  }
+.Rfont {
+  font-family: Raleway
+}
 
+#ppic {
+  width: 64px;
+}
 
-  span{
-      margin-right: 20px;
-  }
+.Active {
+  color: white;
+  text-shadow: blueviolet;
+  text-underline-offset: inherit;
+  font-size: 16px;
+  font-style: bold;
+}
 
-  #msicon{
-    height: 60px;
-    border: 3px solid;
-    padding: 0px;
-  }
+.Deactive {
+  color: white;
+  text-shadow: blueviolet;
+  text-underline-offset: inherit;
+  font-size: 16px;
+  font-style: bold;
+}
 
-  .dialodC{
-    position: relative !important;
-  }
+span {
+  margin-right: 20px;
+}
 
-  .dialodD{
-    position: relative !important;
-  }
+#msicon {
+  height: 60px;
+  border: 3px solid;
+  padding: 0px;
+}
 
-  .close-icon {
-    position: absolute;
-    top: 12px;
-    right: 8px;
-    transform: translate(50%, -50%);
-  }
+.dialodC {
+  position: relative !important;
+}
 
-  h3{
-      margin-top: -2px;
-  }
+.dialodD {
+  position: relative !important;
+}
+
+.close-icon {
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  transform: translate(50%, -50%);
+}
+
+h3 {
+  margin-top: -2px;
+}
