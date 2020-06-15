@@ -21,6 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oppo.accolite.Exception.NoRecordFound;
 import com.oppo.accolite.controller.OpportunityController;
 import com.oppo.accolite.dao.AuditDaoImp;
 import com.oppo.accolite.dao.OpportunityDaoImp;
@@ -63,9 +64,22 @@ public class OpportunityTest {
 	}
 	
 	@Test
+	public void shouldGetAllOpportunityCatchException() throws Exception {
+		Mockito.when(opportunityDaoImp.getAllOppo()).thenThrow(NoRecordFound.class);
+		mockMvc.perform(get("/oppo/getall").header("Email", "95rishipal@gmail.com")).andExpect(status().isOk());
+	}
+	
+	
+	@Test
 	public void shouldSearchOpportunity() throws Exception {
 		Mockito.when(opportunityDaoImp.searchBy("skills","r")).thenReturn(new ArrayList<Opportunity>());
 		mockMvc.perform(get("/oppo/search/skills/r")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void shouldSearchOpportunityCatchException() throws Exception {
+		Mockito.when(opportunityDaoImp.searchBy("ss","r")).thenThrow(NoRecordFound.class);
+		mockMvc.perform(get("/oppo/search/ss/r")).andExpect(status().isOk());
 	}
 	
 
@@ -92,7 +106,7 @@ public class OpportunityTest {
 		String json = objectMapper.writeValueAsString(oppoDefault);
 		Mockito.when(auditDaoImp.insertAudit(new Audit("Add Opportunity ","Insert", "",json), "95rishipal@gmail.com")).thenReturn(1);
 		Mockito.when(opportunityDaoImp.del(4)).thenReturn(1);
-		mockMvc.perform(delete("/oppo/del/4").header("Email", "95rishipal@gmail.com").header("Gid","115640335689848772862")).andExpect(status().isOk());
+		mockMvc.perform(get("/oppo/delete/4").header("Email", "95rishipal@gmail.com").header("Gid","115640335689848772862")).andExpect(status().isOk());
 	}
 
 }

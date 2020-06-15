@@ -14,7 +14,8 @@ export class OppoService {
   }
 
   public del(id) {
-      return this.httpClient.delete(this.apiServer + '/oppo/del/' + id);
+      console.log(localStorage.getItem("Email"));
+      return this.httpClient.get(this.apiServer + '/oppo/delete/' + id);
   }
 
   public addOpp(Opportunity) {

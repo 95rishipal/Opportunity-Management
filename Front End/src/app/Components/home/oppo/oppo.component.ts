@@ -166,6 +166,7 @@ export class OppoComponent implements OnInit {
   }
 
   public delRecord(data): any {
+      console.log(data);
       this.OppoService.del(parseInt(data.oppid)).subscribe((output) => {
 
           this.OppoService.getAllOpp().subscribe((data: any[]) => {

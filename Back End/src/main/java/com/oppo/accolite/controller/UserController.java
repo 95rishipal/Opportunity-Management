@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,15 +31,16 @@ public class UserController {
 	@Autowired
 	UserDaoImp userDaoImp;
 	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@GetMapping("/user/getall")
 	@ResponseBody
 	public Map<Integer,User> retrieveAllUser() {
+		logger.info("User Controller Called-- Get All Users");
 		List<User> list =  userDaoImp.getAllUsers();
-		System.out.println(list);
 		Map<Integer,User> map = new HashMap<>();
 		for(User user: list) {
 			map.put(user.getUserid(), user);
-			System.out.println(list);
 		}
 		return map;	 
 	}
@@ -45,7 +48,7 @@ public class UserController {
 	@PostMapping( path = "/user/login", consumes = "application/json", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity  loginUser(@RequestBody User user, @RequestHeader(value = "Token", required=false) String token) {
-		System.out.println(user);
+		logger.info("User Controller Called-- Login User");
 		token = token.substring(0, 20);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		HttpStatus httpstatus= HttpStatus.OK;
@@ -67,6 +70,7 @@ public class UserController {
 	@GetMapping("/user/getCurrentUser")
 	@ResponseBody
 	public User currentUser(@RequestHeader(value = "Email", required=false) String email) {
+		logger.info("User Controller Called-- Get Current User");
 		return	userDaoImp.findByEmail(email); 
 	}
 	
@@ -74,6 +78,7 @@ public class UserController {
  	@PostMapping(path = "/user/check")
 	@ResponseBody
 	public ResponseEntity Check(@RequestHeader(value = "Gid", required=true) String Gid, @RequestHeader(value = "Email", required=true) String email) {
+ 		logger.info("User Controller Called-- Check Token");
  		HttpStatus httpstatus=null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		if(check(email,Gid)) { httpstatus= HttpStatus.OK; }

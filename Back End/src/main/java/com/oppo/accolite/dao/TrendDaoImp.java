@@ -17,6 +17,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.oppo.accolite.Exception.NoRecordFound;
+
 
 @Repository("TrendDao")
 @Transactional
@@ -25,9 +27,10 @@ public class TrendDaoImp implements TrendDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	@Override
-	public List<Map<String, String>> getCountLang() {
+	public List<Map<String, String>> getCountLang() throws NoRecordFound {
 		String Query="SELECT location, count(*) FROM opportunity GROUP BY location; ";
 		List<Map<String,String>> item = new ArrayList<>();
+		try {
 		jdbcTemplate.query(Query, new RowCallbackHandler() {
 			public void processRow(ResultSet resultSet) throws SQLException {
 				while (resultSet.next()) {
@@ -49,13 +52,17 @@ public class TrendDaoImp implements TrendDao {
 				
 			}
 		});
+		}catch(Exception e) {
+			throw (NoRecordFound)e;
+		}
 		return item;
 	}
 
 	@Override
-	public List<Map<String, String>> getCountSkills() {
+	public List<Map<String, String>> getCountSkills() throws NoRecordFound {
 		String Query="SELECT skills, count(*) FROM opportunity GROUP BY skills;";
 		List<Map<String,String>> item = new ArrayList<>();
+		try {
 		jdbcTemplate.query(Query, new RowCallbackHandler() {
 			public void processRow(ResultSet resultSet) throws SQLException {
 				while (resultSet.next()) {
@@ -77,13 +84,17 @@ public class TrendDaoImp implements TrendDao {
 				
 			}
 		});
+		}catch(Exception e) {
+			throw (NoRecordFound)e;
+		}
 		return item;
 	}
 
 	@Override
-	public List<Map<String, String>> getCountDemand() {
+	public List<Map<String, String>> getCountDemand() throws NoRecordFound {
 		String Query="SELECT demand, count(*) FROM opportunity GROUP BY demand; ";
 		List<Map<String,String>> item = new ArrayList<>();
+		try {
 		jdbcTemplate.query(Query, new RowCallbackHandler() {
 			public void processRow(ResultSet resultSet) throws SQLException {
 				while (resultSet.next()) {
@@ -106,13 +117,17 @@ public class TrendDaoImp implements TrendDao {
 				});
 			}
 		});
+		}catch(Exception e) {
+			throw (NoRecordFound)e;
+		}
 		return item;
 	}
 
 	@Override
-	public List<Map<String, String>> getCountMinxp() {
+	public List<Map<String, String>> getCountMinxp() throws NoRecordFound {
 		String Query="SELECT minxp, count(*) FROM opportunity GROUP BY minxp; ";
 		List<Map<String,String>> item = new ArrayList<>();
+		try {
 		jdbcTemplate.query(Query, new RowCallbackHandler() {
 			public void processRow(ResultSet resultSet) throws SQLException {
 				while (resultSet.next()) {
@@ -136,21 +151,23 @@ public class TrendDaoImp implements TrendDao {
 				});
 			}
 		});
+		}catch(Exception e) {
+			throw (NoRecordFound)e;
+		}
 		return item;
 	}
 
 	@Override
-	public List<Map<String, String>> getFlashCards() {
+	public List<Map<String, String>> getFlashCards() throws NoRecordFound {
 		List<Map<String,String>> item = new ArrayList<>();
 		String Query = null;
-		
+		try {
 		Query="SELECT count(*) FROM user; ";
 		jdbcTemplate.query(Query, new RowCallbackHandler() {
 			public void processRow(ResultSet resultSet) throws SQLException {
 					Map<String,String> temp = new HashMap<>();
 					temp.put("name","#Users");
 					temp.put("value", resultSet.getString(1));
-					System.out.println(resultSet.getString(1));
 					item.add(temp);
 			}
 		});
@@ -190,7 +207,9 @@ public class TrendDaoImp implements TrendDao {
 			
 			}
 		});
-		System.out.println(item);
+		}catch(Exception e) {
+			throw (NoRecordFound)e;
+		}
 		return item;
 	}
 

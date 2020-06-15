@@ -21,6 +21,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import com.oppo.accolite.OpportunityManagmenetApplication;
+import com.oppo.accolite.Exception.NoRecordFound;
 import com.oppo.accolite.dao.AuditDaoImp;
 import com.oppo.accolite.dao.UserDaoImp;
 import com.oppo.accolite.models.Audit;
@@ -43,7 +44,7 @@ public class AuditDaoTest {
 	UserDaoImp	userDaoImp;
 	
 	@Test
-	public void shouldAddAudit() {
+	public void shouldAddAudit() throws NoRecordFound {
 		ArrayList<Audit> list = new  ArrayList<>();
 		list.add(new Audit("Get All", "Get", "", ""));
 		
@@ -68,7 +69,7 @@ public class AuditDaoTest {
 	}
 	
 	@Test
-	public void shouldSearchAudit() {
+	public void shouldSearchAudit() throws NoRecordFound {
 		String query = "SELECT * FROM audit";
 		ArrayList<Audit> list = new  ArrayList<>();
 		list.add(new Audit("Get All", "Get", "", ""));

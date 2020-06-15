@@ -1,0 +1,62 @@
+[2020-06-15T09:23:00.000Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-384] [218] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2020-06-15T09:23:00.000Z] [com.zaxxer.hikari.HikariDataSource] [Thread-384] [350] [INFO ] HikariPool-3 - Shutdown initiated...
+[2020-06-15T09:23:00.000Z] [com.zaxxer.hikari.HikariDataSource] [Thread-384] [352] [INFO ] HikariPool-3 - Shutdown completed.
+[2020-06-15T09:23:00.000Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting OpportunityManagmenetApplication on DESKTOP-1OASF82 with PID 2368 (C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet\target\classes started by Rishipal Singh in C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet)
+[2020-06-15T09:23:00.000Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2020-06-15T09:23:01.001Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started OpportunityManagmenetApplication in 1.216 seconds (JVM running for 49688.231)
+[2020-06-15T09:23:01.001Z] [com.oppo.accolite.OpportunityManagmenetApplication] [restartedMain] [17] [INFO ] Server is Running Fine!!!
+[2020-06-15T09:23:27.027Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting OpportunityManagmenetApplication on DESKTOP-1OASF82 with PID 5220 (C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet\target\classes started by Rishipal Singh in C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet)
+[2020-06-15T09:23:27.027Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2020-06-15T09:23:31.031Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started OpportunityManagmenetApplication in 4.412 seconds (JVM running for 5.608)
+[2020-06-15T09:23:31.031Z] [com.oppo.accolite.OpportunityManagmenetApplication] [restartedMain] [17] [INFO ] Server is Running Fine!!!
+[2020-06-15T09:26:00.000Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-2] [73] [INFO ] User Controller Called-- Get Current User
+[2020-06-15T09:26:00.000Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-4] [39] [INFO ] User Controller Called-- Get All Users
+[2020-06-15T09:26:00.000Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-7] [58] [INFO ] Opportunity Controller Called-- GetAll
+[2020-06-15T09:26:27.027Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-2] [45] [INFO ] Trend Controller Called-- Get Trend of Language
+[2020-06-15T09:26:27.027Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-4] [72] [INFO ] Trend Controller Called-- Get Trend of Demand
+[2020-06-15T09:26:27.027Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-3] [98] [INFO ] Trend Controller Called-- Get Flash Cards
+[2020-06-15T09:26:27.027Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-5] [58] [INFO ] Trend Controller Called-- Get Trend of Skills
+[2020-06-15T09:28:01.001Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting OpportunityManagmenetApplication on DESKTOP-1OASF82 with PID 5220 (C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet\target\classes started by Rishipal Singh in C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet)
+[2020-06-15T09:28:01.001Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.3.0.RELEASE, Spring v5.2.6.RELEASE
+[2020-06-15T09:28:01.001Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2020-06-15T09:28:02.002Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started OpportunityManagmenetApplication in 1.676 seconds (JVM running for 276.834)
+[2020-06-15T09:28:02.002Z] [com.oppo.accolite.OpportunityManagmenetApplication] [restartedMain] [17] [INFO ] Server is Running Fine!!!
+[2020-06-15T09:28:14.014Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-1] [73] [INFO ] User Controller Called-- Get Current User
+[2020-06-15T09:28:14.014Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-2] [39] [INFO ] User Controller Called-- Get All Users
+[2020-06-15T09:28:14.014Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-3] [58] [INFO ] Opportunity Controller Called-- GetAll
+[2020-06-15T09:28:15.015Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-4] [45] [INFO ] Trend Controller Called-- Get Trend of Language
+[2020-06-15T09:28:15.015Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-5] [58] [INFO ] Trend Controller Called-- Get Trend of Skills
+[2020-06-15T09:28:15.015Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-8] [72] [INFO ] Trend Controller Called-- Get Trend of Demand
+[2020-06-15T09:28:15.015Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-9] [98] [INFO ] Trend Controller Called-- Get Flash Cards
+[2020-06-15T09:28:48.048Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-6] [73] [INFO ] User Controller Called-- Get Current User
+[2020-06-15T09:28:48.048Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-10] [39] [INFO ] User Controller Called-- Get All Users
+[2020-06-15T09:28:48.048Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-1] [58] [INFO ] Opportunity Controller Called-- GetAll
+[2020-06-15T09:28:58.058Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-3] [88] [INFO ] Opportunity Controller Called-- Add Opportunity
+[2020-06-15T09:28:58.058Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-4] [58] [INFO ] Opportunity Controller Called-- GetAll
+[2020-06-15T09:30:13.013Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting OpportunityManagmenetApplication on DESKTOP-1OASF82 with PID 10420 (C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet\target\classes started by Rishipal Singh in C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet)
+[2020-06-15T09:30:13.013Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.3.0.RELEASE, Spring v5.2.6.RELEASE
+[2020-06-15T09:30:13.013Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2020-06-15T09:30:17.017Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started OpportunityManagmenetApplication in 5.1 seconds (JVM running for 6.278)
+[2020-06-15T09:30:17.017Z] [com.oppo.accolite.OpportunityManagmenetApplication] [restartedMain] [17] [INFO ] Server is Running Fine!!!
+[2020-06-15T09:30:57.057Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-8] [45] [INFO ] Trend Controller Called-- Get Trend of Language
+[2020-06-15T09:30:57.057Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-6] [72] [INFO ] Trend Controller Called-- Get Trend of Demand
+[2020-06-15T09:30:57.057Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-1] [98] [INFO ] Trend Controller Called-- Get Flash Cards
+[2020-06-15T09:30:57.057Z] [com.oppo.accolite.controller.TrendsController] [http-nio-8080-exec-3] [58] [INFO ] Trend Controller Called-- Get Trend of Skills
+[2020-06-15T09:31:28.028Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-9] [73] [INFO ] User Controller Called-- Get Current User
+[2020-06-15T09:31:29.029Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-4] [39] [INFO ] User Controller Called-- Get All Users
+[2020-06-15T09:31:29.029Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-10] [58] [INFO ] Opportunity Controller Called-- GetAll
+[2020-06-15T09:31:31.031Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-7] [73] [INFO ] User Controller Called-- Get Current User
+[2020-06-15T09:31:32.032Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-5] [39] [INFO ] User Controller Called-- Get All Users
+[2020-06-15T09:31:32.032Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-8] [58] [INFO ] Opportunity Controller Called-- GetAll
+[2020-06-15T09:33:38.038Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-4] [73] [INFO ] User Controller Called-- Get Current User
+[2020-06-15T09:33:38.038Z] [com.oppo.accolite.controller.UserController] [http-nio-8080-exec-10] [39] [INFO ] User Controller Called-- Get All Users
+[2020-06-15T09:33:38.038Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-7] [58] [INFO ] Opportunity Controller Called-- GetAll
+[2020-06-15T09:33:41.041Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-8] [106] [INFO ] Opportunity Controller Called-- Del Opportunity
+[2020-06-15T09:33:42.042Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-1] [58] [INFO ] Opportunity Controller Called-- GetAll
+[2020-06-15T09:34:26.026Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-2] [88] [INFO ] Opportunity Controller Called-- Add Opportunity
+[2020-06-15T09:34:26.026Z] [com.oppo.accolite.controller.OpportunityController] [http-nio-8080-exec-3] [58] [INFO ] Opportunity Controller Called-- GetAll
+[2020-06-15T09:34:49.049Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting OpportunityManagmenetApplication on DESKTOP-1OASF82 with PID 13852 (C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet\target\classes started by Rishipal Singh in C:\Users\Rishipal Singh\Documents\workspace-spring-tool-suite-4-4.6.1.RELEASE\OpportunityManagmenet)
+[2020-06-15T09:34:49.049Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.3.0.RELEASE, Spring v5.2.6.RELEASE
+[2020-06-15T09:34:49.049Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2020-06-15T09:34:53.053Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started OpportunityManagmenetApplication in 4.023 seconds (JVM running for 5.133)
+[2020-06-15T09:34:53.053Z] [com.oppo.accolite.OpportunityManagmenetApplication] [restartedMain] [17] [INFO ] Server is Running Fine!!!

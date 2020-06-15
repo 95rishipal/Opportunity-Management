@@ -69,6 +69,20 @@ public class UserTest {
 	}
 	
 	@Test
+	public void shouldLoginUserException() throws Exception {
+		Mockito.when(userDaoImp.updateToken(null, null)).thenReturn(1);
+		Mockito.when(userDaoImp.insertUser(null, null)).thenReturn(2);
+		User user = new User(1,"Rishipal Singh","95rishipal@gmail.com","","1156403356898487862","eyJhbGciOiJSUzI1NiIs");
+		Mockito.when(userDaoImp.findByEmail("95rishipal@gmail.com")).thenReturn(user);
+		String token = "012345678901234567890";
+		String json = objectMapper.writeValueAsString(new User(1,"Rishipal Singh","95rishipl@gmail.com","","1156403356898862","eyJhbGciOiJSUzI1NiIs"));
+		mockMvc.perform(post("/user/login")
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(json)
+				.header("Token", token)
+				).andExpect(status().is(200));
+	}
+	@Test
 	public void shouldReturnCurrentUser() throws Exception {
 		Mockito.when(userDaoImp.findByEmail("95rishipal@gmail.com")).thenReturn(userList.get(0));
 		mockMvc.perform(get("/user/getCurrentUser")).andExpect(status().isOk());
@@ -79,6 +93,14 @@ public class UserTest {
 		User user = new User(1,"Rishipal Singh","95rishipal@gmail.com","","115640335689848772862","eyJhbGciOiJSUzI1NiIs");
 		Mockito.when(userDaoImp.findByEmail("95rishipal@gmail.com")).thenReturn(user);
 		mockMvc.perform(post("/user/check").header("Email", "95rishipal@gmail.com").header("Gid", "115640335689848772862")).andExpect(status().isOk());
+
+	}
+	
+	@Test
+	public void shouldCheckTheCredentialException() throws Exception {
+		User user = new User(1,"Rishipal Singh","95rishipal@gmail.com","","115640335689848772862","eyJhbGciOiJSUzI1NiIs");
+		Mockito.when(userDaoImp.findByEmail("95rishipal@gmail.com")).thenReturn(new User(1,"Rishipal Singh","95rishipal@gmail.com","","115640335848772862","eyJhbGciOiJSUzI1NiIs"));
+		mockMvc.perform(post("/user/check").header("Email", "95rishipal@gmail.com").header("Gid", "115640335689848772862")).andExpect(status().isNotFound());
 
 	}
 	

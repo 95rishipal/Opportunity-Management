@@ -14,6 +14,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import com.oppo.accolite.Exception.NoRecordFound;
 import com.oppo.accolite.controller.TrendsController;
 import com.oppo.accolite.dao.TrendDaoImp;
 import com.oppo.accolite.dao.UserDaoImp;
@@ -45,14 +47,33 @@ public class TrendTest {
 	}
 	
 	@Test
+	public void shouldGetLangException() throws Exception {
+		Mockito.when(trendDaoImp.getCountLang()).thenThrow(NoRecordFound.class);
+		mockMvc.perform(get("/trends/language")).andExpect(status().isOk());
+	}
+	
+	@Test
 	public void shouldGetDemand() throws Exception {
 		Mockito.when(trendDaoImp.getCountDemand()).thenReturn(new ArrayList<Map<String,String>>());
 		mockMvc.perform(get("/trends/demand")).andExpect(status().isOk());
 	}
 	
 	@Test
+	public void shouldGetDemandException() throws Exception {
+		Mockito.when(trendDaoImp.getCountDemand()).thenThrow(NoRecordFound.class);
+		mockMvc.perform(get("/trends/demand")).andExpect(status().isOk());
+	}
+	
+	
+	@Test
 	public void shouldGetMinXp() throws Exception {
 		Mockito.when(trendDaoImp.getCountMinxp()).thenReturn(new ArrayList<Map<String,String>>());
+		mockMvc.perform(get("/trends/minxp")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void shouldGetMinXpException() throws Exception {
+		Mockito.when(trendDaoImp.getCountMinxp()).thenThrow(NoRecordFound.class);
 		mockMvc.perform(get("/trends/minxp")).andExpect(status().isOk());
 	}
 	
@@ -63,8 +84,20 @@ public class TrendTest {
 	}
 	
 	@Test
+	public void shouldGetSkillsException() throws Exception {
+		Mockito.when(trendDaoImp.getCountSkills()).thenThrow(NoRecordFound.class);
+		mockMvc.perform(get("/trends/skills")).andExpect(status().isOk());
+	}
+	
+	@Test
 	public void shouldGetFlashCard() throws Exception {
 		Mockito.when(trendDaoImp.getFlashCards()).thenReturn(new ArrayList<Map<String,String>>());
+		mockMvc.perform(get("/trends/countusers")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void shouldGetFlashCardException() throws Exception {
+		Mockito.when(trendDaoImp.getFlashCards()).thenThrow(NoRecordFound.class);
 		mockMvc.perform(get("/trends/countusers")).andExpect(status().isOk());
 	}
 	

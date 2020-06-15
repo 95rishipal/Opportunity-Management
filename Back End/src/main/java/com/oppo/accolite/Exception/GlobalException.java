@@ -14,7 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 public class GlobalException {
      @ExceptionHandler(Exception.class)
      public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
-        ErrorDetails errorDetails = new ErrorDetails(LocalDate.now(), ex.getMessage(), request.getDescription(true));
+        ErrorDetails errorDetails = new ErrorDetails(LocalDate.now(), ex.getMessage()+ex.getStackTrace().toString(), request.getDescription(true));
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 }

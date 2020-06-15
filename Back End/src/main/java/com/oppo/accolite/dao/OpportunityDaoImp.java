@@ -1,5 +1,6 @@
 package com.oppo.accolite.dao;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.oppo.accolite.Exception.NoRecordFound;
 import com.oppo.accolite.controller.OpportunityController;
 import com.oppo.accolite.controller.UserController;
 import com.oppo.accolite.models.Audit;
@@ -32,21 +34,30 @@ public class OpportunityDaoImp implements OpportunityDao {
 	UserDaoImp userDaoImp;
 
 	@Override
-	public List<Opportunity> getAllOppo() {
-		List<Opportunity> list = jdbcTemplate.query("SELECT * FROM opportunity", new OpportunityRowMapper());
-		Collections.reverse(list);
+	public List<Opportunity> getAllOppo() throws NoRecordFound {
+		List<Opportunity> list = new ArrayList<>();
+		try {
+			 list = jdbcTemplate.query("SELECT * FROM opportunity", new OpportunityRowMapper());
+			 Collections.reverse(list);
+		}catch(Exception e) {
+			throw (NoRecordFound)e;
+		}
 		return list;
 	}
 
 	@Override
-	public List<Opportunity> searchBy(String col, String place) {
+	public List<Opportunity> searchBy(String col, String place) throws NoRecordFound {
 		List<Opportunity> list = null;
 		String query = null;
 		if(col.equals("description"))  query = "SELECT * FROM opportunity WHERE description LIKE '%"+place+"%';";
 		if(col.equals("location")) query = "SELECT * FROM opportunity  WHERE location LIKE '%"+place+"%';";
 		if(col.equals("skills"))  query = "SELECT * FROM opportunity  WHERE skills LIKE '%"+place+"%';";
 		if(query != null){
-			list = jdbcTemplate.query(query, new OpportunityRowMapper());
+			try {
+				list = jdbcTemplate.query(query, new OpportunityRowMapper());
+			}catch(Exception e) {
+				throw (NoRecordFound)e;
+			}
 		}
 		return list;
 	}

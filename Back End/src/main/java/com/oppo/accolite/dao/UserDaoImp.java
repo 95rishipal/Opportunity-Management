@@ -49,8 +49,7 @@ public class UserDaoImp implements UserDao {
 		try {
 		u = jdbcTemplate.queryForObject("SELECT * FROM user WHERE email='"+email+"';", new UserRowMapper());
 		}catch(Exception e) {
-//			e.printStackTrace();
-			System.out.println("No user");
+
 		}
 		return u;
 	}

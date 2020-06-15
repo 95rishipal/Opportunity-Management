@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.oppo.accolite.Exception.NoRecordFound;
 import com.oppo.accolite.dao.AuditDaoImp;
 import com.oppo.accolite.dao.OpportunityDaoImp;
 import com.oppo.accolite.dao.UserDaoImp;
@@ -38,7 +39,7 @@ public class OpportunityDaoTest {
 	OpportunityDaoImp oppoDaoImp;
 	
 	@Test
-	public void shouldGetAllOppo() {
+	public void shouldGetAllOppo() throws NoRecordFound {
 		
 		ArrayList<Opportunity> list = new  ArrayList<>();
 		list.add(new Opportunity(1, "asd",LocalDate.now(), "Pune", "Java",1, 1, 1));
@@ -51,7 +52,7 @@ public class OpportunityDaoTest {
 	}
 	
 	@Test
-	public void shouldSearchOppo() {
+	public void shouldSearchOppo() throws NoRecordFound {
 		ArrayList<Opportunity> list = new  ArrayList<>();
 		list.add(new Opportunity(1, "asd",LocalDate.now(), "Pune", "Java",1, 1, 1));
 		List<Opportunity> list2=null;
